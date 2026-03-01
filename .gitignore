@@ -1,8 +1,12 @@
 .venv/
 venv/
 env/
+.env
 
+.idea/
 __pycache__/
 *.pyc
-.env
-.idea/
+
+/data/
+/src/data/
+*.sqlite3
