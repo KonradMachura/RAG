@@ -1,7 +1,6 @@
 from typing import List
 import chunking as c
-
-
+import embedding as e
 
 def test_chunking(docs_contents: List[str], docs_names: List[str],
                   chunking_type: str, **details) -> None:
@@ -23,3 +22,23 @@ def test_chunking(docs_contents: List[str], docs_names: List[str],
         chunked_doc_size: int = sum(len(chunk) for chunk in chunked_doc)
         """For fixed size chunking the cumulative size -> doc_size + (chunks_num-1) * overlap"""
         print(f"{len(chunked_doc)} chunks, cumulative size {chunked_doc_size}")
+
+
+def test_embedding():
+    e.load_dotenv()
+    model = e.SentenceTransformer('all-MiniLM-L6-v2')
+
+    sentences: List[str] = [
+        "An employee is entitled to 26 days of holiday leave.",
+        "Rules for taking days off work.",
+        "How to set up a company email account?",
+    ]
+    query_text: str = "Hoe long is holiday leave?"
+
+    embedding = model.encode(sentences)
+    query = model.encode(query_text)
+
+    similarities = e.util.semantic_search(query, embedding, top_k=3)
+
+    for item in similarities[0]:
+        print(f"{item}")
