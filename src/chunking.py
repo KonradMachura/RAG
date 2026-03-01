@@ -1,7 +1,7 @@
 from typing import List
 import re
 
-def fixed_sized_chunking(doc_content, size=200, overlap = 40) -> List[str]:
+def fixed_sized_chunking(doc_content: str, size: int = 200, overlap: int = 40) -> List[str]:
     """Split a document into fixed size chunks"""
     chunks: List[str] = []
     start: int = 0
@@ -17,13 +17,13 @@ def fixed_sized_chunking(doc_content, size=200, overlap = 40) -> List[str]:
 
     return chunks
 
-def subsection_chunking(doc_content) -> List[str]:
+def subsection_chunking(doc_content: str) -> List[str]:
     """Split a document into subsection chunks"""
     chunks: List[str] = []
     chunks = re.split(r"(?=#{2,3})", doc_content)
     return chunks
 
-def paragraph_chunking(doc_content) -> List[str]:
+def paragraph_chunking(doc_content: str) -> List[str]:
     """Split a document into paragraph/section chunks"""
     chunks: List[str] = []
     chunks = re.split(r"(?=#{2})", doc_content)

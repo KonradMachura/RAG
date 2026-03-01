@@ -7,7 +7,7 @@ import testing as t
 def main():
 
     docs_contents, docs_names, docs_paths = u.read_docs()
-    t.test_chunking(docs_contents, docs_names)
+    t.test_chunking(docs_contents, docs_names, "fixed_size")
 
 
 if __name__ == '__main__':
