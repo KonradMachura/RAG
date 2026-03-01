@@ -16,9 +16,9 @@ def main():
     docs_contents, docs_names, docs_paths = u.read_docs()
     for i, (doc_name, doc_content) in enumerate(zip(docs_names, docs_contents)):
         # print(f"i={i}, doc_name={doc_name}, doc_content={doc_content[:10]}")
-        chunks = c.paragraph_chunking(doc_content)
-        chunks_ids = [f"chunk_{j}_{doc_name}" for j in range(len(chunks))]
-        metadatas = [ {"source": doc_name} for _ in chunks]
+        chunks: list[str] = c.paragraph_chunking(doc_content)
+        chunks_ids: list[str] = [f"chunk_{j}_{doc_name}" for j in range(len(chunks))]
+        metadatas: list[dict[str,str]] = [ {"source": doc_name} for _ in chunks]
 
         print(f"Adding {len(chunks_ids)} chunks from {doc_name}")
         collection.upsert(

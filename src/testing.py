@@ -1,8 +1,7 @@
-from typing import List
 import chunking as c
 import embedding as e
 
-def test_chunking(docs_contents: List[str], docs_names: List[str],
+def test_chunking(docs_contents: list[str], docs_names: list[str],
                   chunking_type: str, **details) -> None:
 
     for doc_content, doc_name in zip(docs_contents, docs_names):
@@ -28,7 +27,7 @@ def test_embedding():
     e.load_dotenv()
     model = e.SentenceTransformer('all-MiniLM-L6-v2')
 
-    sentences: List[str] = [
+    sentences: list[str] = [
         "An employee is entitled to 26 days of holiday leave.",
         "Rules for taking days off work.",
         "How to set up a company email account?",
