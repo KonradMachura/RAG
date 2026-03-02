@@ -1,0 +1,57 @@
+all-MiniLM-L6-v2
+What do you need to know? What hardware is provided by company ?
+
+Results for (What hardware is provided by company ?):
+
+File 1: Security_and_IT_Policy.md Distance: 0.5137
+----------------------------------------
+## 1. Hardware Policy
+
+SuperTech equips employees with high-quality tools to ensure productivity.
+----------------------------------------
+
+File 2: Employee_Lifecycle.md Distance: 0.5956
+----------------------------------------
+## 3.3. Hardware Return
+All company property (laptop, phone, access badges) must be returned to the IT Desk by 4:00 PM on the employee's last working day.
+----------------------------------------
+
+File 3: Security_and_IT_Policy.md Distance: 0.6074
+----------------------------------------
+## 1.1. Standard Kit
+Upon hiring, employees choose between a MacBook Pro 14" (M-series) or a Dell XPS 15. All employees receive a 27" Dell Ultrasharp monitor, a wireless mouse, and a keyboard.
+----------------------------------------
+
+
+multi-qa-MiniLM-L6-cos-v1
+What do you need to know? What hardware is provided by company ?
+
+Results for (What hardware is provided by company ?):
+
+File 1: Security_and_IT_Policy.md Distance: 0.4313
+----------------------------------------
+## 1. Hardware Policy
+
+SuperTech equips employees with high-quality tools to ensure productivity.
+----------------------------------------
+
+File 2: Security_and_IT_Policy.md Distance: 0.5484
+----------------------------------------
+## 1.1. Standard Kit
+Upon hiring, employees choose between a MacBook Pro 14" (M-series) or a Dell XPS 15. All employees receive a 27" Dell Ultrasharp monitor, a wireless mouse, and a keyboard.
+----------------------------------------
+
+File 3: Employee_Lifecycle.md Distance: 0.5986
+----------------------------------------
+## 3.3. Hardware Return
+All company property (laptop, phone, access badges) must be returned to the IT Desk by 4:00 PM on the employee's last working day.
+----------------------------------------
+
+multi-qa-MiniLM-L6-cos-v1 + llama-3.3-70b-versatile as llm
+
+----------------------------------------
+HR assistant response:
+----------------------------------------
+According to our company's Hardware Policy, upon hiring, you will be provided with a choice between a MacBook Pro 14" (M-series) or a Dell XPS 15, along with a 27" Dell Ultrasharp monitor, a wireless mouse, and a keyboard.
+----------------------------------------
+

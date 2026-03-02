@@ -6,7 +6,15 @@ from chromadb.utils import embedding_functions
 
 def main():
     load_dotenv()
-    sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction('all-MiniLM-L6-v2')
+    """ sentence_transformer_ef is using Squared L2 for sentence embedding so lower results -> higher similarity
+        First model is symmetric so it was trained to search sentences that mean more or less the same.
+        Second model is asymmetric. It means it was designed for search tasks where the query 
+        and the target documents are fundamentally different in structure, length, or intent.
+        Instead of looking for a semantic "mirror image" (which is what symmetric models do)
+        , they act like a "key and lock".
+    """
+    # sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction('all-MiniLM-L6-v2')
+    sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction('multi-qa-MiniLM-L6-cos-v1')
 
     chroma_client = chromadb.PersistentClient(path="./data")
     collection = chroma_client.get_or_create_collection(
