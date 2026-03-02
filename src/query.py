@@ -39,11 +39,14 @@ def main():
         documents: list[str] = results['documents'][0]
         metadatas: list[dict[str,str]] = results['metadatas'][0]
         distances: list[float] = results['distances'][0]
+        file_names: list[str] = []
 
         print(f"\nResults for ({user_query_txt}):")
 
+
         for i in range(len(documents)):
-            file_name: list[str] = metadatas[i].get("source", "Unknown file")
+            file_name: str = metadatas[i].get("source", "Unknown file")
+            file_names.append(file_name)
             print(f"\nFile {i+1}: {file_name} Distance: {distances[i]:.4f}")
             print("-" * 40)
             print(documents[i])
@@ -54,10 +57,16 @@ def main():
             You are a HR assistant in SuperTech company. Your task is to answer employees' questions,
             using only the following documents chunks. If there is no answer in documents,
             response "I am sorry, can't find any information related to your query."
+            At the end of the answer emphasis source of the informations like
+            document name and paragraph if is mentioned in context.
+            Do it in format:"Document name: ,Paragraph(if mentioned in context): "
             Don't fabricate informations.
             
             Documents chunks (context):
             {context}
+            
+            Document name:
+            {file_names}
             
             Employee query:
             {user_query_txt}
