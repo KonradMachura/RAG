@@ -1,8 +1,16 @@
 from pathlib import Path
-from typing import Any
 import fitz
-from pymupdf import Page
+import re
 
+def clean_pdf_text(content: str) -> str:
+    """Cleaning PDF text sticking cutted words"""
+    """ /s - strings contains a white space char  /d - strings contains digits
+        flag - MULTILINE returns matches at the beggining of each line"""
+    content = re.sub(r'^\s*\d+\s*$', '', content, flags=re.MULTILINE)
+    content = re.sub(r'(\w+)[-\xad]\s*\n+\s*(\w+)', r'\1\2',content)
+    content = re.sub(r'(?<!\n)\n(?!\n)', ' ', content)
+    content = re.sub(r' +', ' ', content)
+    return content
 
 def read_md_files(file_path: Path):
     try:
@@ -19,7 +27,7 @@ def read_pdf_files(file_path: Path):
         with fitz.open(file_path) as f:
             for page in f:
                 content += page.get_text() + "\n\n"
-        return content.strip()
+        return clean_pdf_text(content)
 
     except Exception as e:
         print(f"Warning: Cannot read file {file_path}: {e} .")
@@ -68,3 +76,4 @@ def get_documents_info() -> tuple[list[str], list[str], list[Path]]:
 
 if __name__ == "__main__":
     docs_content, docs_names, docs_path = get_documents_info()
+    print(docs_content[0][:5000])

@@ -12,6 +12,8 @@ def fixed_sized_chunking(doc_content: str, size: int = 200, overlap: int = 40) -
             chunk = doc_content[start:]
 
         chunks.append(chunk.strip())
+        print(chunk)
+        print('-'*40)
         start = end - overlap
 
     return chunks

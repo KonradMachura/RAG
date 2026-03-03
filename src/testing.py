@@ -1,3 +1,4 @@
+import utils as u
 import chunking as c
 import embedding as e
 
@@ -16,7 +17,7 @@ def test_chunking(docs_contents: list[str], docs_names: list[str],
             case "paragraph":
                 chunked_doc = c.paragraph_chunking(doc_content)
             case _:
-                raise ValueError(f"Nieznany typ chunkowania: {chunking_type}")
+                raise ValueError(f"Unknown chunking type: {chunking_type}")
 
         chunked_doc_size: int = sum(len(chunk) for chunk in chunked_doc)
         """For fixed size chunking the cumulative size -> doc_size + (chunks_num-1) * overlap"""
@@ -41,3 +42,8 @@ def test_embedding():
 
     for item in similarities[0]:
         print(f"{item}")
+
+
+if __name__ == "__main__":
+    docs_contents, docs_names, docs_paths = u.read_docs()
+    test_chunking(docs_contents, docs_names, "fixed_size", size=2000, overlap=300)
