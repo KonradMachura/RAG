@@ -41,7 +41,7 @@ if user_query := st.chat_input("Write down your question..."):
 
         context: str = "\n\n---\n\n".join(documents)
 
-        sources = set([meta.get("source", "Nieznane") for meta in metadatas])
+        sources = set([meta.get("source", "Not found") for meta in metadatas])
 
         prompt = f"""
             You are a HR assistant in SuperTech company. Your task is to answer employees' questions,
@@ -72,7 +72,6 @@ if user_query := st.chat_input("Write down your question..."):
         )
 
         answer = chat_completion.choices[0].message.content
-
         final_response = f"{answer}\n\n"
 
     st.chat_message("assistant").markdown(final_response)
