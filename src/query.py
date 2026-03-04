@@ -14,7 +14,8 @@ def main():
         , they act like a "key and lock".
     """
     # sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction('all-MiniLM-L6-v2')
-    sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction('multi-qa-MiniLM-L6-cos-v1')
+    # sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction('multi-qa-MiniLM-L6-cos-v1')
+    sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction('paraphrase-multilingual-MiniLM-L12-v2')
     chroma_client = chromadb.PersistentClient(path="./data")
     groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 

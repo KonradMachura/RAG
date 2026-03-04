@@ -1,9 +1,12 @@
+from dotenv import load_dotenv
 import utils as u
 import chunking as c
 import embedding as e
 
 def test_chunking(docs_contents: list[str], docs_names: list[str],
-                  chunking_type: str, **details) -> None:
+                  chunking_type: str, **details) -> list[str]:
+
+    chunked_doc: list[str] = []
 
     for doc_content, doc_name in zip(docs_contents, docs_names):
         print(f"--- Chunking {doc_name}, size {len(doc_content)} ---")
@@ -16,12 +19,15 @@ def test_chunking(docs_contents: list[str], docs_names: list[str],
                 chunked_doc = c.subsection_chunking(doc_content)
             case "paragraph":
                 chunked_doc = c.paragraph_chunking(doc_content)
+            case "semantic":
+                chunked_doc = c.semantic_chunking(doc_content)
             case _:
                 raise ValueError(f"Unknown chunking type: {chunking_type}")
 
         chunked_doc_size: int = sum(len(chunk) for chunk in chunked_doc)
         """For fixed size chunking the cumulative size -> doc_size + (chunks_num-1) * overlap"""
         print(f"{len(chunked_doc)} chunks, cumulative size {chunked_doc_size}")
+        return chunked_doc
 
 
 def test_embedding():
@@ -45,5 +51,7 @@ def test_embedding():
 
 
 if __name__ == "__main__":
+    load_dotenv()
     docs_contents, docs_names, docs_paths = u.read_docs()
-    test_chunking(docs_contents, docs_names, "fixed_size", size=2000, overlap=300)
+    chunks: list[str] = test_chunking(docs_contents, docs_names, "semantic")
+    print(chunks[5:10])
