@@ -1,6 +1,7 @@
 from pathlib import Path
 import fitz  # old name for PyMuPDF
 import re
+import config as cfg
 
 def clean_pdf_text(content: str) -> str:
     """Cleaning PDF text sticking cutted words"""
@@ -39,9 +40,8 @@ def read_docs() -> tuple[list[str], list[str], list[Path]]:
     doc_paths: list[Path] = []
     doc_names: list[str] = []
 
-    project_path: Path = Path(__file__).parent.parent
     # file_paths = project_path.rglob(pattern='./company_documents/*.md')
-    file_paths = project_path.rglob(pattern='./books/*.pdf')
+    file_paths = cfg.BASE_DIR.rglob(pattern='./books/*.pdf')
     for file_path in file_paths:
         content: str = ""
         if file_path.suffix == '.md':
@@ -53,7 +53,7 @@ def read_docs() -> tuple[list[str], list[str], list[Path]]:
         if content:
             docs_content.append(content)
             doc_paths.append(file_path)
-            doc_names.append(file_path.name)
+            doc_names.append(file_path.name.rstrip(file_path.suffix))
 
     return docs_content, doc_names, doc_paths
 
