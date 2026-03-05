@@ -1,10 +1,11 @@
 from dotenv import load_dotenv
+from sentence_transformers import SentenceTransformer, util
 import utils as u
 import chunking as c
-import embedding as e
+import config as cfg
 
 def test_chunking(docs_contents: list[str], docs_names: list[str],
-                  chunking_type: str, **details) -> list[str]:
+                  chunking_type: str, **details) -> list[str] | None:
 
     chunked_doc: list[str] = []
 
@@ -13,8 +14,8 @@ def test_chunking(docs_contents: list[str], docs_names: list[str],
 
         match chunking_type:
             case "fixed_size":
-                chunked_doc = c.fixed_sized_chunking(doc_content, details.get("size", 200),
-                                                     details.get("overlap", 40))
+                chunked_doc = c.fixed_sized_chunking(doc_content, details.get("size", cfg.DEFAULT_CHUNK_SIZE),
+                                                     details.get("overlap", cfg.DEFAULT_CHUNK_OVERLAP))
             case "subsection":
                 chunked_doc = c.subsection_chunking(doc_content)
             case "paragraph":
@@ -31,20 +32,20 @@ def test_chunking(docs_contents: list[str], docs_names: list[str],
 
 
 def test_embedding():
-    e.load_dotenv()
-    model = e.SentenceTransformer('all-MiniLM-L6-v2')
+    load_dotenv()
+    model = SentenceTransformer(cfg.EMBEDDING_MODEL)
 
     sentences: list[str] = [
         "An employee is entitled to 26 days of holiday leave.",
         "Rules for taking days off work.",
         "How to set up a company email account?",
     ]
-    query_text: str = "Hoe long is holiday leave?"
+    query_text: str = "How long is holiday leave?"
 
     embedding = model.encode(sentences)
     query = model.encode(query_text)
 
-    similarities = e.util.semantic_search(query, embedding, top_k=3)
+    similarities = util.semantic_search(query, embedding, top_k= cfg.N_RESULTS)
 
     for item in similarities[0]:
         print(f"{item}")
