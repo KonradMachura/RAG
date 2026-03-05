@@ -26,7 +26,7 @@ def test_chunking(docs_contents: list[str], docs_names: list[str],
 
         chunked_doc_size: int = sum(len(chunk) for chunk in chunked_doc)
         """For fixed size chunking the cumulative size -> doc_size + (chunks_num-1) * overlap"""
-        print(f"{len(chunked_doc)} chunks, cumulative size {chunked_doc_size}")
+        print(f"{len(chunked_doc)} chunks, cumulative size {chunked_doc_size}, average chunk size: {chunked_doc_size / len(chunked_doc)}")
         return chunked_doc
 
 

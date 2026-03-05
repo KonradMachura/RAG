@@ -49,7 +49,7 @@ def semantic_chunking(doc_content: str) -> list[str]:
     As long as the meaning is the same, it groups them together.
     And when there is a decrease in similarity, it makes a ‘cut’ between them.
     """
-    chunking_treshold: float = 0.5
+    chunking_treshold: float = 0.75
     chunks: list[str] = []
 
     raw_sentences = re.split(r"(?<=[.?!])\s+", doc_content)
