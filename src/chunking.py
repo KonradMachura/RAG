@@ -1,10 +1,11 @@
 import re
-
 import sentence_transformers
-from sentence_transformers import SentenceTransformer, util
+from sentence_transformers import util
+import config as cfg
 
 
-def fixed_sized_chunking(doc_content: str, size: int = 200, overlap: int = 40) -> list[str]:
+def fixed_sized_chunking(doc_content: str,
+                         size: int = cfg.DEFAULT_CHUNK_SIZE, overlap: int = cfg.DEFAULT_CHUNK_OVERLAP) -> list[str]:
     """Split a document into fixed size chunks"""
     chunks: list[str] = []
     start: int = 0
@@ -49,7 +50,6 @@ def semantic_chunking(doc_content: str) -> list[str]:
     As long as the meaning is the same, it groups them together.
     And when there is a decrease in similarity, it makes a ‘cut’ between them.
     """
-    chunking_treshold: float = 0.75
     chunks: list[str] = []
 
     raw_sentences = re.split(r"(?<=[.?!])\s+", doc_content)
@@ -57,8 +57,7 @@ def semantic_chunking(doc_content: str) -> list[str]:
     if not sentences:
         return []
 
-    # model = sentence_transformers.SentenceTransformer('all-MiniLM-L6-v2')
-    model = sentence_transformers.SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
+    model = sentence_transformers.SentenceTransformer(cfg.EMBEDDING_MODEL)
 
     sentences_vectors = model.encode(sentences)
     chunk = sentences[0]
@@ -67,7 +66,7 @@ def semantic_chunking(doc_content: str) -> list[str]:
 
         cosine_sim = util.cos_sim(sentences_vectors[i], sentences_vectors[i+1]).item()
         distance = 1.0 - cosine_sim
-        if distance <= chunking_treshold:
+        if distance <= cfg.SEMANTIC_THRESHOLD:
             chunk += " " + sentences[i+1]
         else:
             chunks.append(chunk)

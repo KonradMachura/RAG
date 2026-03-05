@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import chromadb
 from chromadb.utils import embedding_functions
 from groq import Groq
+import config as cfg
 
 def main():
     load_dotenv()
@@ -13,14 +14,12 @@ def main():
         Instead of looking for a semantic "mirror image" (which is what symmetric models do)
         , they act like a "key and lock".
     """
-    # sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction('all-MiniLM-L6-v2')
-    # sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction('multi-qa-MiniLM-L6-cos-v1')
-    sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction('paraphrase-multilingual-MiniLM-L12-v2')
-    chroma_client = chromadb.PersistentClient(path="./data")
+    sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction(cfg.EMBEDDING_MODEL)
+    chroma_client = chromadb.PersistentClient(path=str(cfg.DB_PATH))
     groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
     collection = chroma_client.get_collection(
-        name='company_docs',
+        name=cfg.DB_NAME,
         embedding_function=sentence_transformer_ef
     )
 
@@ -34,7 +33,7 @@ def main():
 
         results = collection.query(
             query_texts=user_query_txt,
-            n_results=3
+            n_results= cfg.N_RESULTS
         )
 
         documents: list[str] = results['documents'][0]
@@ -81,8 +80,8 @@ def main():
                     "content": prompt
                 }
             ],
-            model="llama-3.3-70b-versatile",
-            temperature=0.1
+            model= cfg.LLM_MODEL,
+            temperature= cfg.TEMPERATURE
         )
 
 

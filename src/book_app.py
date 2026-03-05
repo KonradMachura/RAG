@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import chromadb
 from chromadb.utils import embedding_functions
 from groq import Groq
+import config as cfg
 
 st.set_page_config(page_title="Bookipidia", page_icon="📚")
 
@@ -13,10 +14,9 @@ load_dotenv()
 @st.cache_resource
 def load_services():
     groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-    # ef = embedding_functions.SentenceTransformerEmbeddingFunction('multi-qa-MiniLM-L6-cos-v1')
-    ef = embedding_functions.SentenceTransformerEmbeddingFunction('paraphrase-multilingual-MiniLM-L12-v2')
-    chroma_client = chromadb.PersistentClient(path="./data")
-    collection = chroma_client.get_collection(name='hobbit_book', embedding_function=ef)
+    ef = embedding_functions.SentenceTransformerEmbeddingFunction(cfg.EMBEDDING_MODEL)
+    chroma_client = chromadb.PersistentClient(path= str(cfg.DB_PATH))
+    collection = chroma_client.get_collection(name= cfg.DB_NAME, embedding_function=ef)
     return groq_client, collection
 
 
@@ -37,7 +37,7 @@ if user_query := st.chat_input("Write down your question..."):
     st.session_state.messages.append({"role": "user", "content": user_query})
 
     with st.spinner("Searching procedure..."):
-        results = collection.query(query_texts=[user_query], n_results=10)
+        results = collection.query(query_texts=[user_query], n_results= cfg.N_RESULTS)
         documents = results['documents'][0]
         metadatas = results['metadatas'][0]
 
@@ -75,8 +75,8 @@ if user_query := st.chat_input("Write down your question..."):
                 {"role": "system", "content": prompt},
                 {"role": "user", "content": user_query}
             ],
-            model="llama-3.3-70b-versatile",
-            temperature=0.1
+            model= cfg.LLM_MODEL,
+            temperature= cfg.TEMPERATURE
         )
 
         answer = chat_completion.choices[0].message.content

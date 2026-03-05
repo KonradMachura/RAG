@@ -1,5 +1,5 @@
 from pathlib import Path
-import fitz
+import fitz  # old name for PyMuPDF
 import re
 
 def clean_pdf_text(content: str) -> str:
