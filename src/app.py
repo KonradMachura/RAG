@@ -1,10 +1,9 @@
 import streamlit as st
 import os
 from dotenv import load_dotenv
-import chromadb
-from chromadb.utils import embedding_functions
 from groq import Groq
 import config as cfg
+import build_db
 
 st.set_page_config(page_title="HR assistant", page_icon="😎")
 
@@ -13,9 +12,7 @@ load_dotenv()
 @st.cache_resource
 def load_services():
     groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-    ef = embedding_functions.SentenceTransformerEmbeddingFunction(cfg.EMBEDDING_MODEL)
-    chroma_client = chromadb.PersistentClient(path= str(cfg.DB_PATH))
-    collection = chroma_client.get_collection(name= cfg.DB_NAME, embedding_function=ef)
+    collection = build_db.configure_chroma_db()
     return groq_client, collection
 
 
