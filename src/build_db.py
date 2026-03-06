@@ -18,6 +18,14 @@ def chunk_and_save_document(collection: Collection, doc_content: str, doc_name: 
         metadatas=metadatas
     )
 
+def configure_chroma_db() -> Collection:
+    embedding_function = embedding_functions.SentenceTransformerEmbeddingFunction(cfg.EMBEDDING_MODEL)
+    chroma_client = chromadb.PersistentClient(path=str(cfg.DB_PATH))
+    collection = chroma_client.get_or_create_collection(
+        name=cfg.DB_NAME,
+        embedding_function=embedding_function)
+    return collection
+
 
 def main():
     load_dotenv()
@@ -28,12 +36,7 @@ def main():
         Instead of looking for a semantic "mirror image" (which is what symmetric models do)
         , they act like a "key and lock".
     """
-    sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction(cfg.EMBEDDING_MODEL)
-
-    chroma_client = chromadb.PersistentClient(path=str(cfg.DB_PATH))
-    collection = chroma_client.get_or_create_collection(
-        name=cfg.DB_NAME,
-        embedding_function=sentence_transformer_ef)
+    collection = configure_chroma_db()
 
     docs_contents, docs_names, docs_paths = u.read_docs()
     for i, (doc_name, doc_content) in enumerate(zip(docs_names, docs_contents)):
