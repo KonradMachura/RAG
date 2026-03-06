@@ -1,9 +1,22 @@
+from chromadb.api.models.Collection import Collection
 from dotenv import load_dotenv
 import utils as u
 import chunking as c
 import chromadb
 from chromadb.utils import embedding_functions
 import config as cfg
+
+def chunk_and_save_document(collection: Collection, doc_content: str, doc_name: str):
+    chunks: list[str] = c.semantic_chunking(doc_content)
+    chunks_ids: list[str] = [f"chunk_{j}_{doc_name}" for j in range(len(chunks))]
+    metadatas: list[dict[str, str]] = [{"source": doc_name} for _ in chunks]
+
+    print(f"Adding {len(chunks_ids)} chunks from {doc_name}")
+    collection.upsert(
+        ids=chunks_ids,
+        documents=chunks,
+        metadatas=metadatas
+    )
 
 
 def main():
@@ -24,18 +37,7 @@ def main():
 
     docs_contents, docs_names, docs_paths = u.read_docs()
     for i, (doc_name, doc_content) in enumerate(zip(docs_names, docs_contents)):
-        # print(f"i={i}, doc_name={doc_name}, doc_content={doc_content[:10]}")
-        # chunks: list[str] = c.paragraph_chunking(doc_content)
-        chunks: list[str] = c.semantic_chunking(doc_content)
-        chunks_ids: list[str] = [f"chunk_{j}_{doc_name}" for j in range(len(chunks))]
-        metadatas: list[dict[str,str]] = [ {"source": doc_name} for _ in chunks]
-
-        print(f"Adding {len(chunks_ids)} chunks from {doc_name}")
-        collection.upsert(
-            ids=chunks_ids,
-            documents=chunks,
-            metadatas=metadatas
-        )
+        chunk_and_save_document(collection, doc_content, doc_name)
 
     print("\nDatabase has been updated and saved")
 

@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import streamlit as st
 import os
 from dotenv import load_dotenv
@@ -6,6 +8,7 @@ from chromadb.utils import embedding_functions
 from groq import Groq
 import config as cfg
 import build_db
+from utils import read_pdf_files
 
 def save_uploaded_file(uploaded_file):
   with open(os.path.join(cfg.SOURCES_DIR / cfg.SOURCE_TYPE, uploaded_file.name),"wb") as f:
@@ -63,7 +66,9 @@ if uploaded_file is not None:
         with st.spinner("Saving and analyzing the book... This might take a minute ⏳"):
             with open(file_path, "wb") as f:
                 f.write(uploaded_file.getbuffer())
-            build_db.main()
+
+            doc_content = read_pdf_files(Path(file_path))
+            build_db.chunk_and_save_document(collection, doc_content, uploaded_file.name)
 
             st.sidebar.success(f"Successfully processed and learned: {uploaded_file.name}!")
 
