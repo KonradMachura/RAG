@@ -1,29 +1,19 @@
 from dotenv import load_dotenv
+from typing import Callable
 from sentence_transformers import SentenceTransformer, util
 from backend.core import chunking as c, utils as u
 from config import config as cfg
 
 
 def test_chunking(docs_contents: list[str], docs_names: list[str],
-                  chunking_type: str, **details) -> list[str] | None:
+                  chunking_func: Callable[..., list[str]], **details) -> list[str] | None:
 
     chunked_doc: list[str] = []
 
     for doc_content, doc_name in zip(docs_contents, docs_names):
         print(f"--- Chunking {doc_name}, size {len(doc_content)} ---")
 
-        match chunking_type:
-            case "fixed_size":
-                chunked_doc = c.fixed_sized_chunking(doc_content, details.get("size", cfg.DEFAULT_CHUNK_SIZE),
-                                                     details.get("overlap", cfg.DEFAULT_CHUNK_OVERLAP))
-            case "subsection":
-                chunked_doc = c.subsection_chunking(doc_content)
-            case "paragraph":
-                chunked_doc = c.paragraph_chunking(doc_content)
-            case "semantic":
-                chunked_doc = c.semantic_chunking(doc_content)
-            case _:
-                raise ValueError(f"Unknown chunking type: {chunking_type}")
+        chunked_doc = chunking_func(doc_content, **details)
 
         chunked_doc_size: int = sum(len(chunk) for chunk in chunked_doc)
         """For fixed size chunking the cumulative size -> doc_size + (chunks_num-1) * overlap"""
@@ -31,9 +21,8 @@ def test_chunking(docs_contents: list[str], docs_names: list[str],
         return chunked_doc
 
 
-def test_embedding():
+def test_embedding(model: SentenceTransformer):
     load_dotenv()
-    model = SentenceTransformer(cfg.EMBEDDING_MODEL)
 
     sentences: list[str] = [
         "An employee is entitled to 26 days of holiday leave.",
@@ -54,5 +43,16 @@ def test_embedding():
 if __name__ == "__main__":
     load_dotenv()
     docs_contents, docs_names, docs_paths = u.read_docs()
-    chunks: list[str] = test_chunking(docs_contents, docs_names, "semantic")
-    print(chunks[5:10])
+    test_model = SentenceTransformer(cfg.EMBEDDING_MODEL)
+
+    chunks: list[str] = test_chunking(
+        docs_contents=docs_contents,
+        docs_names=docs_names,
+        chunking_func=c.semantic_chunking,
+        model=test_model
+    )
+    if chunks:
+        print(chunks[5:10])
+
+    print("--- Embedding test ---")
+    test_embedding(model=test_model)

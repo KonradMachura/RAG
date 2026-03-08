@@ -1,8 +1,9 @@
 import os
 from dotenv import load_dotenv
+from groq import Groq
 import chromadb
 from chromadb.utils import embedding_functions
-from groq import Groq
+
 from config import config as cfg
 
 

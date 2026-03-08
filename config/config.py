@@ -8,7 +8,7 @@ SOURCES_DIR = BASE_DIR / "data" / "sources"
 # DB
 DB_NAME = "books"
 DB_PATH = VECTOR_DB_DIR / DB_NAME
-N_RESULTS = 15
+N_RESULTS = 10
 
 # EMBEDDING MODEL CONFIGS
 """ all-MiniLM-L6-v2, multi-qa-MiniLM-L6-cos-v1, paraphrase-multilingual-MiniLM-L12-v2 """
@@ -19,6 +19,6 @@ LLM_MODEL = "llama-3.3-70b-versatile"
 TEMPERATURE = 0.1
 
 # CHUNKING CONFIGS
-SEMANTIC_THRESHOLD = 0.8
+SEMANTIC_THRESHOLD = 0.7
 DEFAULT_CHUNK_SIZE = 200
 DEFAULT_CHUNK_OVERLAP = 50

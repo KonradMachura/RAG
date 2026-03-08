@@ -1,6 +1,7 @@
 import re
 import sentence_transformers
-from sentence_transformers import util
+from sentence_transformers import util, SentenceTransformer
+
 from config import config as cfg
 
 
@@ -40,7 +41,11 @@ def paragraph_chunking(doc_content: str) -> list[str]:
     chunks = [chunk.strip(" \n\r\t-") for chunk in chunks if chunk.strip()]
     return chunks
 
-def semantic_chunking(doc_content: str) -> list[str]:
+def _extract_sentences(doc_content: str) -> list[str]:
+    raw_sentences = re.split(r"(?<=[.?!])\s+", doc_content)
+    return [s.strip() for s in raw_sentences if s.strip()]
+
+def semantic_chunking(doc_content: str, model: SentenceTransformer, threshold: float = cfg.SEMANTIC_THRESHOLD) -> list[str]:
     """
     Split a document into semantic chunks
     Not splitting based on document structure but based on meaning
@@ -50,23 +55,22 @@ def semantic_chunking(doc_content: str) -> list[str]:
     As long as the meaning is the same, it groups them together.
     And when there is a decrease in similarity, it makes a ‘cut’ between them.
     """
-    chunks: list[str] = []
 
-    raw_sentences = re.split(r"(?<=[.?!])\s+", doc_content)
-    sentences: list[str] = [s.strip() for s in raw_sentences if s.strip()]
+    sentences: list[str] = _extract_sentences(doc_content)
     if not sentences:
         return []
 
-    model = sentence_transformers.SentenceTransformer(cfg.EMBEDDING_MODEL)
-
+    # model = sentence_transformers.SentenceTransformer(cfg.EMBEDDING_MODEL)
     sentences_vectors = model.encode(sentences)
+    chunks: list[str] = []
+
     chunk = sentences[0]
 
     for i in range(len(sentences_vectors) - 1):
 
         cosine_sim = util.cos_sim(sentences_vectors[i], sentences_vectors[i+1]).item()
         distance = 1.0 - cosine_sim
-        if distance <= cfg.SEMANTIC_THRESHOLD:
+        if distance <= threshold:
             chunk += " " + sentences[i+1]
         else:
             chunks.append(chunk)
