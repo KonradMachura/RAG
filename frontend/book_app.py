@@ -1,12 +1,17 @@
+import sys
 import streamlit as st
 from pathlib import Path
 from groq import Groq
 from dotenv import load_dotenv
 import os
 
-import config as cfg
-import build_db
-from utils import read_pdf_files
+root_path = str(Path(__file__).parent.parent.absolute())
+if root_path not in sys.path:
+    sys.path.append(root_path)
+
+from config import config as cfg
+from backend.core import build_db
+from backend.core.utils import read_pdf_files
 
 @st.cache_resource
 def load_services():

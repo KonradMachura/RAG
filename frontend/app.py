@@ -1,9 +1,10 @@
+"""development suspended"""
 import streamlit as st
 import os
 from dotenv import load_dotenv
 from groq import Groq
-import config as cfg
-import build_db
+from config import config as cfg
+from backend.core import build_db
 
 st.set_page_config(page_title="HR assistant", page_icon="😎")
 

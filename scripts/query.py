@@ -3,7 +3,8 @@ from dotenv import load_dotenv
 import chromadb
 from chromadb.utils import embedding_functions
 from groq import Groq
-import config as cfg
+from config import config as cfg
+
 
 def main():
     load_dotenv()
