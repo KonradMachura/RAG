@@ -2,12 +2,12 @@ from pathlib import Path
 
 # Folder Paths
 BASE_DIR = Path(__file__).parent.parent
-DATABASES_DIR = BASE_DIR / "databases"
-SOURCES_DIR = BASE_DIR / "sources"
+VECTOR_DB_DIR = BASE_DIR / "data" / "vector_db"
+SOURCES_DIR = BASE_DIR / "data" / "sources"
 
 # DB
 DB_NAME = "books"
-DB_PATH = DATABASES_DIR / DB_NAME
+DB_PATH = VECTOR_DB_DIR / DB_NAME
 N_RESULTS = 15
 
 # EMBEDDING MODEL CONFIGS

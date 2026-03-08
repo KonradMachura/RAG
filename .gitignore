@@ -7,6 +7,6 @@ env/
 __pycache__/
 *.pyc
 
-/data/
-/src/data/
+sources/books/*.pdf
+/databases/
 *.sqlite3
