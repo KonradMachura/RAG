@@ -1,14 +1,18 @@
-from chromadb.api.models.Collection import Collection
 from dotenv import load_dotenv
-from backend.core import utils as u
-from backend.core import chunking as c
 import chromadb
 from chromadb.utils import embedding_functions
+from chromadb.api.models.Collection import Collection
+from sentence_transformers import SentenceTransformer
+
+from backend.core import utils as u
+from backend.core import chunking as c
 from config import config as cfg
 
+def save_chunks_to_vectordb(collection: Collection, chunks: list[str], doc_name: str):
+    if not chunks:
+        print(f"No chunks found for {doc_name}")
+        return
 
-def chunk_and_save_document(collection: Collection, doc_content: str, doc_name: str):
-    chunks: list[str] = c.semantic_chunking(doc_content)
     chunks_ids: list[str] = [f"chunk_{j}_{doc_name}" for j in range(len(chunks))]
     metadatas: list[dict[str, str]] = [{"source": doc_name} for _ in chunks]
 
@@ -38,10 +42,12 @@ def main():
         , they act like a "key and lock".
     """
     collection = configure_chroma_db()
+    chunking_model = SentenceTransformer(cfg.EMBEDDING_MODEL)
 
     docs_contents, docs_names, docs_paths = u.read_docs()
     for i, (doc_name, doc_content) in enumerate(zip(docs_names, docs_contents)):
-        chunk_and_save_document(collection, doc_content, doc_name)
+        chunks = c.semantic_chunking(doc_content, model=chunking_model)
+        save_chunks_to_vectordb(collection, chunks, doc_name)
 
     print("\nDatabase has been updated and saved")
 

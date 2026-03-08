@@ -1,42 +1,59 @@
 import sys
-import streamlit as st
-from pathlib import Path
-from groq import Groq
-from dotenv import load_dotenv
 import os
+from dotenv import load_dotenv
+from pathlib import Path
+from typing import Any
+
+import streamlit as st
+from groq import Groq
+from chromadb.api.models.Collection import Collection
+from sentence_transformers import SentenceTransformer
+from streamlit.runtime.uploaded_file_manager import UploadedFile
 
 root_path = str(Path(__file__).parent.parent.absolute())
 if root_path not in sys.path:
     sys.path.append(root_path)
 
 from config import config as cfg
-from backend.core import build_db
+from backend.core import build_db, chunking
 from backend.core.utils import read_pdf_files
 
 @st.cache_resource
-def load_services():
+def load_services() ->  tuple[Groq, Collection, SentenceTransformer]:
     load_dotenv()
     groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
     collection = build_db.configure_chroma_db()
-    return groq_client, collection
+    chunking_model = SentenceTransformer(cfg.EMBEDDING_MODEL)
+    return groq_client, collection, chunking_model
+
 
 def get_stored_books() -> list[str]:
-    return [path.name.rstrip(".pdf") for path in cfg.SOURCES_DIR.glob('books/*.pdf')]
+    return [path.stem for path in cfg.SOURCES_DIR.glob('books/*.pdf')]
 
-def upload_a_file(collection):
+
+def process_uploaded_file(collection: Collection, chunking_model: SentenceTransformer,
+                          file_path: Path | Any, uploaded_file: UploadedFile) -> None:
+    with st.spinner(text="Saving and analyzing the book... This might take a minute ⏳"):
+        with open(file_path, "wb") as f:
+            f.write(uploaded_file.getbuffer())
+
+        doc_content = read_pdf_files(Path(file_path))
+
+        chunks = chunking.semantic_chunking(doc_content, model=chunking_model)
+        print(chunks[0:20])
+        build_db.save_chunks_to_vectordb(collection, chunks, Path(uploaded_file.name).stem)
+
+        st.sidebar.success(f"Successfully processed and learned: {uploaded_file.name}!")
+
+
+def upload_a_file(collection: Collection, chunking_model: SentenceTransformer) -> None:
     uploaded_file = st.sidebar.file_uploader("Upload your own book here", type="pdf", accept_multiple_files=False)
 
     if uploaded_file is not None:
         file_path = cfg.SOURCES_DIR / cfg.DB_NAME / uploaded_file.name
         if not file_path.exists():
-            with st.spinner(text="Saving and analyzing the book... This might take a minute ⏳"):
-                with open(file_path, "wb") as f:
-                    f.write(uploaded_file.getbuffer())
+            process_uploaded_file(collection, chunking_model, file_path, uploaded_file)
 
-                doc_content = read_pdf_files(Path(file_path))
-                build_db.chunk_and_save_document(collection, doc_content, uploaded_file.name)
-
-                st.sidebar.success(f"Successfully processed and learned: {uploaded_file.name}!")
 
 def render_sidebar_book_list_and_get_selection(stored_books: list[str]) -> list[str]:
     selected_books: list[str] = []
@@ -53,19 +70,23 @@ def render_sidebar_book_list_and_get_selection(stored_books: list[str]) -> list[
 
     return selected_books
 
-def check_empty_db_condition(collection):
+
+def check_empty_db_condition(collection: Collection) -> None:
     if collection.count() == 0:
         st.error("DB is empty. Upload a book and wait till we process it.")
         st.stop()
 
-def check_if_any_book_selected(selected_books: list[str]):
+
+def check_if_any_book_selected(selected_books: list[str]) -> None:
     if not selected_books:
         st.warning("You have to mark at least one book to ask a question.")
         st.stop()
 
-def validate_search_conditions(collection, selected_books: list[str]) -> None:
+
+def validate_search_conditions(collection: Collection, selected_books: list[str]) -> None:
     check_empty_db_condition(collection)
     check_if_any_book_selected(selected_books)
+
 
 def add_selected_books_to_where_filter(selected_books: list[str]) -> dict[str, str] | dict[str, dict[str, list[str]]]:
     if len(selected_books) == 1:
@@ -73,7 +94,8 @@ def add_selected_books_to_where_filter(selected_books: list[str]) -> dict[str, s
     else:
         return {"source": {"$in": selected_books}}
 
-def retrieve_context_and_sources(collection, user_query: str, where_filter: dict) -> tuple[str, set[str]]:
+
+def retrieve_context_and_sources(collection: Collection, user_query: str, where_filter: dict) -> tuple[str, set[str]]:
     results = collection.query(
         query_texts=[user_query],
         n_results=cfg.N_RESULTS,
@@ -86,7 +108,8 @@ def retrieve_context_and_sources(collection, user_query: str, where_filter: dict
     sources = set([meta.get("source", "Not found") for meta in metadatas])
     return context, sources
 
-def generate_llm_answer(groq_client: Groq, context: str, sources: set, user_query: str, chat_history: list):
+
+def generate_llm_answer(groq_client: Groq, context: str, sources: set, user_query: str, chat_history: list) -> str:
     prompt = f"""
                 You are a helpful and knowledgeable literary assistant. Your task is to answer the reader's questions using
                 EXCLUSIVELY the provided book chunks. 
@@ -120,23 +143,24 @@ def generate_llm_answer(groq_client: Groq, context: str, sources: set, user_quer
     )
     return chat_completion.choices[0].message.content
 
+
 def main():
     st.set_page_config(page_title="Bookipidia", page_icon="📚")
     st.title("Bookipidia")
     st.markdown("Ask a question about your fav book!")
     st.sidebar.header("Choose your book")
 
-    groq_client, collection = load_services()
+    groq_client, collection, chunking_model = load_services()
     stored_books = get_stored_books()
+    print(stored_books)
     selected_books: list[str] = render_sidebar_book_list_and_get_selection(stored_books)
-    upload_a_file(collection)
+    print(selected_books)
+    upload_a_file(collection, chunking_model)
 
     if "messages" not in st.session_state:
         st.session_state.messages = []
 
     chat_container = st.container(height=380, border=False)
-
-
 
     if user_query := st.chat_input("Write down your question..."):
 
@@ -150,7 +174,10 @@ def main():
 
             with st.spinner(text="Searching procedure..."):
                 where_filter = add_selected_books_to_where_filter(selected_books)
+                print(where_filter)
                 context, sources = retrieve_context_and_sources(collection, user_query, where_filter)
+                print(context)
+                print(sources)
                 answer = generate_llm_answer(groq_client, context, sources, user_query, st.session_state.messages)
                 final_response = f"{answer}\n\n"
 

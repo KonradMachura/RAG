@@ -1,0 +1,27 @@
+import uuid
+from datetime import datetime
+from sqlalchemy import String, DateTime, ForeignKey, Integer
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
+
+
+class Base(DeclarativeBase):
+    pass
+
+class User(Base):
+    __tablename__ = "users"
+    id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
+    username: Mapped[str] = mapped_column(String(255), unique=True, index=True)
+    documents: Mapped[list["Document"]] = relationship(back_populates="owner")
+
+class Document(Base):
+    __tablename__ = "documents"
+
+    id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
+    file_name: Mapped[str] = mapped_column(String(255))
+    file_path: Mapped[str] = mapped_column(String(500))
+    status: Mapped[str] = mapped_column(String(30), default="pending")
+    # page_count: Mapped[int] = mapped_column(Integer, nullable=False)
+    upload_date: Mapped[datetime] = mapped_column(DateTime, default=datetime.now())
+    owner_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("users.id"))
+    owner: Mapped["User"] = relationship(back_populates="documents")
+    chunk_count: Mapped[int] = mapped_column(Integer, default=0)
