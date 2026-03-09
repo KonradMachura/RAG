@@ -1,13 +1,14 @@
-from __future__ import annotations
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 from uuid import UUID
 
-class UserResponse(BaseModel):
+
+class UserBase(BaseModel):
     id: UUID
     username: str
-
+    email: EmailStr
+    created_at: datetime
     model_config = {"from_attributes": True}
 
 class DocumentCreate(BaseModel):
@@ -19,11 +20,12 @@ class DocumentResponse(BaseModel):
     file_name: str
     file_path: str
     status: str
+    chunk_count: int
     upload_date: datetime
     owner_id: UUID
-    owner: Optional[UserResponse] = None
+    owner: Optional[UserBase] = None
 
     model_config = {"from_attributes": True}
 
-class UserWithDocumentsResponse(UserResponse):
+class UserWithDocuments(UserBase):
     documents: Optional[list[DocumentResponse]] = None
