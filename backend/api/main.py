@@ -1,10 +1,23 @@
 import uuid
+from pathlib import Path
+
 from fastapi import FastAPI, HTTPException, Depends
 from sqlalchemy.orm import Session
 
 from backend.api.schemas import UserBase, UserWithDocuments, DocumentCreate, DocumentResponse
 from backend.db.models import User, Document
 from backend.db.database import SessionLocal, get_db
+from config import config as cfg
+
+# TODO
+#  dodamć tabele asocjacyjną USER_DOCUMENTS
+#  Wprowadzienie hashu pliku, dzieki temu lepiej sprawdzamy powtórki
+#  oraz jak dwoch userow wgra ta sama nazwe, ale inna ksiazke to nie będzie błędu przez
+#  sprawdzić, czy wszedzie scieżki sie zgadzaja
+#  zrobić usuwanie i wyszukiwanie po id tak jak w api
+#  jak sie zrobi część z ksiazkami to dodajemy baze danych z historia czatów, a potem dodajemy wiele userow
+
+
 
 app = FastAPI()
 
@@ -46,9 +59,23 @@ def add_document(
         current_user: User = Depends(get_current_user),
         db: Session = Depends(get_db)
 ):
+    doc_already_exists = db.query(Document).filter(
+        Document.file_name == document_in.file_name,
+        Document.owner_id == current_user.id
+    ).first()
+
+    if doc_already_exists:
+        raise HTTPException(status_code=400, detail="Document already exists")
+
+    input_path = Path(document_in.file_path)
+    try:
+        relative_path = input_path.relative_to(cfg.BASE_DIR).as_posix()
+    except ValueError:
+        relative_path = input_path.as_posix()
+
     new_document = Document(
         file_name=document_in.file_name,
-        file_path=document_in.file_path,
+        file_path=relative_path,
         owner_id=current_user.id,
         chunk_count=0
     )
@@ -67,6 +94,7 @@ def delete_document(
 ):
     document = db.query(Document).filter(Document.id == doc_id).first()
 
+#TODO dodać usuwanie z folderu konkretnego albo tutaj albo od strony streamlite
     if not document:
         raise HTTPException(status_code=404, detail="Document not found")
     if document.owner_id != current_user.id:
