@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from pathlib import Path
 from typing import Any
 
+import requests
 import streamlit as st
 from groq import Groq
 from chromadb.api.models.Collection import Collection
@@ -18,6 +19,8 @@ from config import config as cfg
 from backend.core import build_db, chunking
 from backend.core.utils import read_pdf_files
 
+API_URL = "http://127.0.0.1:8000"
+
 @st.cache_resource
 def load_services() ->  tuple[Groq, Collection, SentenceTransformer]:
     load_dotenv()
@@ -28,7 +31,19 @@ def load_services() ->  tuple[Groq, Collection, SentenceTransformer]:
 
 
 def get_stored_books() -> list[str]:
-    return [path.stem for path in cfg.SOURCES_DIR.glob('books/*.pdf')]
+    try:
+        response = requests.get(f"{API_URL}/documents")
+        if response.status_code == 200:
+            documents = response.json()
+
+            if not documents:
+                st.info("Db is empty. Upload your first book.")
+            else:
+                return [doc["file_name"] for doc in documents]
+        else:
+            st.error(f"API error: {response.status_code}, {response.json()['detail']}")
+    except requests.exceptions.ConnectionError:
+        st.error("Connection error. Try again later.")
 
 
 def process_uploaded_file(collection: Collection, chunking_model: SentenceTransformer,
@@ -47,12 +62,28 @@ def process_uploaded_file(collection: Collection, chunking_model: SentenceTransf
 
 
 def upload_a_file(collection: Collection, chunking_model: SentenceTransformer) -> None:
-    uploaded_file = st.sidebar.file_uploader("Upload your own book here", type="pdf", accept_multiple_files=False)
+    uploaded_file = st.sidebar.file_uploader("Upload your own book here",
+                                     type="pdf",
+                                     accept_multiple_files=False,
+                                     key="saving_to_the_server")
 
     if uploaded_file is not None:
-        file_path = cfg.SOURCES_DIR / cfg.DB_NAME / uploaded_file.name
-        if not file_path.exists():
-            process_uploaded_file(collection, chunking_model, file_path, uploaded_file)
+        file_path: Path = cfg.SOURCES_DIR / cfg.DB_NAME / uploaded_file.name
+        payload = {
+            "file_name": uploaded_file.name,
+            "file_path": str(file_path)
+        }
+        try:
+            response = requests.post(f"{API_URL}/document", json=payload)
+            if response.status_code == 200:
+                st.balloons()
+                st.success("Successfully uploaded your book!")
+                process_uploaded_file(collection, chunking_model, file_path, uploaded_file)
+                st.info("Now we process the book.")
+            else:
+                st.error(f"API error: {response.status_code}, {response.json()["detail"]}")
+        except requests.exceptions.ConnectionError:
+            st.error("Connection error. Try again later.")
 
 
 def render_sidebar_book_list_and_get_selection(stored_books: list[str]) -> list[str]:
@@ -65,7 +96,8 @@ def render_sidebar_book_list_and_get_selection(stored_books: list[str]) -> list[
             if is_checked:
                 selected_books.append(book)
 
-    for _ in range(25 - len(stored_books)):
+    selected_books_count = len(selected_books) if selected_books else 0
+    for _ in range(25 - selected_books_count):
         st.sidebar.text("")
 
     return selected_books
@@ -148,9 +180,12 @@ def main():
     st.set_page_config(page_title="Bookipidia", page_icon="📚")
     st.title("Bookipidia")
     st.markdown("Ask a question about your fav book!")
-    st.sidebar.header("Choose your book")
+    st.sidebar.header("Your library")
+
+
 
     groq_client, collection, chunking_model = load_services()
+
     stored_books = get_stored_books()
     print(stored_books)
     selected_books: list[str] = render_sidebar_book_list_and_get_selection(stored_books)
