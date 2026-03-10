@@ -40,7 +40,6 @@ def seed_database():
         hashed_password="fake_password_123"
     )
 
-    # Tworzymy testowy dokument
     doc = Document(
         id=uuid.uuid4(),
         file_name="hobbit.pdf",

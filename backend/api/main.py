@@ -4,12 +4,15 @@ from pathlib import Path
 from fastapi import FastAPI, HTTPException, Depends
 from sqlalchemy.orm import Session
 
-from backend.api.schemas import UserBase, UserWithDocuments, DocumentCreate, DocumentResponse
+from backend.api.schemas import DocumentCreate, DocumentResponse
 from backend.db.models import User, Document
-from backend.db.database import SessionLocal, get_db
+from backend.db.database import get_db
 from config import config as cfg
 
 # TODO
+#  poprawic synchronizacje komunikatów z faktycznymi zdarzeniami (jak zamkne st.info to znikaja tez pozostale komunikaty)
+#  zamienic st.info, st.error itp na st.toast (chyba będzie lepsze, bo wszystkie komunikaty będą wyswietlane w jednym miejscu
+#  zamykac st.info itp. po jakims czasie
 #  dodamć tabele asocjacyjną USER_DOCUMENTS
 #  Wprowadzienie hashu pliku, dzieki temu lepiej sprawdzamy powtórki
 #  oraz jak dwoch userow wgra ta sama nazwe, ale inna ksiazke to nie będzie błędu przez
@@ -86,7 +89,7 @@ def add_document(
     return new_document
 
 
-@app.delete("/documents/{doc_id}", response_model=DocumentResponse)
+@app.delete("/document/{doc_id}", response_model=DocumentResponse)
 def delete_document(
         doc_id: uuid.UUID,
         current_user: User = Depends(get_current_user),
