@@ -1,5 +1,8 @@
 import sys
 import os
+import time
+from email.policy import default
+
 from dotenv import load_dotenv
 from pathlib import Path
 from typing import Any
@@ -30,7 +33,7 @@ def load_services() ->  tuple[Groq, Collection, SentenceTransformer]:
     return groq_client, collection, chunking_model
 
 
-def get_stored_books() -> list[str]:
+def get_stored_docs() -> list[dict]:
     try:
         response = requests.get(f"{API_URL}/documents")
         if response.status_code == 200:
@@ -38,12 +41,16 @@ def get_stored_books() -> list[str]:
 
             if not documents:
                 st.info("Db is empty. Upload your first book.")
+                return []
             else:
-                return [doc["file_name"] for doc in documents]
+                return documents
         else:
-            st.error(f"API error: {response.status_code}, {response.json()['detail']}")
+            error_detail = response.json().get("detail", "Unknown error")
+            st.error(f"API error: {response.status_code}, {error_detail}")
+            return []
     except requests.exceptions.ConnectionError:
         st.error("Connection error. Try again later.")
+        return []
 
 
 def process_uploaded_file(collection: Collection, chunking_model: SentenceTransformer,
@@ -57,8 +64,6 @@ def process_uploaded_file(collection: Collection, chunking_model: SentenceTransf
         chunks = chunking.semantic_chunking(doc_content, model=chunking_model)
         print(chunks[0:20])
         build_db.save_chunks_to_vectordb(collection, chunks, Path(uploaded_file.name).stem)
-
-        st.sidebar.success(f"Successfully processed and learned: {uploaded_file.name}!")
 
 
 def upload_a_file(collection: Collection, chunking_model: SentenceTransformer) -> None:
@@ -79,28 +84,46 @@ def upload_a_file(collection: Collection, chunking_model: SentenceTransformer) -
                 st.balloons()
                 st.success("Successfully uploaded your book!")
                 process_uploaded_file(collection, chunking_model, file_path, uploaded_file)
-                st.info("Now we process the book.")
+                st.info("Book processed, vectordb updated")
             else:
                 st.error(f"API error: {response.status_code}, {response.json()["detail"]}")
         except requests.exceptions.ConnectionError:
             st.error("Connection error. Try again later.")
 
 
-def render_sidebar_book_list_and_get_selection(stored_books: list[str]) -> list[str]:
-    selected_books: list[str] = []
-    if not stored_books:
+def render_sidebar_document_list_and_get_selection(stored_documents: list[dict]) -> list[dict]:
+    selected_documents: list[dict] = []
+
+    if not stored_documents:
         st.sidebar.info("You have to upload a book first!")
     else:
-        for book in stored_books:
-            is_checked = st.sidebar.checkbox(book, value=True)
-            if is_checked:
-                selected_books.append(book)
 
-    selected_books_count = len(selected_books) if selected_books else 0
-    for _ in range(25 - selected_books_count):
+        #zmieniam wszystko na expandera
+        for doc in stored_documents:
+            col1, col2 = st.sidebar.columns([0.85, 0.15])
+
+            is_checked = col1.checkbox(doc["file_name"], value=False, key=doc["id"])
+
+            with col2:
+                if st.button(label="", icon=":material/delete:", key=f"del_{doc["id"]}", type="tertiary"):
+                    response = requests.delete(f"{API_URL}/document/{doc["id"]}")
+
+                    if response.status_code == 200:
+                        st.toast("Book deleted successfully!", icon="✅")
+                        time.sleep(1)
+                        st.rerun()
+                    else:
+                        error_detail = response.json().get("detail", "Unknown error")
+                        st.sidebar.error(f"API error: {response.status_code}, {error_detail}")
+
+            if is_checked:
+                selected_documents.append(doc)
+
+    stored_documents_count = len(stored_documents) if stored_documents else 0
+    for _ in range(15 - stored_documents_count):
         st.sidebar.text("")
 
-    return selected_books
+    return selected_documents
 
 
 def check_empty_db_condition(collection: Collection) -> None:
@@ -109,22 +132,23 @@ def check_empty_db_condition(collection: Collection) -> None:
         st.stop()
 
 
-def check_if_any_book_selected(selected_books: list[str]) -> None:
-    if not selected_books:
+def check_if_any_document_selected(selected_documents: list[dict]) -> None:
+    if not selected_documents:
         st.warning("You have to mark at least one book to ask a question.")
         st.stop()
 
 
-def validate_search_conditions(collection: Collection, selected_books: list[str]) -> None:
+def validate_search_conditions(collection: Collection, selected_documents: list[dict]) -> None:
     check_empty_db_condition(collection)
-    check_if_any_book_selected(selected_books)
+    check_if_any_document_selected(selected_documents)
 
 
-def add_selected_books_to_where_filter(selected_books: list[str]) -> dict[str, str] | dict[str, dict[str, list[str]]]:
-    if len(selected_books) == 1:
-        return {"source": selected_books[0]}
+def add_selected_documents_to_where_filter(selected_documents: list[dict]) -> (dict[str, dict] |
+                                                                               dict[str, dict[str, list[dict]]]):
+    if len(selected_documents) == 1:
+        return {"source": selected_documents[0]}
     else:
-        return {"source": {"$in": selected_books}}
+        return {"source": {"$in": selected_documents}}
 
 
 def retrieve_context_and_sources(collection: Collection, user_query: str, where_filter: dict) -> tuple[str, set[str]]:
@@ -186,10 +210,8 @@ def main():
 
     groq_client, collection, chunking_model = load_services()
 
-    stored_books = get_stored_books()
-    print(stored_books)
-    selected_books: list[str] = render_sidebar_book_list_and_get_selection(stored_books)
-    print(selected_books)
+    stored_documents: list[dict] = get_stored_docs()
+    selected_documents: list[dict] = render_sidebar_document_list_and_get_selection(stored_documents)
     upload_a_file(collection, chunking_model)
 
     if "messages" not in st.session_state:
@@ -199,7 +221,7 @@ def main():
 
     if user_query := st.chat_input("Write down your question..."):
 
-        validate_search_conditions(collection, selected_books)
+        validate_search_conditions(collection, selected_documents)
         st.session_state.messages.append({"role": "user", "content": user_query})
 
         with chat_container:
@@ -208,7 +230,7 @@ def main():
                     st.markdown(message["content"])
 
             with st.spinner(text="Searching procedure..."):
-                where_filter = add_selected_books_to_where_filter(selected_books)
+                where_filter = add_selected_documents_to_where_filter(selected_documents)
                 print(where_filter)
                 context, sources = retrieve_context_and_sources(collection, user_query, where_filter)
                 print(context)
