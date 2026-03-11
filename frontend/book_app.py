@@ -33,6 +33,30 @@ def load_services() ->  tuple[Groq, Collection, SentenceTransformer]:
     return groq_client, collection, chunking_model
 
 
+def add_notification(message: str, notify_type: str) -> None:
+    if "notifications" not in st.session_state:
+        st.session_state["notifications"] = []
+    else:
+        st.session_state["notifications"].append({
+            "msg": message,
+            "type": notify_type
+        })
+
+
+def render_notifications():
+    if "notifications" in st.session_state and st.session_state["notifications"]:
+        for notif in st.session_state["notifications"]:
+            match notif["type"]:
+                case "success":
+                    st.toast(notif["msg"], icon="✅", duration="short")
+                case "error":
+                    st.toast(notif["msg"], icon="❌", duration="long")
+                case "info":
+                    st.toast(notif["msg"], icon="ℹ️", duration="short")
+
+        st.session_state["notifications"] = []
+
+
 def get_stored_docs() -> list[dict]:
     try:
         response = requests.get(f"{API_URL}/documents")
@@ -40,101 +64,154 @@ def get_stored_docs() -> list[dict]:
             documents = response.json()
 
             if not documents:
-                st.info("Db is empty. Upload your first book.")
                 return []
             else:
                 return documents
         else:
-            error_detail = response.json().get("detail", "Unknown error")
-            st.error(f"API error: {response.status_code}, {error_detail}")
+            err = response.json().get("detail", "Error") if response else "Connection error"
+            add_notification(f"API error: {response.status_code}, {err}", notify_type="error")
             return []
     except requests.exceptions.ConnectionError:
-        st.error("Connection error. Try again later.")
+        add_notification("Connection error. Try again later.", notify_type="error")
         return []
 
 
-def process_uploaded_file(collection: Collection, chunking_model: SentenceTransformer,
-                          file_path: Path | Any, uploaded_file: UploadedFile) -> None:
-    with st.spinner(text="Saving and analyzing the book... This might take a minute ⏳"):
-        with open(file_path, "wb") as f:
-            f.write(uploaded_file.getbuffer())
+@st.fragment
+def manage_sidebar_library(collection: Collection, chunking_model: SentenceTransformer) -> list[dict]:
+    st.header("Your library")
+    stored_documents = get_stored_docs()
+    selected_documents = render_document_list(stored_documents)
 
-        doc_content = read_pdf_files(Path(file_path))
+    for _ in range(20 - len(stored_documents)):
+        st.text("")
 
-        chunks = chunking.semantic_chunking(doc_content, model=chunking_model)
-        print(chunks[0:20])
-        build_db.save_chunks_to_vectordb(collection, chunks, Path(uploaded_file.name).stem)
-
-
-def upload_a_file(collection: Collection, chunking_model: SentenceTransformer) -> None:
-    uploaded_file = st.sidebar.file_uploader("Upload your own book here",
-                                     type="pdf",
-                                     accept_multiple_files=False,
-                                     key="saving_to_the_server")
-
-    if uploaded_file is not None:
-        file_path: Path = cfg.SOURCES_DIR / cfg.DB_NAME / uploaded_file.name
-        payload = {
-            "file_name": uploaded_file.name,
-            "file_path": str(file_path)
-        }
-        try:
-            response = requests.post(f"{API_URL}/document", json=payload)
-            if response.status_code == 200:
-                st.balloons()
-                st.success("Successfully uploaded your book!")
-                process_uploaded_file(collection, chunking_model, file_path, uploaded_file)
-                st.info("Book processed, vectordb updated")
-            else:
-                st.error(f"API error: {response.status_code}, {response.json()["detail"]}")
-        except requests.exceptions.ConnectionError:
-            st.error("Connection error. Try again later.")
-
-
-def render_sidebar_document_list_and_get_selection(stored_documents: list[dict]) -> list[dict]:
-    selected_documents: list[dict] = []
-
-    if not stored_documents:
-        st.sidebar.info("You have to upload a book first!")
+    if "pending_processing" in st.session_state:
+        handle_pending_processing(collection, chunking_model)
     else:
-
-        #zmieniam wszystko na expandera
-        for doc in stored_documents:
-            col1, col2 = st.sidebar.columns([0.85, 0.15])
-
-            is_checked = col1.checkbox(doc["file_name"], value=False, key=doc["id"])
-
-            with col2:
-                if st.button(label="", icon=":material/delete:", key=f"del_{doc["id"]}", type="tertiary"):
-                    response = requests.delete(f"{API_URL}/document/{doc["id"]}")
-
-                    if response.status_code == 200:
-                        st.toast("Book deleted successfully!", icon="✅")
-                        time.sleep(1)
-                        st.rerun()
-                    else:
-                        error_detail = response.json().get("detail", "Unknown error")
-                        st.sidebar.error(f"API error: {response.status_code}, {error_detail}")
-
-            if is_checked:
-                selected_documents.append(doc)
-
-    stored_documents_count = len(stored_documents) if stored_documents else 0
-    for _ in range(15 - stored_documents_count):
-        st.sidebar.text("")
+        render_file_uploader(stored_documents)
 
     return selected_documents
 
 
+def api_add_document(payload: dict) -> requests.Response | None:
+    try:
+        return requests.post(f"{API_URL}/document", json=payload)
+    except requests.exceptions.ConnectionError:
+        return None
+
+
+def api_delete_document(doc_id: str) -> requests.Response | None:
+    try:
+        return requests.delete(f"{API_URL}/document/{doc_id}")
+    except requests.exceptions.ConnectionError:
+        return None
+
+
+def api_update_document_chunk_count(doc_id: str, chunks_num: int) -> requests.Response | None:
+    try:
+        return requests.patch(f"{API_URL}/document/{doc_id}", json=chunks_num)
+    except requests.exceptions.ConnectionError:
+        return None
+
+def render_document_list(stored_documents: list[dict]) -> list[dict]:
+    selected_documents: list[dict] = []
+
+    if not stored_documents:
+        return selected_documents
+
+    for doc in stored_documents:
+        col1, col2 = st.columns([0.85, 0.15])
+
+        is_checked = col1.checkbox(doc["file_name"], value=False, key=f"chk_{doc['id']}")
+
+        with col2:
+            if st.button(label="", icon=":material/delete:", key=f"del_{doc['id']}", type="tertiary"):
+                response = api_delete_document(doc['id'])
+
+                if response and response.status_code == 200:
+                    add_notification(f"{doc['file_name']} deleted successfully!", notify_type="success")
+                    st.rerun()
+                else:
+                    err = response.json().get("detail", "Error") if response else "Connection error"
+                    add_notification(f"Delete failed: {err}", notify_type="error")
+
+        if is_checked:
+            selected_documents.append(doc)
+
+    return selected_documents
+
+
+def render_file_uploader(stored_documents: list[dict]) -> None:
+    if "uploader_key" not in st.session_state:
+        st.session_state["uploader_key"] = 1
+
+    uploaded_file = st.file_uploader(
+        "Upload your own book here",
+        type="pdf",
+        accept_multiple_files=False,
+        key=f"uploader_{st.session_state['uploader_key']}"
+    )
+
+    if uploaded_file is not None:
+        is_already_uploaded = any(doc["file_name"] == uploaded_file.name for doc in stored_documents)
+        if is_already_uploaded:
+            add_notification(f"Book '{uploaded_file.name}' is already uploaded!", notify_type="info")
+            st.session_state["uploader_key"] += 1
+            st.rerun()
+
+        file_path: Path = cfg.SOURCES_DIR / cfg.DB_NAME / uploaded_file.name
+        payload = {"file_name": uploaded_file.name, "file_path": str(file_path)}
+        response = api_add_document(payload)
+
+        if response and response.status_code == 200:
+            save_to_disk(file_path, uploaded_file)
+            st.session_state["pending_processing"] = {
+                "file_path": file_path,
+                "file_name": uploaded_file.name,
+            }
+
+            add_notification("Book added to library! Processing started...", notify_type="info")
+            st.session_state["uploader_key"] += 1
+            st.rerun()
+        else:
+            err = response.json().get("detail", "Error") if response else "Connection error"
+            add_notification(f"Upload failed: {err}", notify_type="error")
+            st.session_state["uploader_key"] += 1
+            st.rerun()
+
+def save_to_disk(file_path: Path, uploaded_file: UploadedFile) -> None:
+    with open(file_path, "wb") as f:
+        f.write(uploaded_file.getbuffer())
+
+def vectorize_and_store_document(file_path: Path, collection: Collection, chunking_model: SentenceTransformer) -> int:
+    doc_content = read_pdf_files(file_path)
+    chunks = chunking.semantic_chunking(doc_content, model=chunking_model)
+    build_db.save_chunks_to_vectordb(collection, chunks, file_path.stem)
+    return len(chunks)
+
+
+def handle_pending_processing(collection: Collection, chunking_model: SentenceTransformer) -> None:
+    if "pending_processing" in st.session_state:
+        task = st.session_state["pending_processing"]
+
+        with st.spinner(f"Analyzing and vectorizing {task['file_name']}... This might take a minute ⏳"):
+            chunks_num = vectorize_and_store_document(task["file_path"], collection, chunking_model)
+
+        st.balloons()
+        add_notification(f"Successfully processed {task['file_name']} into {chunks_num} chunks!", notify_type="success")
+
+        del st.session_state["pending_processing"]
+        st.rerun()
+
 def check_empty_db_condition(collection: Collection) -> None:
     if collection.count() == 0:
-        st.error("DB is empty. Upload a book and wait till we process it.")
+        add_notification("Upload your first book and wait till we process it.", notify_type="info")
         st.stop()
 
 
 def check_if_any_document_selected(selected_documents: list[dict]) -> None:
     if not selected_documents:
-        st.warning("You have to mark at least one book to ask a question.")
+        add_notification("You have to mark at least one book to ask a question.", notify_type="info")
         st.stop()
 
 
@@ -145,10 +222,11 @@ def validate_search_conditions(collection: Collection, selected_documents: list[
 
 def add_selected_documents_to_where_filter(selected_documents: list[dict]) -> (dict[str, dict] |
                                                                                dict[str, dict[str, list[dict]]]):
-    if len(selected_documents) == 1:
-        return {"source": selected_documents[0]}
+    sources = [doc["file_name"] for doc in selected_documents]
+    if len(sources) == 1:
+        return {"source": sources[0]}
     else:
-        return {"source": {"$in": selected_documents}}
+        return {"source": {"$in": sources}}
 
 
 def retrieve_context_and_sources(collection: Collection, user_query: str, where_filter: dict) -> tuple[str, set[str]]:
@@ -204,15 +282,13 @@ def main():
     st.set_page_config(page_title="Bookipidia", page_icon="📚")
     st.title("Bookipidia")
     st.markdown("Ask a question about your fav book!")
-    st.sidebar.header("Your library")
-
-
 
     groq_client, collection, chunking_model = load_services()
 
-    stored_documents: list[dict] = get_stored_docs()
-    selected_documents: list[dict] = render_sidebar_document_list_and_get_selection(stored_documents)
-    upload_a_file(collection, chunking_model)
+    render_notifications()
+
+    with st.sidebar:
+        selected_documents: list[dict] = manage_sidebar_library(collection, chunking_model)
 
     if "messages" not in st.session_state:
         st.session_state.messages = []
