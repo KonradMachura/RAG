@@ -10,9 +10,8 @@ from backend.db.database import get_db
 from config import config as cfg
 
 # TODO
-#  poprawic synchronizacje komunikatów z faktycznymi zdarzeniami (jak zamkne st.info to znikaja tez pozostale komunikaty)
-#  zamienic st.info, st.error itp na st.toast (chyba będzie lepsze, bo wszystkie komunikaty będą wyswietlane w jednym miejscu
-#  zamykac st.info itp. po jakims czasie
+#  blokowanie interakcji podczas wczytywania
+#  zapisywanie chunk_num do bazy danych
 #  dodamć tabele asocjacyjną USER_DOCUMENTS
 #  Wprowadzienie hashu pliku, dzieki temu lepiej sprawdzamy powtórki
 #  oraz jak dwoch userow wgra ta sama nazwe, ale inna ksiazke to nie będzie błędu przez
@@ -88,6 +87,20 @@ def add_document(
     db.refresh(new_document)
     return new_document
 
+@app.patch("/document/{doc_id}", response_model=DocumentResponse)
+def update_chunk_number(
+        doc_id: uuid.UUID,
+        chunk_num: int,
+        db: Session = Depends(get_db)
+):
+    document = db.query(Document).filter(Document.id == doc_id).first()
+
+    if not document:
+        raise HTTPException(status_code=404, detail="Document not found")
+
+    document.chunk_count = chunk_num
+    db.commit()
+    db.refresh(document)
 
 @app.delete("/document/{doc_id}", response_model=DocumentResponse)
 def delete_document(
