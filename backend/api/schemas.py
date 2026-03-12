@@ -27,5 +27,9 @@ class DocumentResponse(BaseModel):
 
     model_config = {"from_attributes": True}
 
+class DocumentUpdate(BaseModel):
+    chunk_count: int
+
 class UserWithDocuments(UserBase):
     documents: Optional[list[DocumentResponse]] = None
+
