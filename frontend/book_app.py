@@ -12,6 +12,7 @@ import streamlit as st
 from groq import Groq
 from chromadb.api.models.Collection import Collection
 from sentence_transformers import SentenceTransformer
+from streamlit.delta_generator import DeltaGenerator
 from streamlit.runtime.uploaded_file_manager import UploadedFile
 
 root_path = str(Path(__file__).parent.parent.absolute())
@@ -85,10 +86,12 @@ def manage_sidebar_library(collection: Collection, chunking_model: SentenceTrans
     for _ in range(20 - len(stored_documents)):
         st.text("")
 
+    action_space = st.empty()
+
     if "pending_processing" in st.session_state:
-        handle_pending_processing(collection, chunking_model)
+        handle_pending_processing(collection, chunking_model, action_space)
     else:
-        render_file_uploader(stored_documents)
+        render_file_uploader(stored_documents, action_space)
 
     return selected_documents
 
@@ -109,7 +112,8 @@ def api_delete_document(doc_id: str) -> requests.Response | None:
 
 def api_update_document_chunk_count(doc_id: str, chunks_num: int) -> requests.Response | None:
     try:
-        return requests.patch(f"{API_URL}/document/{doc_id}", json=chunks_num)
+        payload = {"chunk_count": chunks_num}
+        return requests.patch(f"{API_URL}/document/{doc_id}", payload)
     except requests.exceptions.ConnectionError:
         return None
 
@@ -122,10 +126,15 @@ def render_document_list(stored_documents: list[dict]) -> list[dict]:
     for doc in stored_documents:
         col1, col2 = st.columns([0.85, 0.15])
 
-        is_checked = col1.checkbox(doc["file_name"], value=False, key=f"chk_{doc['id']}")
+        is_processing_this_doc = (
+                "pending_processing" in st.session_state and
+                st.session_state["pending_processing"]["file_name"] == doc["file_name"]
+        )
+
+        is_checked = col1.checkbox(doc["file_name"], value=False, key=f"chk_{doc['id']}", disabled=is_processing_this_doc)
 
         with col2:
-            if st.button(label="", icon=":material/delete:", key=f"del_{doc['id']}", type="tertiary"):
+            if st.button(label="", icon=":material/delete:", key=f"del_{doc['id']}", type="tertiary", disabled=is_processing_this_doc):
                 response = api_delete_document(doc['id'])
 
                 if response and response.status_code == 200:
@@ -141,15 +150,18 @@ def render_document_list(stored_documents: list[dict]) -> list[dict]:
     return selected_documents
 
 
-def render_file_uploader(stored_documents: list[dict]) -> None:
+def render_file_uploader(stored_documents: list[dict], placeholder: DeltaGenerator) -> None:
     if "uploader_key" not in st.session_state:
         st.session_state["uploader_key"] = 1
 
-    uploaded_file = st.file_uploader(
+    if "pending_processing" in st.session_state:
+        return
+
+    uploaded_file = placeholder.file_uploader(
         "Upload your own book here",
         type="pdf",
         accept_multiple_files=False,
-        key=f"uploader_{st.session_state['uploader_key']}"
+        key=f"uploader_{st.session_state['uploader_key']}",
     )
 
     if uploaded_file is not None:
@@ -164,10 +176,12 @@ def render_file_uploader(stored_documents: list[dict]) -> None:
         response = api_add_document(payload)
 
         if response and response.status_code == 200:
+            created_doc = response.json()
             save_to_disk(file_path, uploaded_file)
             st.session_state["pending_processing"] = {
                 "file_path": file_path,
                 "file_name": uploaded_file.name,
+                "id": created_doc["id"]
             }
 
             add_notification("Book added to library! Processing started...", notify_type="info")
@@ -186,16 +200,21 @@ def save_to_disk(file_path: Path, uploaded_file: UploadedFile) -> None:
 def vectorize_and_store_document(file_path: Path, collection: Collection, chunking_model: SentenceTransformer) -> int:
     doc_content = read_pdf_files(file_path)
     chunks = chunking.semantic_chunking(doc_content, model=chunking_model)
-    build_db.save_chunks_to_vectordb(collection, chunks, file_path.stem)
+    build_db.save_chunks_to_vectordb(collection, chunks, file_path.name)
     return len(chunks)
 
 
-def handle_pending_processing(collection: Collection, chunking_model: SentenceTransformer) -> None:
+def handle_pending_processing(collection: Collection, chunking_model: SentenceTransformer, placeholder) -> None:
     if "pending_processing" in st.session_state:
         task = st.session_state["pending_processing"]
 
-        with st.spinner(f"Analyzing and vectorizing {task['file_name']}... This might take a minute ⏳"):
-            chunks_num = vectorize_and_store_document(task["file_path"], collection, chunking_model)
+        with placeholder.container():
+            with st.spinner(f"Analyzing and vectorizing {task['file_name']}... This might take a minute ⏳"):
+                time.sleep(0.2)
+                chunks_num = vectorize_and_store_document(task["file_path"], collection, chunking_model)
+
+                if "id" in task:
+                    api_update_document_chunk_count(task["id"], chunks_num)
 
         st.balloons()
         add_notification(f"Successfully processed {task['file_name']} into {chunks_num} chunks!", notify_type="success")

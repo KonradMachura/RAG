@@ -4,7 +4,7 @@ from pathlib import Path
 from fastapi import FastAPI, HTTPException, Depends
 from sqlalchemy.orm import Session
 
-from backend.api.schemas import DocumentCreate, DocumentResponse
+from backend.api.schemas import DocumentCreate, DocumentResponse, DocumentUpdate
 from backend.db.models import User, Document
 from backend.db.database import get_db
 from config import config as cfg
@@ -90,7 +90,7 @@ def add_document(
 @app.patch("/document/{doc_id}", response_model=DocumentResponse)
 def update_chunk_number(
         doc_id: uuid.UUID,
-        chunk_num: int,
+        update_data: DocumentUpdate,
         db: Session = Depends(get_db)
 ):
     document = db.query(Document).filter(Document.id == doc_id).first()
@@ -98,7 +98,7 @@ def update_chunk_number(
     if not document:
         raise HTTPException(status_code=404, detail="Document not found")
 
-    document.chunk_count = chunk_num
+    document.chunk_count = update_data.chunk_count
     db.commit()
     db.refresh(document)
 
