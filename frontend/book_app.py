@@ -110,10 +110,10 @@ def api_delete_document(doc_id: str) -> requests.Response | None:
         return None
 
 
-def api_update_document_chunk_count(doc_id: str, chunks_num: int) -> requests.Response | None:
+def api_update_document(doc_id: str, chunks_num: int) -> requests.Response | None:
     try:
         payload = {"chunk_count": chunks_num}
-        return requests.patch(f"{API_URL}/document/{doc_id}", payload)
+        return requests.patch(f"{API_URL}/document/{doc_id}", json=payload)
     except requests.exceptions.ConnectionError:
         return None
 
@@ -213,8 +213,8 @@ def handle_pending_processing(collection: Collection, chunking_model: SentenceTr
                 time.sleep(0.2)
                 chunks_num = vectorize_and_store_document(task["file_path"], collection, chunking_model)
 
-                if "id" in task:
-                    api_update_document_chunk_count(task["id"], chunks_num)
+                if "id" in task and chunks_num > 0:
+                    api_update_document(task["id"], chunks_num)
 
         st.balloons()
         add_notification(f"Successfully processed {task['file_name']} into {chunks_num} chunks!", notify_type="success")

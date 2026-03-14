@@ -10,8 +10,6 @@ from backend.db.database import get_db
 from config import config as cfg
 
 # TODO
-#  blokowanie interakcji podczas wczytywania
-#  zapisywanie chunk_num do bazy danych
 #  dodamć tabele asocjacyjną USER_DOCUMENTS
 #  Wprowadzienie hashu pliku, dzieki temu lepiej sprawdzamy powtórki
 #  oraz jak dwoch userow wgra ta sama nazwe, ale inna ksiazke to nie będzie błędu przez
@@ -88,7 +86,7 @@ def add_document(
     return new_document
 
 @app.patch("/document/{doc_id}", response_model=DocumentResponse)
-def update_chunk_number(
+def update_document(
         doc_id: uuid.UUID,
         update_data: DocumentUpdate,
         db: Session = Depends(get_db)
@@ -99,8 +97,10 @@ def update_chunk_number(
         raise HTTPException(status_code=404, detail="Document not found")
 
     document.chunk_count = update_data.chunk_count
+    document.status = "processed"
     db.commit()
     db.refresh(document)
+    return document
 
 @app.delete("/document/{doc_id}", response_model=DocumentResponse)
 def delete_document(
