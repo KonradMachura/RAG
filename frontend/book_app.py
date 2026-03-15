@@ -1,13 +1,13 @@
 import sys
 import os
 import time
-from email.policy import default
+from typing import Any
 
 from dotenv import load_dotenv
 from pathlib import Path
-from typing import Any
 
 import requests
+import hashlib
 import streamlit as st
 from groq import Groq
 from chromadb.api.models.Collection import Collection
@@ -171,8 +171,8 @@ def render_file_uploader(stored_documents: list[dict], placeholder: DeltaGenerat
             st.session_state["uploader_key"] += 1
             st.rerun()
 
-        file_path: Path = cfg.SOURCES_DIR / cfg.DB_NAME / uploaded_file.name
-        payload = {"file_name": uploaded_file.name, "file_path": str(file_path)}
+        file_path = build_target_file_path(uploaded_file.name)
+        payload = create_document_payload(uploaded_file, file_path)
         response = api_add_document(payload)
 
         if response and response.status_code == 200:
@@ -192,6 +192,16 @@ def render_file_uploader(stored_documents: list[dict], placeholder: DeltaGenerat
             add_notification(f"Upload failed: {err}", notify_type="error")
             st.session_state["uploader_key"] += 1
             st.rerun()
+
+def build_target_file_path(file_name: str ) -> Path:
+    return cfg.SOURCES_DIR / cfg.DB_NAME / file_name
+
+def create_document_payload(uploaded_file: UploadedFile, file_path: Path) -> dict[str, str | Any]:
+    file_bytes = uploaded_file.getbuffer()
+    file_hash = hashlib.sha256(file_bytes).hexdigest()
+    payload = {"file_name": uploaded_file.name, "file_path": str(file_path), "file_hash": file_hash}
+    return  payload
+
 
 def save_to_disk(file_path: Path, uploaded_file: UploadedFile) -> None:
     with open(file_path, "wb") as f:

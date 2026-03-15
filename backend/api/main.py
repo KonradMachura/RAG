@@ -2,10 +2,10 @@ import uuid
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Depends
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 
-from backend.api.schemas import DocumentCreate, DocumentResponse, DocumentUpdate
-from backend.db.models import User, Document
+from backend.api.schemas import DocumentCreate, UserDocumentResponse, DocumentUpdate
+from backend.db.models import User, Document, UserDocument
 from backend.db.database import get_db
 from config import config as cfg
 
@@ -13,8 +13,6 @@ from config import config as cfg
 #  dodamć tabele asocjacyjną USER_DOCUMENTS
 #  Wprowadzienie hashu pliku, dzieki temu lepiej sprawdzamy powtórki
 #  oraz jak dwoch userow wgra ta sama nazwe, ale inna ksiazke to nie będzie błędu przez
-#  sprawdzić, czy wszedzie scieżki sie zgadzaja
-#  zrobić usuwanie i wyszukiwanie po id tak jak w api
 #  jak sie zrobi część z ksiazkami to dodajemy baze danych z historia czatów, a potem dodajemy wiele userow
 
 
@@ -28,16 +26,21 @@ def get_current_user(db: Session = Depends(get_db)) -> type[User]:
     return user
 
 
-@app.get("/documents", response_model=list[DocumentResponse])
+@app.get("/documents", response_model=list[UserDocumentResponse])
 def get_my_documents(
         current_user: User = Depends(get_current_user),
         db: Session = Depends(get_db)
 ):
-    my_documents = db.query(Document).filter(Document.owner_id == current_user.id).all()
+    my_documents = (
+        db.query(UserDocument)
+        .options(joinedload(UserDocument.document))
+        .filter(UserDocument.user_id == current_user.id)
+        .all()
+    )
     return my_documents
 
 
-@app.get("/documents/{doc_id}", response_model=DocumentResponse)
+@app.get("/documents/{doc_id}", response_model=UserDocumentResponse)
 def get_document_by_id(
         doc_id: uuid.UUID,
         current_user: User = Depends(get_current_user),
@@ -53,7 +56,7 @@ def get_document_by_id(
     return document
 
 
-@app.post("/document", response_model=DocumentResponse)
+@app.post("/document", response_model=UserDocumentResponse)
 def add_document(
         document_in: DocumentCreate,
         current_user: User = Depends(get_current_user),
@@ -85,7 +88,7 @@ def add_document(
     db.refresh(new_document)
     return new_document
 
-@app.patch("/document/{doc_id}", response_model=DocumentResponse)
+@app.patch("/document/{doc_id}", response_model=UserDocumentResponse)
 def update_document(
         doc_id: uuid.UUID,
         update_data: DocumentUpdate,
@@ -102,7 +105,7 @@ def update_document(
     db.refresh(document)
     return document
 
-@app.delete("/document/{doc_id}", response_model=DocumentResponse)
+@app.delete("/document/{doc_id}", response_model=UserDocumentResponse)
 def delete_document(
         doc_id: uuid.UUID,
         current_user: User = Depends(get_current_user),
