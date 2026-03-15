@@ -14,16 +14,26 @@ class UserBase(BaseModel):
 class DocumentCreate(BaseModel):
     file_name: str
     file_path: str
+    file_hash: str
 
-class DocumentResponse(BaseModel):
+class DocumentGlobal(BaseModel):
     id: UUID
+    file_hash: str
     file_name: str
     file_path: str
     status: str
     chunk_count: int
-    upload_date: datetime
-    owner_id: UUID
-    owner: Optional[UserBase] = None
+    system_upload_date: datetime
+
+    model_config = {"from_attributes": True}
+
+
+class UserDocumentResponse(BaseModel):
+    user_id: UUID
+    document_id: UUID
+    added_at: datetime
+
+    document: DocumentGlobal
 
     model_config = {"from_attributes": True}
 
@@ -31,5 +41,5 @@ class DocumentUpdate(BaseModel):
     chunk_count: int
 
 class UserWithDocuments(UserBase):
-    documents: Optional[list[DocumentResponse]] = None
+    documents: Optional[list[UserDocumentResponse]] = None
 
