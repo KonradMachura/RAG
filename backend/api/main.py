@@ -46,11 +46,16 @@ def get_document_by_id(
         current_user: User = Depends(get_current_user),
         db: Session = Depends(get_db)
 ):
-    document = db.query(Document).filter(Document.id == doc_id).first()
+    document = (
+        db.query(UserDocument)
+        .options(joinedload(UserDocument.document))
+        .filter(UserDocument.user_id == current_user.id, UserDocument.document_id == doc_id)
+        .first()
+    )
 
     if not document:
         raise HTTPException(status_code=404, detail="Document not found")
-    if document.owner_id != current_user.id:
+    if UserDocument.user_id == current_user.id:
         raise HTTPException(status_code=403, detail="No access to this file")
 
     return document
@@ -62,13 +67,29 @@ def add_document(
         current_user: User = Depends(get_current_user),
         db: Session = Depends(get_db)
 ):
-    doc_already_exists = db.query(Document).filter(
-        Document.file_name == document_in.file_name,
-        Document.owner_id == current_user.id
-    ).first()
 
-    if doc_already_exists:
-        raise HTTPException(status_code=400, detail="Document already exists")
+    existing_doc = db.query(Document).filter(Document.file_hash == document_in.file_hash).first()
+    if existing_doc:
+
+        existing_link = (
+            db.query(UserDocument)
+            .filter(UserDocument.user_id == current_user.id, UserDocument.document_id == existing_doc.id)
+            .first()
+        )
+
+        if existing_link:
+            raise HTTPException(status_code=400, detail="Document already exists")
+
+        new_link = UserDocument(
+            user_id=current_user.id,
+            document_id=existing_doc.id
+        )
+        db.add(new_link)
+        db.commit()
+        db.refresh(new_link)
+        return new_link
+
+
 
     input_path = Path(document_in.file_path)
     try:
@@ -79,14 +100,21 @@ def add_document(
     new_document = Document(
         file_name=document_in.file_name,
         file_path=relative_path,
-        owner_id=current_user.id,
+        file_hash=document_in.file_hash,
+        status="pending",
         chunk_count=0
     )
-
     db.add(new_document)
+    db.flush()
+
+    new_link = UserDocument(
+        user_id=current_user.id,
+        document_id=new_document.id
+    )
+    db.add(new_link)
     db.commit()
-    db.refresh(new_document)
-    return new_document
+    db.refresh(new_link)
+    return new_link
 
 @app.patch("/document/{doc_id}", response_model=UserDocumentResponse)
 def update_document(
@@ -94,7 +122,13 @@ def update_document(
         update_data: DocumentUpdate,
         db: Session = Depends(get_db)
 ):
-    document = db.query(Document).filter(Document.id == doc_id).first()
+    document = (
+        db.query(UserDocument)
+        .join(Document)
+        .options(joinedload(UserDocument.document))
+        .filter(UserDocument.document_id == doc_id)
+        .first()
+    )
 
     if not document:
         raise HTTPException(status_code=404, detail="Document not found")
@@ -111,15 +145,30 @@ def delete_document(
         current_user: User = Depends(get_current_user),
         db: Session = Depends(get_db)
 ):
-    document = db.query(Document).filter(Document.id == doc_id).first()
+    existing_link = (
+        db.query(UserDocument)
+        .options(joinedload(UserDocument.document))
+        .filter(UserDocument.user_id == current_user.id, UserDocument.document_id == doc_id)
+        .first()
+    )
 
-#TODO dodać usuwanie z folderu konkretnego albo tutaj albo od strony streamlite
-    if not document:
+    if not existing_link:
         raise HTTPException(status_code=404, detail="Document not found")
-    if document.owner_id != current_user.id:
-        raise HTTPException(status_code=403, detail="No access to this file")
 
-    db.delete(document)
+    global_document = existing_link.document
+
+    db.delete(existing_link)
+    db.flush()
+
+    any_other_link = (
+        db.query(UserDocument)
+        .options(joinedload(UserDocument.document))
+        .filter(UserDocument.document_id == doc_id)
+        .first()
+    )
+
+    if not any_other_link:
+        db.delete(global_document)
+
     db.commit()
-
-    return document
+    return existing_link
