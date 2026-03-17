@@ -14,6 +14,8 @@ from config import config as cfg
 #  Wprowadzienie hashu pliku, dzieki temu lepiej sprawdzamy powtórki
 #  oraz jak dwoch userow wgra ta sama nazwe, ale inna ksiazke to nie będzie błędu przez
 #  jak sie zrobi część z ksiazkami to dodajemy baze danych z historia czatów, a potem dodajemy wiele userow
+#  czy jesli wielu userów moze dodać inny dokument ale o takiej samej nazwie to czy nie powinniśmy zapisywać w
+#  sources/books/ hasha dokumentu zamiast nazwy ???
 
 
 
@@ -122,22 +124,21 @@ def update_document(
         update_data: DocumentUpdate,
         db: Session = Depends(get_db)
 ):
-    document = (
+    user_doc_link = (
         db.query(UserDocument)
-        .join(Document)
         .options(joinedload(UserDocument.document))
         .filter(UserDocument.document_id == doc_id)
         .first()
     )
 
-    if not document:
+    if not user_doc_link:
         raise HTTPException(status_code=404, detail="Document not found")
 
-    document.chunk_count = update_data.chunk_count
-    document.status = "processed"
+    user_doc_link.document.chunk_count = update_data.chunk_count
+    user_doc_link.document.status = "processed"
     db.commit()
-    db.refresh(document)
-    return document
+    db.refresh(user_doc_link)
+    return user_doc_link
 
 @app.delete("/document/{doc_id}", response_model=UserDocumentResponse)
 def delete_document(

@@ -63,7 +63,6 @@ def get_stored_docs() -> list[dict]:
         response = requests.get(f"{API_URL}/documents")
         if response.status_code == 200:
             documents = response.json()
-
             if not documents:
                 return []
             else:
@@ -123,29 +122,36 @@ def render_document_list(stored_documents: list[dict]) -> list[dict]:
     if not stored_documents:
         return selected_documents
 
-    for doc in stored_documents:
+    for library_entry in stored_documents:
         col1, col2 = st.columns([0.85, 0.15])
 
         is_processing_this_doc = (
                 "pending_processing" in st.session_state and
-                st.session_state["pending_processing"]["file_name"] == doc["file_name"]
+                st.session_state["pending_processing"]["file_name"] == library_entry["document"]["file_name"]
         )
 
-        is_checked = col1.checkbox(doc["file_name"], value=False, key=f"chk_{doc['id']}", disabled=is_processing_this_doc)
+        is_checked = col1.checkbox(
+            label=library_entry["document"]["file_name"],
+            value=False,
+            key=f"chk_{library_entry['document']['id']}",
+            disabled=is_processing_this_doc
+        )
 
         with col2:
-            if st.button(label="", icon=":material/delete:", key=f"del_{doc['id']}", type="tertiary", disabled=is_processing_this_doc):
-                response = api_delete_document(doc['id'])
+            if st.button(label="", icon=":material/delete:", key=f"del_{library_entry['document']['id']}",
+                         type="tertiary", disabled=is_processing_this_doc
+                         ):
+                response = api_delete_document(library_entry["document"]['id'])
 
                 if response and response.status_code == 200:
-                    add_notification(f"{doc['file_name']} deleted successfully!", notify_type="success")
+                    add_notification(f"{library_entry["document"]['file_name']} deleted successfully!", notify_type="success")
                     st.rerun()
                 else:
                     err = response.json().get("detail", "Error") if response else "Connection error"
                     add_notification(f"Delete failed: {err}", notify_type="error")
 
         if is_checked:
-            selected_documents.append(doc)
+            selected_documents.append(library_entry["document"])
 
     return selected_documents
 
@@ -165,7 +171,7 @@ def render_file_uploader(stored_documents: list[dict], placeholder: DeltaGenerat
     )
 
     if uploaded_file is not None:
-        is_already_uploaded = any(doc["file_name"] == uploaded_file.name for doc in stored_documents)
+        is_already_uploaded = any(library_entry["document"]["file_name"] == uploaded_file.name for library_entry in stored_documents)
         if is_already_uploaded:
             add_notification(f"Book '{uploaded_file.name}' is already uploaded!", notify_type="info")
             st.session_state["uploader_key"] += 1
@@ -176,12 +182,12 @@ def render_file_uploader(stored_documents: list[dict], placeholder: DeltaGenerat
         response = api_add_document(payload)
 
         if response and response.status_code == 200:
-            created_doc = response.json()
+            new_library_entry = response.json()
             save_to_disk(file_path, uploaded_file)
             st.session_state["pending_processing"] = {
                 "file_path": file_path,
                 "file_name": uploaded_file.name,
-                "id": created_doc["id"]
+                "id": new_library_entry["document"]["id"]
             }
 
             add_notification("Book added to library! Processing started...", notify_type="info")
@@ -251,7 +257,7 @@ def validate_search_conditions(collection: Collection, selected_documents: list[
 
 def add_selected_documents_to_where_filter(selected_documents: list[dict]) -> (dict[str, dict] |
                                                                                dict[str, dict[str, list[dict]]]):
-    sources = [doc["file_name"] for doc in selected_documents]
+    sources = [library_entry["document"]["file_name"] for library_entry in selected_documents]
     if len(sources) == 1:
         return {"source": sources[0]}
     else:
