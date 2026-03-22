@@ -16,6 +16,7 @@ from config import config as cfg
 #  jak sie zrobi część z ksiazkami to dodajemy baze danych z historia czatów, a potem dodajemy wiele userow
 #  czy jesli wielu userów moze dodać inny dokument ale o takiej samej nazwie to czy nie powinniśmy zapisywać w
 #  sources/books/ hasha dokumentu zamiast nazwy ???
+#  refactor utils read_docs()
 
 
 
@@ -57,7 +58,7 @@ def get_document_by_id(
 
     if not document:
         raise HTTPException(status_code=404, detail="Document not found")
-    if UserDocument.user_id == current_user.id:
+    if UserDocument.user_id != current_user.id:
         raise HTTPException(status_code=403, detail="No access to this file")
 
     return document

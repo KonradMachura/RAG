@@ -49,7 +49,7 @@ def read_docs() -> tuple[list[str], list[str], list[Path]]:
     doc_paths: list[Path] = []
     doc_names: list[str] = []
 
-    file_paths = cfg.BASE_DIR.rglob(pattern='./books/*.*')
+    file_paths = cfg.BASE_DIR.rglob(pattern='./books/*')
     for file_path in file_paths:
 
         parser_func = FILE_PARSER.get(file_path.suffix)
