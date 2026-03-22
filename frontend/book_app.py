@@ -116,6 +116,12 @@ def api_update_document(doc_id: str, chunks_num: int) -> requests.Response | Non
     except requests.exceptions.ConnectionError:
         return None
 
+def generate_file_hash(uploaded_file: UploadedFile) -> str:
+    file_bytes = uploaded_file.getbuffer()
+    uploaded_file_hash = hashlib.sha256(file_bytes).hexdigest()
+    return uploaded_file_hash
+
+
 def render_document_list(stored_documents: list[dict]) -> list[dict]:
     selected_documents: list[dict] = []
 
@@ -171,14 +177,15 @@ def render_file_uploader(stored_documents: list[dict], placeholder: DeltaGenerat
     )
 
     if uploaded_file is not None:
-        is_already_uploaded = any(library_entry["document"]["file_name"] == uploaded_file.name for library_entry in stored_documents)
+        uploaded_file_hash = generate_file_hash(uploaded_file)
+        is_already_uploaded = any(library_entry["document"]["file_hash"] == uploaded_file_hash for library_entry in stored_documents)
         if is_already_uploaded:
             add_notification(f"Book '{uploaded_file.name}' is already uploaded!", notify_type="info")
             st.session_state["uploader_key"] += 1
             st.rerun()
 
-        file_path = build_target_file_path(uploaded_file.name)
-        payload = create_document_payload(uploaded_file, file_path)
+        file_path = build_target_file_path(uploaded_file_hash)
+        payload = create_document_payload(uploaded_file, file_path, uploaded_file_hash)
         response = api_add_document(payload)
 
         if response and response.status_code == 200:
@@ -199,12 +206,10 @@ def render_file_uploader(stored_documents: list[dict], placeholder: DeltaGenerat
             st.session_state["uploader_key"] += 1
             st.rerun()
 
-def build_target_file_path(file_name: str ) -> Path:
-    return cfg.SOURCES_DIR / cfg.DB_NAME / file_name
+def build_target_file_path(file_hash: str ) -> Path:
+    return cfg.SOURCES_DIR / cfg.DB_NAME / file_hash
 
-def create_document_payload(uploaded_file: UploadedFile, file_path: Path) -> dict[str, str | Any]:
-    file_bytes = uploaded_file.getbuffer()
-    file_hash = hashlib.sha256(file_bytes).hexdigest()
+def create_document_payload(uploaded_file: UploadedFile, file_path: Path, file_hash: str) -> dict[str, str | Any]:
     payload = {"file_name": uploaded_file.name, "file_path": str(file_path), "file_hash": file_hash}
     return  payload
 
@@ -232,7 +237,6 @@ def handle_pending_processing(collection: Collection, chunking_model: SentenceTr
                 if "id" in task and chunks_num > 0:
                     api_update_document(task["id"], chunks_num)
 
-        st.balloons()
         add_notification(f"Successfully processed {task['file_name']} into {chunks_num} chunks!", notify_type="success")
 
         del st.session_state["pending_processing"]
