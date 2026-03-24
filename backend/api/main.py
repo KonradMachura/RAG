@@ -1,31 +1,65 @@
 import uuid
 from pathlib import Path
+from datetime import timedelta
 
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, HTTPException, Depends, status
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session, joinedload
+import jwt
 
-from backend.api.schemas import DocumentCreate, UserDocumentResponse, DocumentUpdate
+from backend.api.schemas import DocumentCreate, UserDocumentResponse, DocumentUpdate, UserCreate, Token, UserBase
 from backend.db.models import User, Document, UserDocument
 from backend.db.database import get_db
+from backend.core import security
 from config import config as cfg
 
-# TODO
-#  dodamć tabele asocjacyjną USER_DOCUMENTS
-#  Wprowadzienie hashu pliku, dzieki temu lepiej sprawdzamy powtórki
-#  oraz jak dwoch userow wgra ta sama nazwe, ale inna ksiazke to nie będzie błędu przez
-#  jak sie zrobi część z ksiazkami to dodajemy baze danych z historia czatów, a potem dodajemy wiele userow
-#  czy jesli wielu userów moze dodać inny dokument ale o takiej samej nazwie to czy nie powinniśmy zapisywać w
-#  sources/books/ hasha dokumentu zamiast nazwy ???
-#  refactor utils read_docs()
-
-
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 app = FastAPI()
 
-def get_current_user(db: Session = Depends(get_db)) -> type[User]:
-    user = db.query(User).filter(User.username == "Konrad").first()
-    if not user:
-        raise HTTPException(status_code=401, detail="User doesn't exist")
+@app.post("/register", response_model=UserBase)
+def register_user(user: UserCreate, db: Session = Depends(get_db)):
+    db_user = db.query(User).filter((User.username == user.username) | (User.email == user.email)).first()
+    if db_user:
+        raise HTTPException(status_code=400, detail="Username or email already registered")
+    hashed_password = security.get_password_hash(user.password)
+    new_user = User(username=user.username, email=user.email, hashed_password=hashed_password)
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
+    return new_user
+
+@app.post("/token", response_model=Token)
+def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.username == form_data.username).first()
+    if not user or not security.verify_password(form_data.password, user.hashed_password):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect username or password",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    access_token_expires = timedelta(minutes=security.ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token = security.create_access_token(
+        data={"sub": user.username}, expires_delta=access_token_expires
+    )
+    return {"access_token": access_token, "token_type": "bearer"}
+
+def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)) -> User:
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    try:
+        payload = jwt.decode(token, security.SECRET_KEY, algorithms=[security.ALGORITHM])
+        username: str = payload.get("sub")
+        if username is None:
+            raise credentials_exception
+    except jwt.InvalidTokenError:
+        raise credentials_exception
+    user = db.query(User).filter(User.username == username).first()
+    if user is None:
+        raise credentials_exception
     return user
 
 
@@ -92,13 +126,8 @@ def add_document(
         db.refresh(new_link)
         return new_link
 
-
-
-    input_path = Path(document_in.file_path)
-    try:
-        relative_path = input_path.relative_to(cfg.BASE_DIR).as_posix()
-    except ValueError:
-        relative_path = input_path.as_posix()
+    target_path = cfg.SOURCES_DIR / cfg.DB_NAME / document_in.file_hash
+    relative_path = target_path.relative_to(cfg.BASE_DIR).as_posix()
 
     new_document = Document(
         file_name=document_in.file_name,

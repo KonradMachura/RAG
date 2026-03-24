@@ -3,7 +3,6 @@ from typing import Optional
 from pydantic import BaseModel, EmailStr
 from uuid import UUID
 
-
 class UserBase(BaseModel):
     id: UUID
     username: str
@@ -11,22 +10,31 @@ class UserBase(BaseModel):
     created_at: datetime
     model_config = {"from_attributes": True}
 
+class UserCreate(BaseModel):
+    username: str
+    email: EmailStr
+    password: str
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    username: str | None = None
+
 class DocumentCreate(BaseModel):
     file_name: str
-    file_path: str
     file_hash: str
 
 class DocumentGlobal(BaseModel):
     id: UUID
     file_hash: str
     file_name: str
-    file_path: str
     status: str
     chunk_count: int
     system_upload_date: datetime
 
     model_config = {"from_attributes": True}
-
 
 class UserDocumentResponse(BaseModel):
     user_id: UUID
@@ -42,4 +50,3 @@ class DocumentUpdate(BaseModel):
 
 class UserWithDocuments(UserBase):
     documents: Optional[list[UserDocumentResponse]] = None
-
