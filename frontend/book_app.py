@@ -25,6 +25,11 @@ from backend.core.utils import read_pdf_files
 
 API_URL = "http://127.0.0.1:8000"
 
+def get_headers():
+    if "token" in st.session_state:
+        return {"Authorization": f"Bearer {st.session_state.token}"}
+    return {}
+
 @st.cache_resource
 def load_services() ->  tuple[Groq, Collection, SentenceTransformer]:
     load_dotenv()
@@ -60,29 +65,36 @@ def render_notifications():
 
 def get_stored_docs() -> list[dict]:
     try:
-        response = requests.get(f"{API_URL}/documents")
+        response = requests.get(f"{API_URL}/documents", headers=get_headers())
         if response.status_code == 200:
             documents = response.json()
-            if not documents:
-                return []
-            else:
-                return documents
+            return documents if documents else []
+        elif response.status_code == 401:
+            # Token might be expired
+            if "token" in st.session_state:
+                del st.session_state.token
+                st.rerun()
+            return []
         else:
-            err = response.json().get("detail", "Error") if response else "Connection error"
+            try:
+                err = response.json().get("detail", "Error")
+            except:
+                err = response.reason
             add_notification(f"API error: {response.status_code}, {err}", notify_type="error")
             return []
     except requests.exceptions.ConnectionError:
-        add_notification("Connection error. Try again later.", notify_type="error")
+        add_notification("Connection error: Is the backend server running?", notify_type="error")
         return []
 
 
-@st.fragment
 def manage_sidebar_library(collection: Collection, chunking_model: SentenceTransformer) -> list[dict]:
     st.header("Your library")
     stored_documents = get_stored_docs()
+    
+    # If API is down or no docs, get_stored_docs will have added a notification
     selected_documents = render_document_list(stored_documents)
 
-    for _ in range(20 - len(stored_documents)):
+    for _ in range(max(0, 20 - len(stored_documents))):
         st.text("")
 
     action_space = st.empty()
@@ -97,14 +109,14 @@ def manage_sidebar_library(collection: Collection, chunking_model: SentenceTrans
 
 def api_add_document(payload: dict) -> requests.Response | None:
     try:
-        return requests.post(f"{API_URL}/document", json=payload)
+        return requests.post(f"{API_URL}/document", json=payload, headers=get_headers())
     except requests.exceptions.ConnectionError:
         return None
 
 
 def api_delete_document(doc_id: str) -> requests.Response | None:
     try:
-        return requests.delete(f"{API_URL}/document/{doc_id}")
+        return requests.delete(f"{API_URL}/document/{doc_id}", headers=get_headers())
     except requests.exceptions.ConnectionError:
         return None
 
@@ -112,7 +124,7 @@ def api_delete_document(doc_id: str) -> requests.Response | None:
 def api_update_document(doc_id: str, chunks_num: int) -> requests.Response | None:
     try:
         payload = {"chunk_count": chunks_num}
-        return requests.patch(f"{API_URL}/document/{doc_id}", json=payload)
+        return requests.patch(f"{API_URL}/document/{doc_id}", json=payload, headers=get_headers())
     except requests.exceptions.ConnectionError:
         return None
 
@@ -150,7 +162,7 @@ def render_document_list(stored_documents: list[dict]) -> list[dict]:
                 response = api_delete_document(library_entry["document"]['id'])
 
                 if response and response.status_code == 200:
-                    add_notification(f"{library_entry["document"]['file_name']} deleted successfully!", notify_type="success")
+                    add_notification(f"{library_entry['document']['file_name']} deleted successfully!", notify_type="success")
                     st.rerun()
                 else:
                     err = response.json().get("detail", "Error") if response else "Connection error"
@@ -210,7 +222,7 @@ def build_target_file_path(file_hash: str ) -> Path:
     return cfg.SOURCES_DIR / cfg.DB_NAME / file_hash
 
 def create_document_payload(uploaded_file: UploadedFile, file_path: Path, file_hash: str) -> dict[str, str | Any]:
-    payload = {"file_name": uploaded_file.name, "file_path": str(file_path), "file_hash": file_hash}
+    payload = {"file_name": uploaded_file.name, "file_hash": file_hash}
     return  payload
 
 
@@ -316,9 +328,71 @@ def generate_llm_answer(groq_client: Groq, context: str, sources: set, user_quer
     )
     return chat_completion.choices[0].message.content
 
+def render_auth_ui():
+    st.title("Bookipidia - Login / Register")
+    tab1, tab2 = st.tabs(["Login", "Register"])
+    
+    with tab1:
+        with st.form("login_form"):
+            username = st.text_input("Username")
+            password = st.text_input("Password", type="password")
+            submitted = st.form_submit_button("Login")
+            if submitted:
+                res = requests.post(f"{API_URL}/token", data={"username": username, "password": password})
+                if res.status_code == 200:
+                    st.session_state.token = res.json()["access_token"]
+                    st.rerun()
+                else:
+                    try:
+                        detail = res.json().get("detail", "Invalid credentials")
+                        if isinstance(detail, list):
+                            detail = "; ".join([f"{err.get('msg', 'Error')}" for err in detail])
+                        st.error(detail)
+                    except (ValueError, requests.exceptions.JSONDecodeError):
+                        st.error(f"Login failed: {res.status_code} {res.reason}")
+                    
+    with tab2:
+        with st.form("register_form"):
+            new_username = st.text_input("Username")
+            new_email = st.text_input("Email")
+            new_password = st.text_input("Password", type="password")
+            reg_submitted = st.form_submit_button("Register")
+            if reg_submitted:
+                res = requests.post(f"{API_URL}/register", json={"username": new_username, "email": new_email, "password": new_password})
+                if res.status_code == 200:
+                    # Auto login after successful registration
+                    login_res = requests.post(f"{API_URL}/token", data={"username": new_username, "password": new_password})
+                    if login_res.status_code == 200:
+                        st.session_state.token = login_res.json()["access_token"]
+                        st.rerun()
+                    else:
+                        st.success("Registered successfully! Please login.")
+                else:
+                    try:
+                        detail = res.json().get("detail", "Registration failed")
+                        if isinstance(detail, list):
+                            # Flatten Pydantic validation errors
+                            detail = "; ".join([f"{err.get('msg', 'Error')}" for err in detail])
+                        st.error(detail)
+                    except (ValueError, requests.exceptions.JSONDecodeError):
+                        st.error(f"Registration failed: {res.status_code} {res.reason}")
+
 
 def main():
     st.set_page_config(page_title="Bookipidia", page_icon="📚")
+    
+    if "token" not in st.session_state:
+        render_auth_ui()
+        return
+
+    # Standard Streamlit columns for header layout
+    col_title, col_logout = st.columns([0.8, 0.2])
+    with col_logout:
+        # Pushing the button to the right as much as possible using standard columns
+        if st.button("Logout", key="logout_button", help="Log out from Bookipidia"):
+            del st.session_state.token
+            st.rerun()
+
     st.title("Bookipidia")
     st.markdown("Ask a question about your fav book!")
 
