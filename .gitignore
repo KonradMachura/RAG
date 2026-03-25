@@ -11,3 +11,4 @@ sources/books/*.pdf
 /databases/
 *.sqlite3
 .gemini/
+/data/
