@@ -10,3 +10,4 @@ __pycache__/
 sources/books/*.pdf
 /databases/
 *.sqlite3
+.gemini/
