@@ -7,11 +7,11 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session, joinedload
 import jwt
 
-from backend.api.schemas import DocumentCreate, UserDocumentResponse, DocumentUpdate, UserCreate, Token, UserBase
-from backend.db.models import User, Document, UserDocument
-from backend.db.database import get_db
-from backend.core import security
-from config import config as cfg
+from src.api.schemas import DocumentCreate, UserDocumentResponse, DocumentUpdate, UserCreate, Token, UserBase
+from src.database.models import User, Document, UserDocument
+from src.database.connection import get_db
+from src.core import security
+from src.core import config as cfg
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 

@@ -4,8 +4,8 @@ from datetime import datetime, timezone
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from config import config as cfg
-from backend.db.models import Base, Document, User, UserDocument
+from src.core import config as cfg
+from src.database.models import Base, Document, User, UserDocument
 
 engine = create_engine(cfg.DATABASE_URL, echo=False)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

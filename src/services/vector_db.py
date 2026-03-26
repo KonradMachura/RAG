@@ -4,9 +4,9 @@ from chromadb.utils import embedding_functions
 from chromadb.api.models.Collection import Collection
 from sentence_transformers import SentenceTransformer
 
-from backend.core import utils as u
-from backend.core import chunking as c
-from config import config as cfg
+from src.core import utils as u
+from src.core import chunking as c
+from src.core import config as cfg
 
 def save_chunks_to_vectordb(collection: Collection, chunks: list[str], doc_name: str):
     if not chunks:

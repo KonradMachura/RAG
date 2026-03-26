@@ -19,9 +19,10 @@ root_path = str(Path(__file__).parent.parent.absolute())
 if root_path not in sys.path:
     sys.path.append(root_path)
 
-from config import config as cfg
-from backend.core import build_db, chunking
-from backend.core.utils import read_pdf_files
+from src.core import config as cfg
+from src.services import vector_db as build_db
+from src.core import chunking
+from src.core.utils import read_pdf_files
 
 API_URL = "http://127.0.0.1:8000"
 

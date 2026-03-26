@@ -2,7 +2,7 @@ from pathlib import Path
 from typing import Callable
 import fitz  # old name for PyMuPDF
 import re
-from config import config as cfg
+from src.core import config as cfg
 
 def clean_pdf_text(content: str) -> str:
     """Cleaning PDF text sticking cutted words"""

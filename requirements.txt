@@ -51,3 +51,4 @@ pydantic
 passlib[bcrypt]
 PyJWT
 python-multipart
+pytest

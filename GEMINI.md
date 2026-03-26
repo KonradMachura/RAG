@@ -11,12 +11,14 @@ Bookipidia is a Retrieval-Augmented Generation (RAG) system designed to allow us
 - **Document Processing**: PyMuPDF (fitz) for PDF extraction and custom semantic chunking logic.
 
 ### Architecture
-- `backend/api/`: FastAPI routes for user authentication (JWT) and document metadata management.
-- `backend/core/`: Core RAG logic, including semantic chunking, embedding generation, and vector database operations.
-- `backend/db/`: Database schema (User, Document, UserDocument) using SQLAlchemy.
-- `frontend/`: Streamlit-based user interfaces.
-- `config/`: Centralized configuration management.
-- `data/`: Local storage for raw sources and the vector database.
+All application code is located in the `src/` directory for better modularity:
+- `src/api/`: FastAPI routes and Pydantic schemas.
+- `src/core/`: Shared core logic including configuration, security, chunking, and general utilities.
+- `src/database/`: Relational database connection management and SQLAlchemy models.
+- `src/services/`: Core business services such as Vector Database management and RAG logic.
+- `src/frontend/`: Streamlit-based user interface.
+- `data/`: Local storage for raw sources, relational database, and vector database.
+- `tests/`: Comprehensive unit and integration tests.
 
 ## Building and Running
 
@@ -36,36 +38,35 @@ pip install -r requirements.txt
 ### Running the Backend API
 The backend handles user sessions and document metadata.
 ```bash
-uvicorn backend.api.main:app --reload
+uvicorn src.api.main:app --reload
 ```
 
 ### Running the Frontend (Bookipidia)
 This is the main application for library management and chatting.
 ```bash
-streamlit run frontend/book_app.py
+streamlit run src/frontend/app.py
 ```
 
-### Legacy/Internal Tools
-- **HR Assistant**: A suspended version of the assistant focused on company documents.
-  ```bash
-  streamlit run frontend/app.py
-  ```
-- **Manual Vector DB Update**: To process documents in `data/sources` manually:
-  ```bash
-  python -m backend.core.build_db
-  ```
+### Manual Vector DB Update
+To process documents in `data/sources` manually:
+```bash
+python -m src.services.vector_db
+```
 
 ## Development Conventions
 
 ### Coding Style
-- **Type Hinting**: Used extensively throughout the backend.
+- **Type Hinting**: Used extensively throughout the project.
 - **Async**: While FastAPI supports async, the current DB and core logic are largely synchronous.
-- **Configuration**: Always use `config/config.py` for pathing and model settings.
+- **Configuration**: Always use `src/core/config.py` for pathing and model settings.
 
 ### RAG Logic
-- **Chunking**: Uses semantic chunking based on cosine similarity of sentence embeddings (defined in `backend/core/chunking.py`).
+- **Chunking**: Uses semantic chunking based on cosine similarity of sentence embeddings (defined in `src/core/chunking.py`).
 - **Vector Search**: Performed via ChromaDB with a `where` filter to scope results to the user's selected documents.
 
 ### Testing
-- Automated tests are located in `scripts/testing.py` (verify this for more specific testing instructions).
-- Manual query testing can be done via `scripts/query.py`.
+- **Unit & Integration Tests**: Run all tests using pytest:
+  ```bash
+  pytest
+  ```
+- **Manual Query Testing**: Can be done via `scripts/query.py`.
