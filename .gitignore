@@ -1,14 +1,31 @@
+# Virtual environments
 .venv/
 venv/
 env/
-.env
 
-.idea/
+# Python artifacts
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.pytest_cache/
 
-sources/books/*.pdf
-/databases/
-*.sqlite3
-.gemini/
+# Environment variables
+.env
+
+# IDEs & OS files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Project Data (Uploads & Local DBs)
 /data/
+*.sqlite
+*.sqlite3
+sql_app.db
+
+# Gemini CLI
+.gemini/

@@ -4,7 +4,7 @@ from groq import Groq
 import chromadb
 from chromadb.utils import embedding_functions
 
-from config import config as cfg
+from src.core import config as cfg
 
 
 def main():

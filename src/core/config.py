@@ -6,7 +6,7 @@ load_dotenv()
 
 
 # Folder Paths
-BASE_DIR = Path(__file__).parent.parent
+BASE_DIR = Path(__file__).parent.parent.parent
 VECTOR_DB_DIR = BASE_DIR / "data" / "vector_db"
 SOURCES_DIR = BASE_DIR / "data" / "sources"
 

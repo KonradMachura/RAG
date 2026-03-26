@@ -2,7 +2,7 @@ import re
 import sentence_transformers
 from sentence_transformers import util, SentenceTransformer
 
-from config import config as cfg
+from src.core import config as cfg
 
 
 def fixed_sized_chunking(doc_content: str,

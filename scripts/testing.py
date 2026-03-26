@@ -1,8 +1,8 @@
 from dotenv import load_dotenv
 from typing import Callable
 from sentence_transformers import SentenceTransformer, util
-from backend.core import chunking as c, utils as u
-from config import config as cfg
+from src.core import chunking as c, utils as u
+from src.core import config as cfg
 
 
 def test_chunking(docs_contents: list[str], docs_names: list[str],
