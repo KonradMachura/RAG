@@ -28,7 +28,8 @@ def fixed_sized_chunking(doc_content: str,
 def subsection_chunking(doc_content: str) -> list[str]:
     """Split a document into subsection chunks"""
     chunks: list[str] = []
-    chunks = re.split(r"(?=#{2,3})", doc_content)
+    # Use negative lookbehind to ensure we don't split in the middle of a hash sequence
+    chunks = re.split(r"(?<!#)(?=#{2,3}(?!#))", doc_content)
     chunks = [chunk.strip(" \n\r\t-") for chunk in chunks if chunk.strip()]
 
     return chunks
@@ -37,7 +38,7 @@ def subsection_chunking(doc_content: str) -> list[str]:
 def paragraph_chunking(doc_content: str) -> list[str]:
     """Split a document into paragraph/section chunks"""
     chunks: list[str] = []
-    chunks = re.split(r"(?=#{2})", doc_content)
+    chunks = re.split(r"(?<!#)(?=#{2}(?!#))", doc_content)
     chunks = [chunk.strip(" \n\r\t-") for chunk in chunks if chunk.strip()]
     return chunks
 
