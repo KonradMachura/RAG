@@ -15,7 +15,7 @@ from sentence_transformers import SentenceTransformer
 from streamlit.delta_generator import DeltaGenerator
 from streamlit.runtime.uploaded_file_manager import UploadedFile
 
-root_path = str(Path(__file__).parent.parent.absolute())
+root_path = str(Path(__file__).parent.parent.parent.absolute())
 if root_path not in sys.path:
     sys.path.append(root_path)
 
@@ -33,8 +33,13 @@ def get_headers():
 
 @st.cache_resource
 def load_services() ->  tuple[Groq, Collection, SentenceTransformer]:
-    load_dotenv()
-    groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+    load_dotenv(Path(root_path) / ".env")
+    api_key = os.getenv("GROQ_API_KEY")
+    if not api_key:
+        st.error("GROQ_API_KEY not found. Please check your .env file in the project root.")
+        st.stop()
+        
+    groq_client = Groq(api_key=api_key)
     collection = build_db.configure_chroma_db()
     chunking_model = SentenceTransformer(cfg.EMBEDDING_MODEL)
     return groq_client, collection, chunking_model
@@ -274,7 +279,7 @@ def validate_search_conditions(collection: Collection, selected_documents: list[
 
 def add_selected_documents_to_where_filter(selected_documents: list[dict]) -> (dict[str, dict] |
                                                                                dict[str, dict[str, list[dict]]]):
-    sources = [library_entry["document"]["file_name"] for library_entry in selected_documents]
+    sources = [library_entry["file_name"] for library_entry in selected_documents]
     if len(sources) == 1:
         return {"source": sources[0]}
     else:
