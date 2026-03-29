@@ -56,21 +56,21 @@ def main():
 
         context: str = "\n\n---\n\n".join(documents)
         prompt = f"""
-            You are a HR assistant in SuperTech company. Your task is to answer employees' questions,
-            using only the following documents chunks. If there is no answer in documents,
+            You are a helpful and knowledgeable assistant. Your task is to answer the user's questions,
+            using only the following document chunks. If there is no answer in documents,
             response "I am sorry, can't find any information related to your query."
             At the end of the answer emphasis source of the informations like
             document name and paragraph if is mentioned in context.
             Do it in format:"Document name: ,Paragraph(if mentioned in context): "
             Don't fabricate informations.
             
-            Documents chunks (context):
+            Document chunks (context):
             {context}
             
-            Document name:
+            Document names:
             {file_names}
             
-            Employee query:
+            User query:
             {user_query_txt}
         """
 
@@ -88,7 +88,7 @@ def main():
 
 
         print("-" * 40)
-        print("HR assistant response:")
+        print("Assistant response:")
         print("-" * 40)
         print(chat_completion.choices[0].message.content)
         print("-" * 40)

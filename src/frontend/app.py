@@ -1,7 +1,7 @@
 import sys
 import os
 import time
-from typing import Any
+from typing import Any, List
 
 from dotenv import load_dotenv
 from pathlib import Path
@@ -100,7 +100,7 @@ def manage_sidebar_library(collection: Collection, chunking_model: SentenceTrans
     # If API is down or no docs, get_stored_docs will have added a notification
     selected_documents = render_document_list(stored_documents)
 
-    for _ in range(max(0, 20 - len(stored_documents))):
+    for _ in range(max(0, 2 - len(stored_documents))):
         st.text("")
 
     action_space = st.empty()
@@ -109,6 +109,15 @@ def manage_sidebar_library(collection: Collection, chunking_model: SentenceTrans
         handle_pending_processing(collection, chunking_model, action_space)
     else:
         render_file_uploader(stored_documents, action_space)
+
+    st.divider()
+    st.header("RAG Settings")
+    st.session_state.rag_engine = st.radio(
+        "Select RAG Engine",
+        ["Manual (Old School)", "LangChain (Modern)"],
+        index=0,
+        help="Manual uses direct ChromaDB & Groq calls. LangChain uses a RetrievalQA chain."
+    )
 
     return selected_documents
 
@@ -132,6 +141,24 @@ def api_update_document(doc_id: str, chunks_num: int) -> requests.Response | Non
         payload = {"chunk_count": chunks_num}
         return requests.patch(f"{API_URL}/document/{doc_id}", json=payload, headers=get_headers())
     except requests.exceptions.ConnectionError:
+        return None
+
+def api_query(query: str, doc_ids: List[str], engine: str) -> dict | None:
+    endpoint = "manual" if "Manual" in engine else "langchain"
+    payload = {
+        "query": query,
+        "document_ids": doc_ids
+    }
+    try:
+        response = requests.post(f"{API_URL}/query/{endpoint}", json=payload, headers=get_headers())
+        if response.status_code == 200:
+            return response.json()
+        else:
+            err = response.json().get("detail", "Query failed")
+            add_notification(f"Query error: {err}", notify_type="error")
+            return None
+    except requests.exceptions.ConnectionError:
+        add_notification("Connection error: Backend is down", notify_type="error")
         return None
 
 def generate_file_hash(uploaded_file: UploadedFile) -> str:
@@ -225,7 +252,9 @@ def render_file_uploader(stored_documents: list[dict], placeholder: DeltaGenerat
             st.rerun()
 
 def build_target_file_path(file_hash: str ) -> Path:
-    return cfg.SOURCES_DIR / cfg.DB_NAME / file_hash
+    target_dir = cfg.SOURCES_DIR / cfg.DB_NAME
+    target_dir.mkdir(parents=True, exist_ok=True)
+    return target_dir / file_hash
 
 def create_document_payload(uploaded_file: UploadedFile, file_path: Path, file_hash: str) -> dict[str, str | Any]:
     payload = {"file_name": uploaded_file.name, "file_hash": file_hash}
@@ -238,9 +267,19 @@ def save_to_disk(file_path: Path, uploaded_file: UploadedFile) -> None:
 
 def vectorize_and_store_document(file_path: Path, collection: Collection, chunking_model: SentenceTransformer) -> int:
     doc_content = read_pdf_files(file_path)
-    chunks = chunking.semantic_chunking(doc_content, model=chunking_model)
-    build_db.save_chunks_to_vectordb(collection, chunks, file_path.name)
-    return len(chunks)
+    
+    # 1. Manual Indexing (Old School)
+    manual_chunks = chunking.semantic_chunking(doc_content, model=chunking_model)
+    build_db.save_chunks_to_vectordb(collection, manual_chunks, file_path.name)
+    
+    # 2. LangChain Indexing (Modern)
+    from src.services.langchain_service import get_langchain_rag
+    lc_rag = get_langchain_rag()
+    lc_chunks = chunking.langchain_recursive_chunking(doc_content)
+    lc_metadatas = [{"source": file_path.name} for _ in lc_chunks]
+    lc_rag.add_documents(lc_chunks, lc_metadatas)
+    
+    return len(manual_chunks)
 
 
 def handle_pending_processing(collection: Collection, chunking_model: SentenceTransformer, placeholder) -> None:
@@ -276,63 +315,6 @@ def validate_search_conditions(collection: Collection, selected_documents: list[
     check_empty_db_condition(collection)
     check_if_any_document_selected(selected_documents)
 
-
-def add_selected_documents_to_where_filter(selected_documents: list[dict]) -> (dict[str, dict] |
-                                                                               dict[str, dict[str, list[dict]]]):
-    sources = [library_entry["file_name"] for library_entry in selected_documents]
-    if len(sources) == 1:
-        return {"source": sources[0]}
-    else:
-        return {"source": {"$in": sources}}
-
-
-def retrieve_context_and_sources(collection: Collection, user_query: str, where_filter: dict) -> tuple[str, set[str]]:
-    results = collection.query(
-        query_texts=[user_query],
-        n_results=cfg.N_RESULTS,
-        where=where_filter)
-
-    documents = results['documents'][0]
-    metadatas = results['metadatas'][0]
-
-    context: str = "\n\n---\n\n".join(documents)
-    sources = set([meta.get("source", "Not found") for meta in metadatas])
-    return context, sources
-
-
-def generate_llm_answer(groq_client: Groq, context: str, sources: set, user_query: str, chat_history: list) -> str:
-    prompt = f"""
-                You are a helpful and knowledgeable literary assistant. Your task is to answer the reader's questions using
-                EXCLUSIVELY the provided book chunks. 
-                Do not use your internal pre-trained knowledge about the book. 
-
-                If the answer cannot be found in the provided text chunks, you must respond exactly: "I am sorry,
-                I can't find any information related to your query in the provided text."
-                Do not fabricate information, guess, or make up facts.
-                Always answer in the exact same language as the Reader query
-                (if the query is in Polish, you MUST answer in Polish).
-
-                Book chunks (context):
-                {context}
-
-                Book name / Source:
-                {sources}
-
-                Reader query:
-                {user_query}
-            """
-
-    api_messages = [{"role": "system", "content": prompt}]
-    for msg in chat_history[-5:]:
-        api_messages.append({"role": msg["role"], "content": msg["content"]})
-    api_messages.append({"role": "user", "content": user_query})
-
-    chat_completion = groq_client.chat.completions.create(
-        messages=api_messages,
-        model=cfg.LLM_MODEL,
-        temperature=cfg.TEMPERATURE
-    )
-    return chat_completion.choices[0].message.content
 
 def render_auth_ui():
     st.title("Bookipidia - Login / Register")
@@ -424,14 +406,17 @@ def main():
                 with st.chat_message(message["role"]):
                     st.markdown(message["content"])
 
-            with st.spinner(text="Searching procedure..."):
-                where_filter = add_selected_documents_to_where_filter(selected_documents)
-                print(where_filter)
-                context, sources = retrieve_context_and_sources(collection, user_query, where_filter)
-                print(context)
-                print(sources)
-                answer = generate_llm_answer(groq_client, context, sources, user_query, st.session_state.messages)
-                final_response = f"{answer}\n\n"
+            engine = st.session_state.get("rag_engine", "Manual (Old School)")
+            with st.spinner(text=f"Searching procedure ({engine})..."):
+                doc_ids = [doc["id"] for doc in selected_documents]
+                result = api_query(user_query, doc_ids, engine)
+                
+                if result:
+                    answer = result["answer"]
+                    sources = set([s["metadata"].get("source", "Unknown") for s in result["sources"]])
+                    final_response = f"**[{engine}]**\n\n{answer}\n\n*Sources: {', '.join(sources)}*"
+                else:
+                    final_response = "I am sorry, something went wrong with the connection to the backend."
 
             st.chat_message("assistant").markdown(final_response)
 

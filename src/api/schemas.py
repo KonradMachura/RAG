@@ -50,3 +50,15 @@ class DocumentUpdate(BaseModel):
 
 class UserWithDocuments(UserBase):
     documents: Optional[list[UserDocumentResponse]] = None
+
+class QueryRequest(BaseModel):
+    query: str
+    document_ids: list[UUID]
+
+class SourceDocument(BaseModel):
+    content: str
+    metadata: dict
+
+class QueryResponse(BaseModel):
+    answer: str
+    sources: list[SourceDocument]

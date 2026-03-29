@@ -44,25 +44,38 @@ FILE_PARSER: dict[str, Callable[[Path], str]] = {
 }
 
 def read_docs() -> tuple[list[str], list[str], list[Path]]:
-    """Searching for specific files and saving their paths and content if not empty"""
+    """Searching for specific files in data/sources/books and saving their paths and content"""
     docs_content: list[str] = []
     doc_paths: list[Path] = []
     doc_names: list[str] = []
 
-    file_paths = cfg.BASE_DIR.rglob(pattern='./books/*')
-    for file_path in file_paths:
+    # Target ONLY the sources/books directory
+    target_dir = cfg.SOURCES_DIR / cfg.DB_NAME
+    if not target_dir.exists():
+        print(f"Directory {target_dir} does not exist.")
+        return [], [], []
 
-        parser_func = FILE_PARSER.get(file_path.suffix)
+    file_paths = target_dir.glob('*')
+    for file_path in file_paths:
+        # Skip system files or directories
+        if file_path.name == "chroma.sqlite3" or file_path.is_dir():
+            continue
+
+        # If it's a hash (no extension), treat it as a PDF
+        suffix = file_path.suffix.lower()
+        if not suffix:
+            suffix = ".pdf"
+            
+        parser_func = FILE_PARSER.get(suffix)
         if parser_func:
             content = parser_func(file_path)
             if content:
                 docs_content.append(content)
                 doc_paths.append(file_path)
-                doc_names.append(file_path.stem)
-
+                # Use the filename (hash) as the name for metadata
+                doc_names.append(file_path.name)
         else:
             print(f"File {file_path} with unknown extension {file_path.suffix}.")
-
 
     return docs_content, doc_names, doc_paths
 

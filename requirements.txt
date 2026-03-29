@@ -52,3 +52,12 @@ passlib[bcrypt]
 PyJWT
 python-multipart
 pytest
+
+langchain
+langchain-community
+langchain-groq
+langchain-huggingface
+langchain-chroma
+langchain-experimental
+
+bcrypt

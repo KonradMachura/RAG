@@ -2,7 +2,31 @@ import re
 import sentence_transformers
 from sentence_transformers import util, SentenceTransformer
 
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_experimental.text_splitter import SemanticChunker as LCSemanticChunker
+from langchain_huggingface import HuggingFaceEmbeddings
+
 from src.core import config as cfg
+
+
+def langchain_recursive_chunking(doc_content: str, 
+                                 size: int = cfg.DEFAULT_CHUNK_SIZE, 
+                                 overlap: int = cfg.DEFAULT_CHUNK_OVERLAP) -> list[str]:
+    """Split a document using LangChain's RecursiveCharacterTextSplitter"""
+    splitter = RecursiveCharacterTextSplitter(
+        chunk_size=size,
+        chunk_overlap=overlap,
+        separators=["\n\n", "\n", " ", ""]
+    )
+    return splitter.split_text(doc_content)
+
+
+def langchain_semantic_chunking(doc_content: str) -> list[str]:
+    """Split a document using LangChain's SemanticChunker"""
+    embeddings = HuggingFaceEmbeddings(model_name=cfg.EMBEDDING_MODEL)
+    splitter = LCSemanticChunker(embeddings)
+    # split_text returns a list of strings
+    return splitter.split_text(doc_content)
 
 
 def fixed_sized_chunking(doc_content: str,
