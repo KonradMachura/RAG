@@ -88,7 +88,7 @@ def main():
 
 
         print("-" * 40)
-        print("HR assistant response:")
+        print("Response:")
         print("-" * 40)
         print(chat_completion.choices[0].message.content)
         print("-" * 40)
