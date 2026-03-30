@@ -22,7 +22,7 @@ if root_path not in sys.path:
 from src.core import config as cfg
 from src.services import vector_db as build_db
 from src.core import chunking
-from src.core.utils import read_pdf_files
+from src.core.utils import read_pdf_file
 
 API_URL = "http://127.0.0.1:8000"
 
@@ -233,11 +233,12 @@ def create_document_payload(uploaded_file: UploadedFile, file_path: Path, file_h
 
 
 def save_to_disk(file_path: Path, uploaded_file: UploadedFile) -> None:
+    file_path.parent.mkdir(parents=True, exist_ok=True)
     with open(file_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
 
 def vectorize_and_store_document(file_path: Path, collection: Collection, chunking_model: SentenceTransformer) -> int:
-    doc_content = read_pdf_files(file_path)
+    doc_content = read_pdf_file(file_path)
     chunks = chunking.semantic_chunking(doc_content, model=chunking_model)
     build_db.save_chunks_to_vectordb(collection, chunks, file_path.name)
     return len(chunks)

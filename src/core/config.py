@@ -2,32 +2,45 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
+# Load environment variables from a .env file if it exists.
 load_dotenv()
 
-
-# Folder Paths
+# --- Project Paths ---
+# The absolute path to the project root directory.
 BASE_DIR = Path(__file__).parent.parent.parent
 ROOT_PATH = BASE_DIR
-VECTOR_DB_DIR = BASE_DIR / "data" / "vector_db"
+
+# --- Database Configurations ---
+# The absolute path to the vector database storage.
+DB_PATH = BASE_DIR / "data" / "vector_db"
+# The name of the collection/index in the vector database.
+DB_NAME = "documents"
+# The URL for the relational database (e.g., SQLite, PostgreSQL).
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+# --- Directory Paths ---
+# Directory where source documents are stored.
 SOURCES_DIR = BASE_DIR / "data" / "sources"
 
-# VECTOR_DB
-DB_NAME = "books"
-DB_PATH = VECTOR_DB_DIR / DB_NAME
+# --- Retrieval Settings ---
+# Number of search results to return from the vector database.
 N_RESULTS = 10
 
-# EMBEDDING MODEL CONFIGS
-""" all-MiniLM-L6-v2, multi-qa-MiniLM-L6-cos-v1, paraphrase-multilingual-MiniLM-L12-v2 """
+# --- Embedding Model Configurations ---
+# The identifier for the Sentence-Transformers model.
+# Common choices: all-MiniLM-L6-v2, multi-qa-MiniLM-L6-cos-v1, paraphrase-multilingual-MiniLM-L12-v2
 EMBEDDING_MODEL = "paraphrase-multilingual-MiniLM-L12-v2"
 
-# LLM MODEL CONFIGS
+# --- LLM Configurations ---
+# The model ID for the Large Language Model used for generation.
 LLM_MODEL = "llama-3.3-70b-versatile"
+# Sampling temperature for LLM generation; lower is more deterministic.
 TEMPERATURE = 0.1
 
-# CHUNKING CONFIGS
+# --- Chunking Configurations ---
+# Threshold for semantic distance in semantic chunking (1 - cosine similarity).
 SEMANTIC_THRESHOLD = 0.7
+# Default character size for fixed-size chunks.
 DEFAULT_CHUNK_SIZE = 200
+# Character overlap between adjacent chunks in fixed-size chunking.
 DEFAULT_CHUNK_OVERLAP = 50
-
-#RELATIONAL_DB
-DATABASE_URL = os.getenv("DATABASE_URL")

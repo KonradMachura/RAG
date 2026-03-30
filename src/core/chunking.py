@@ -1,97 +1,158 @@
 import re
-import sentence_transformers
+from typing import Optional
 from sentence_transformers import util, SentenceTransformer
 
 from src.core import config as cfg
 
 
-def fixed_sized_chunking(doc_content: str,
-                         size: int = cfg.DEFAULT_CHUNK_SIZE, overlap: int = cfg.DEFAULT_CHUNK_OVERLAP) -> list[str]:
-    """Split a document into fixed size chunks"""
+def fixed_sized_chunking(
+    doc_content: str,
+    size: int = cfg.DEFAULT_CHUNK_SIZE,
+    overlap: int = cfg.DEFAULT_CHUNK_OVERLAP
+) -> list[str]:
+    """
+    Split a document into fixed size chunks with optional overlap.
+
+    Args:
+        doc_content: The full text of the document to be chunked.
+        size: The maximum size of each chunk.
+        overlap: The number of characters to overlap between adjacent chunks.
+
+    Returns:
+        A list of text chunks.
+    """
     chunks: list[str] = []
     start: int = 0
-    while start < len(doc_content):
-        end = start + size + overlap
-        chunk: str = doc_content[start:end]
+    content_length = len(doc_content)
 
-        if end > len(doc_content):
+    while start < content_length:
+        end = start + size + overlap
+        if end > content_length:
             chunk = doc_content[start:]
+        else:
+            chunk = doc_content[start:end]
 
         chunks.append(chunk.strip())
-        print(chunk)
-        print('-' * 40)
         start = end - overlap
 
     return chunks
 
 
-def subsection_chunking(doc_content: str) -> list[str]:
-    """Split a document into subsection chunks"""
-    chunks: list[str] = []
-    # Use negative lookbehind to ensure we don't split in the middle of a hash sequence
-    chunks = re.split(r"(?<!#)(?=#{2,3}(?!#))", doc_content)
-    chunks = [chunk.strip(" \n\r\t-") for chunk in chunks if chunk.strip()]
+def _chunk_by_regex(doc_content: str, pattern: str) -> list[str]:
+    """
+    Helper function to split text by a given regex pattern.
 
-    return chunks
+    Args:
+        doc_content: The text to split.
+        pattern: The regex pattern to split by.
+
+    Returns:
+        A list of non-empty stripped chunks.
+    """
+    chunks = re.split(pattern, doc_content)
+    return [chunk.strip(" \n\r\t-") for chunk in chunks if chunk.strip()]
+
+
+def subsection_chunking(doc_content: str) -> list[str]:
+    """
+    Split a document into chunks based on Markdown subsection headers (## or ###).
+
+    Args:
+        doc_content: The Markdown content to be chunked.
+
+    Returns:
+        A list of subsection chunks.
+    """
+    # Use lookahead to split at ## or ### without removing the header itself
+    pattern = r"(?<!#)(?=#{2,3}(?!#))"
+    return _chunk_by_regex(doc_content, pattern)
 
 
 def paragraph_chunking(doc_content: str) -> list[str]:
-    """Split a document into paragraph/section chunks"""
-    chunks: list[str] = []
-    chunks = re.split(r"(?<!#)(?=#{2}(?!#))", doc_content)
-    chunks = [chunk.strip(" \n\r\t-") for chunk in chunks if chunk.strip()]
-    return chunks
+    """
+    Split a document into chunks based on Markdown section headers (##).
+
+    Args:
+        doc_content: The Markdown content to be chunked.
+
+    Returns:
+        A list of section chunks.
+    """
+    pattern = r"(?<!#)(?=#{2}(?!#))"
+    return _chunk_by_regex(doc_content, pattern)
+
 
 def _extract_sentences(doc_content: str) -> list[str]:
+    """
+    Split text into individual sentences based on punctuation followed by whitespace.
+
+    Args:
+        doc_content: The text content.
+
+    Returns:
+        A list of sentences.
+    """
     raw_sentences = re.split(r"(?<=[.?!])\s+", doc_content)
     return [s.strip() for s in raw_sentences if s.strip()]
 
-def semantic_chunking(doc_content: str, model: SentenceTransformer, threshold: float = cfg.SEMANTIC_THRESHOLD) -> list[str]:
-    """
-    Split a document into semantic chunks
-    Not splitting based on document structure but based on meaning
-    when document is not structured like film transcripts, walls of text.
-    Action:
-    The script reads sentence by sentence, converts them into vectors and calculates their ‘similarity’.
-    As long as the meaning is the same, it groups them together.
-    And when there is a decrease in similarity, it makes a ‘cut’ between them.
-    """
 
-    sentences: list[str] = _extract_sentences(doc_content)
+def semantic_chunking(
+    doc_content: str,
+    model: SentenceTransformer,
+    threshold: float = cfg.SEMANTIC_THRESHOLD
+) -> list[str]:
+    """
+    Split a document into chunks based on semantic similarity of sentences.
+
+    This method groups adjacent sentences as long as their semantic similarity
+    remains above a certain threshold.
+
+    Args:
+        doc_content: The text content to be chunked.
+        model: A SentenceTransformer model used for embedding.
+        threshold: The maximum semantic distance (1 - cosine similarity) allowed
+            between adjacent sentences in the same chunk.
+
+    Returns:
+        A list of semantically coherent chunks.
+    """
+    sentences = _extract_sentences(doc_content)
     if not sentences:
         return []
 
-    # model = sentence_transformers.SentenceTransformer(cfg.EMBEDDING_MODEL)
     sentences_vectors = model.encode(sentences)
     chunks: list[str] = []
 
-    chunk = sentences[0]
+    current_chunk = sentences[0]
 
     for i in range(len(sentences_vectors) - 1):
-
         cosine_sim = util.cos_sim(sentences_vectors[i], sentences_vectors[i+1]).item()
         distance = 1.0 - cosine_sim
-        if distance <= threshold:
-            chunk += " " + sentences[i+1]
-        else:
-            chunks.append(chunk)
-            chunk = sentences[i+1]
 
-    if chunk:
-        chunks.append(chunk)
+        if distance <= threshold:
+            current_chunk += " " + sentences[i+1]
+        else:
+            chunks.append(current_chunk)
+            current_chunk = sentences[i+1]
+
+    if current_chunk:
+        chunks.append(current_chunk)
 
     return chunks
 
-def agentic_chunking(doc_content):
+
+def agentic_chunking(doc_content: str) -> list[str]:
     """
-    Partition is made by LLM also based on semantic.
-    Pros:
-        - Standalone Context
-        - Propositional Chunking
-        - Elastic Boundaries
-        - Augmenting with metadata
-    Cons:
-        - Expenses
-        - Time
+    Placeholder for LLM-based agentic chunking.
+
+    This method will use an LLM to identify logical boundaries and provide context
+    aware chunking.
+
+    Args:
+        doc_content: The text content to be chunked.
+
+    Returns:
+        Currently returns an empty list as it's not implemented yet.
     """
-    print("Method not implemented yet")
+    # TODO: Implement agentic chunking using an LLM provider.
+    return []
