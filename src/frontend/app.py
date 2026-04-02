@@ -14,6 +14,8 @@ from chromadb.api.models.Collection import Collection
 from sentence_transformers import SentenceTransformer
 from streamlit.delta_generator import DeltaGenerator
 from streamlit.runtime.uploaded_file_manager import UploadedFile
+import transformers
+transformers.logging.set_verbosity_error()
 
 root_path = str(Path(__file__).parent.parent.parent.absolute())
 if root_path not in sys.path:
