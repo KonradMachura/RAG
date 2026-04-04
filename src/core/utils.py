@@ -2,8 +2,114 @@ import re
 from pathlib import Path
 from typing import Callable
 import fitz  # PyMuPDF
+from docling.document_converter import DocumentConverter, PdfFormatOption
+from docling.datamodel.pipeline_options import PdfPipelineOptions
+from docling.datamodel.base_models import InputFormat
+from docling.datamodel.layout_model_specs import DOCLING_LAYOUT_EGRET_XLARGE
+from docling.datamodel.accelerator_options import AcceleratorDevice
+from docling_core.types.doc import ContentLayer, DocItemLabel
 
 from src.core import config as cfg
+
+
+def convert_pdf_to_markdown_docling(pdf_path: Path, output_md_path: Path) -> str:
+    """
+    Convert a PDF file to Markdown using docling and save it.
+    Uses the latest Egret XL model for high-fidelity layout reconstruction.
+
+    Args:
+        pdf_path: Path to the input PDF file.
+        output_md_path: Path where the processed Markdown should be saved.
+
+    Returns:
+        The Markdown content as a string.
+    """
+    # 1. Configure the pipeline with the latest 2.84.0 API
+    pipeline_options = PdfPipelineOptions()
+    pipeline_options.do_table_structure = True
+    pipeline_options.do_ocr = True
+    
+    # Use standard OCR (not forced) to maintain text quality
+    pipeline_options.ocr_options.force_full_page_ocr = False
+    
+    # Enable the heavier Egret XL model for superior accuracy
+    pipeline_options.layout_options.model_spec = DOCLING_LAYOUT_EGRET_XLARGE
+    
+    # Enable hardware acceleration (auto-detects GPU if available)
+    pipeline_options.accelerator_options.device = AcceleratorDevice.AUTO
+    
+    # 2. Initialize converter with configured options
+    converter = DocumentConverter(
+        format_options={
+            InputFormat.PDF: PdfFormatOption(pipeline_options=pipeline_options)
+        }
+    )
+    
+    result = converter.convert(pdf_path)
+    doc = result.document
+
+    # 1. Mark headers, footers and footnotes by modifying their text
+    for item, _ in doc.iterate_items():
+        if not hasattr(item, "text") or not item.text:
+            continue
+            
+        text_content = item.text.strip()
+        if not text_content:
+            continue
+
+        is_short_block = len(text_content) < 250
+        
+        # Determine if it's furniture based on label or coordinates
+        mark_prefix = ""
+
+        # A. Trusted Labels
+        if item.label == DocItemLabel.PAGE_HEADER:
+            mark_prefix = "[HEADER]"
+        elif item.label == DocItemLabel.PAGE_FOOTER:
+            mark_prefix = "[FOOTER]"
+        elif item.label == DocItemLabel.FOOTNOTE:
+            mark_prefix = "[FOOTNOTE]"
+        
+        # B. Coordinate-based fallback
+        # Restore Top-Origin logic (0 is top of page)
+        elif item.prov and is_short_block:
+            prov = item.prov[0]
+            page = doc.pages.get(prov.page_no)
+            if page and prov.bbox:
+                page_height = page.size.height
+                bbox = prov.bbox
+                
+                # Top 10% is header
+                is_at_visual_top = bbox.b < (page_height * 0.10)
+                # Bottom 10% is footer
+                is_at_visual_bottom = bbox.t > (page_height * 0.90)
+                
+                is_structural = item.label in {DocItemLabel.TITLE, DocItemLabel.SECTION_HEADER}
+                
+                if is_at_visual_top and not is_structural:
+                    mark_prefix = "[HEADER]"
+                elif is_at_visual_bottom and not is_structural:
+                    mark_prefix = "[FOOTER]"
+
+        if mark_prefix:
+            if not item.text.startswith(mark_prefix):
+                item.text = f"{mark_prefix} {item.text}"
+
+    # 2. Export the document including both layers
+    markdown_content = doc.export_to_markdown(
+        included_content_layers={ContentLayer.BODY, ContentLayer.FURNITURE}
+    )
+
+    # Replace NBSP (\xa0) with standard spaces for better RAG processing
+    markdown_content = markdown_content.replace("\xa0", " ")
+
+    # Ensure processed directory exists
+    output_md_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with open(output_md_path, "w", encoding="utf-8") as f:
+        f.write(markdown_content)
+
+    return markdown_content
 
 
 def clean_pdf_text(content: str) -> str:
@@ -76,12 +182,12 @@ FILE_PARSER: dict[str, Callable[[Path], str]] = {
 }
 
 
-def read_docs(directory_pattern: str = './books/*') -> tuple[list[str], list[str], list[Path]]:
+def read_docs(directory_pattern: str = "documents/processed/*.md") -> tuple[list[str], list[str], list[Path]]:
     """
-    Recursively search for and read documents within the project's base directory.
+    Recursively search for and read documents within the project's sources directory.
 
     Args:
-        directory_pattern: The glob pattern to search for files.
+        directory_pattern: The glob pattern to search for files relative to SOURCES_DIR.
 
     Returns:
         A tuple containing three lists:
@@ -93,7 +199,7 @@ def read_docs(directory_pattern: str = './books/*') -> tuple[list[str], list[str
     doc_paths: list[Path] = []
     doc_names: list[str] = []
 
-    file_paths = cfg.BASE_DIR.rglob(pattern=directory_pattern)
+    file_paths = cfg.SOURCES_DIR.rglob(pattern=directory_pattern)
     for file_path in file_paths:
         if file_path.is_dir():
             continue

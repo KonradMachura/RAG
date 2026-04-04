@@ -1,7 +1,8 @@
 --extra-index-url https://download.pytorch.org/whl/cu121
 bcrypt
 chromadb==1.5.5
-docling==2.5.2
+docling
+email-validator
 fastapi
 groq==1.1.2
 pydantic
@@ -9,6 +10,7 @@ PyJWT==2.12.1
 PyMuPDF==1.24.9
 pytest==9.0.2
 python-dotenv==1.2.2
+python-multipart
 Requests==2.33.1
 sentence_transformers==5.3.0
 SQLAlchemy==2.0.48
@@ -17,4 +19,5 @@ streamlit==1.56.0
 torch==2.5.1
 torchvision==0.20.1
 torchaudio==2.5.1
+transformers
 uvicorn

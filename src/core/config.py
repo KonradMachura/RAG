@@ -5,6 +5,9 @@ from dotenv import load_dotenv
 # Load environment variables from a .env file if it exists.
 load_dotenv()
 
+# Disable symlinks for Hugging Face downloads to avoid WinError 1314 on Windows
+os.environ["HF_HUB_DISABLE_SYMLINKS"] = "1"
+
 # --- Project Paths ---
 # The absolute path to the project root directory.
 BASE_DIR = Path(__file__).parent.parent.parent
@@ -21,6 +24,8 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 # --- Directory Paths ---
 # Directory where source documents are stored.
 SOURCES_DIR = BASE_DIR / "data" / "sources"
+DOCUMENTS_RAW_DIR = SOURCES_DIR / "documents" / "raw"
+DOCUMENTS_PROCESSED_DIR = SOURCES_DIR / "documents" / "processed"
 
 # --- Retrieval Settings ---
 # Number of search results to return from the vector database.
