@@ -127,7 +127,7 @@ def add_document(
         db.refresh(new_link)
         return new_link
 
-    target_path = cfg.SOURCES_DIR / cfg.DB_NAME / document_in.file_hash
+    target_path = cfg.DOCUMENTS_RAW_DIR / f"{document_in.file_hash}.pdf"
     relative_path = target_path.relative_to(cfg.BASE_DIR).as_posix()
 
     new_document = Document(
