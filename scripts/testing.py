@@ -8,9 +8,8 @@ if root_path not in sys.path:
     sys.path.append(root_path)
 
 from src.core.utils import convert_pdf_to_markdown_docling
-from src.core import config as cfg
-
 def main():
+    print(root_path)
     example_sources = Path("example_sources")
     test_output = Path("data/test_processed")
     test_output.mkdir(parents=True, exist_ok=True)

@@ -27,6 +27,10 @@ SOURCES_DIR = BASE_DIR / "data" / "sources"
 DOCUMENTS_RAW_DIR = SOURCES_DIR / "documents" / "raw"
 DOCUMENTS_PROCESSED_DIR = SOURCES_DIR / "documents" / "processed"
 
+# --- Docling Model ---
+# Options: "default" (light/fast), "egret_xl" (heavy/high-accuracy)
+DOCLING_MODEL = "default"
+
 # --- Retrieval Settings ---
 # Number of search results to return from the vector database.
 N_RESULTS = 10

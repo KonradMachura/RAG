@@ -33,8 +33,10 @@ def convert_pdf_to_markdown_docling(pdf_path: Path, output_md_path: Path) -> str
     # Only perform OCR on pages with significant non-text areas to save memory
     pipeline_options.ocr_options.bitmap_area_threshold = 0.05
     
-    # Enable the heavier Egret XL model for superior accuracy
-    pipeline_options.layout_options.model_spec = DOCLING_LAYOUT_EGRET_XLARGE
+    # Select layout model based on config
+    if cfg.DOCLING_MODEL == "egret_xl":
+        pipeline_options.layout_options.model_spec = DOCLING_LAYOUT_EGRET_XLARGE
+    # "default" (None) uses the standard lighter model, saving significant memory.
     
     # Enable hardware acceleration (auto-detects GPU if available)
     pipeline_options.accelerator_options.device = AcceleratorDevice.AUTO
@@ -60,8 +62,6 @@ def convert_pdf_to_markdown_docling(pdf_path: Path, output_md_path: Path) -> str
 
         if not text_content:
             continue
-
-        is_short_block = len(text_content) < 250
         
         # Determine if it's furniture based on label or coordinates
         mark_prefix = ""
