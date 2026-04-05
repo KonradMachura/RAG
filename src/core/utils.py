@@ -11,7 +11,6 @@ from docling_core.types.doc import ContentLayer, DocItemLabel
 
 from src.core import config as cfg
 
-
 def convert_pdf_to_markdown_docling(pdf_path: Path, output_md_path: Path) -> str:
     """
     Convert a PDF file to Markdown using docling and save it.
@@ -31,6 +30,8 @@ def convert_pdf_to_markdown_docling(pdf_path: Path, output_md_path: Path) -> str
     
     # Use standard OCR (not forced) to maintain text quality
     pipeline_options.ocr_options.force_full_page_ocr = False
+    # Only perform OCR on pages with significant non-text areas to save memory
+    pipeline_options.ocr_options.bitmap_area_threshold = 0.05
     
     # Enable the heavier Egret XL model for superior accuracy
     pipeline_options.layout_options.model_spec = DOCLING_LAYOUT_EGRET_XLARGE
@@ -49,11 +50,14 @@ def convert_pdf_to_markdown_docling(pdf_path: Path, output_md_path: Path) -> str
     doc = result.document
 
     # 1. Mark headers, footers and footnotes by modifying their text
-    for item, _ in doc.iterate_items():
+    for item, _ in doc.iterate_items(
+            included_content_layers={ContentLayer.BODY, ContentLayer.FURNITURE}
+    ):
         if not hasattr(item, "text") or not item.text:
             continue
-            
+
         text_content = item.text.strip()
+
         if not text_content:
             continue
 
@@ -69,27 +73,6 @@ def convert_pdf_to_markdown_docling(pdf_path: Path, output_md_path: Path) -> str
             mark_prefix = "[FOOTER]"
         elif item.label == DocItemLabel.FOOTNOTE:
             mark_prefix = "[FOOTNOTE]"
-        
-        # B. Coordinate-based fallback
-        # Restore Top-Origin logic (0 is top of page)
-        elif item.prov and is_short_block:
-            prov = item.prov[0]
-            page = doc.pages.get(prov.page_no)
-            if page and prov.bbox:
-                page_height = page.size.height
-                bbox = prov.bbox
-                
-                # Top 10% is header
-                is_at_visual_top = bbox.b < (page_height * 0.10)
-                # Bottom 10% is footer
-                is_at_visual_bottom = bbox.t > (page_height * 0.90)
-                
-                is_structural = item.label in {DocItemLabel.TITLE, DocItemLabel.SECTION_HEADER}
-                
-                if is_at_visual_top and not is_structural:
-                    mark_prefix = "[HEADER]"
-                elif is_at_visual_bottom and not is_structural:
-                    mark_prefix = "[FOOTER]"
 
         if mark_prefix:
             if not item.text.startswith(mark_prefix):
