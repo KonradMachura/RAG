@@ -11,88 +11,103 @@ from docling_core.types.doc import ContentLayer, DocItemLabel
 
 from src.core import config as cfg
 
-def convert_pdf_to_markdown_docling(pdf_path: Path, output_md_path: Path) -> str:
+import io
+from docling.datamodel.base_models import InputFormat, DocumentStream
+
+def convert_pdf_to_markdown_docling(pdf_path: Path, output_md_path: Path, batch_size: int = 20) -> str:
     """
-    Convert a PDF file to Markdown using docling and save it.
-    Uses the latest Egret XL model for high-fidelity layout reconstruction.
+    Convert a PDF file to Markdown using docling in batches to save memory.
+    Processes the document in segments to avoid std::bad_alloc errors.
 
     Args:
         pdf_path: Path to the input PDF file.
         output_md_path: Path where the processed Markdown should be saved.
+        batch_size: Number of pages to process in a single batch.
 
     Returns:
-        The Markdown content as a string.
+        The full Markdown content as a string.
     """
-    # 1. Configure the pipeline with the latest 2.84.0 API
+    # 1. Configure the pipeline with memory-safe options
     pipeline_options = PdfPipelineOptions()
-    pipeline_options.do_table_structure = True
-    pipeline_options.do_ocr = True
+    pipeline_options.do_table_structure = False
+    pipeline_options.do_ocr = False
     
     # Use standard OCR (not forced) to maintain text quality
     pipeline_options.ocr_options.force_full_page_ocr = False
     # Only perform OCR on pages with significant non-text areas to save memory
-    pipeline_options.ocr_options.bitmap_area_threshold = 0.05
-    
-    # Select layout model based on config
+    pipeline_options.ocr_options.bitmap_area_threshold = 0.1
+
     if cfg.DOCLING_MODEL == "egret_xl":
-        pipeline_options.layout_options.model_spec = DOCLING_LAYOUT_EGRET_XLARGE
-    # "default" (None) uses the standard lighter model, saving significant memory.
-    
-    # Enable hardware acceleration (auto-detects GPU if available)
+        pipeline_options.layout_options.model_spec =    DOCLING_LAYOUT_EGRET_XLARGE
+
+    # Force CPU to avoid VRAM allocation issues on long documents
     pipeline_options.accelerator_options.device = AcceleratorDevice.AUTO
     
-    # 2. Initialize converter with configured options
+    # Initialize converter
     converter = DocumentConverter(
         format_options={
             InputFormat.PDF: PdfFormatOption(pipeline_options=pipeline_options)
         }
     )
     
-    result = converter.convert(pdf_path)
-    doc = result.document
-
-    # 1. Mark headers, footers and footnotes by modifying their text
-    for item, _ in doc.iterate_items(
-            included_content_layers={ContentLayer.BODY, ContentLayer.FURNITURE}
-    ):
-        if not hasattr(item, "text") or not item.text:
-            continue
-
-        text_content = item.text.strip()
-
-        if not text_content:
-            continue
+    full_markdown = ""
+    
+    with fitz.open(pdf_path) as doc:
+        total_pages = len(doc)
+        print(f"Starting batch processing for {pdf_path.name} ({total_pages} pages)...")
         
-        # Determine if it's furniture based on label or coordinates
-        mark_prefix = ""
+        for start_page in range(0, total_pages, batch_size):
+            end_page = min(start_page + batch_size, total_pages)
+            print(f"Processing pages {start_page + 1} to {end_page}...")
+            
+            # Extract pages for current batch
+            batch_pdf = fitz.open()
+            batch_pdf.insert_pdf(doc, from_page=start_page, to_page=end_page-1)
+            pdf_bytes = io.BytesIO(batch_pdf.tobytes())
+            batch_pdf.close()
+            
+            # Convert batch
+            source = DocumentStream(name=f"{pdf_path.stem}_batch_{start_page}.pdf", stream=pdf_bytes)
+            result = converter.convert(source)
+            batch_doc = result.document
 
-        # A. Trusted Labels
-        if item.label == DocItemLabel.PAGE_HEADER:
-            mark_prefix = "[HEADER]"
-        elif item.label == DocItemLabel.PAGE_FOOTER:
-            mark_prefix = "[FOOTER]"
-        elif item.label == DocItemLabel.FOOTNOTE:
-            mark_prefix = "[FOOTNOTE]"
+            # Mark headers, footers and footnotes
+            for item, _ in batch_doc.iterate_items(
+                    included_content_layers={ContentLayer.BODY, ContentLayer.FURNITURE}
+            ):
+                if not hasattr(item, "text") or not item.text:
+                    continue
+                
+                mark_prefix = ""
+                if item.label == DocItemLabel.PAGE_HEADER:
+                    mark_prefix = "[HEADER]"
+                elif item.label == DocItemLabel.PAGE_FOOTER:
+                    mark_prefix = "[FOOTER]"
+                elif item.label == DocItemLabel.FOOTNOTE:
+                    # Heuristic: Polish dialogue starts with a dash. 
+                    # If it starts with a dash, it's likely misclassified speech, not a footnote.
+                    stripped_text = item.text.strip()
+                    if not stripped_text.startswith(("—", "–", "- ")):
+                        mark_prefix = "[FOOTNOTE]"
 
-        if mark_prefix:
-            if not item.text.startswith(mark_prefix):
-                item.text = f"{mark_prefix} {item.text}"
+                if mark_prefix and not item.text.startswith(mark_prefix):
+                    item.text = f"{mark_prefix} {item.text}"
 
-    # 2. Export the document including both layers
-    markdown_content = doc.export_to_markdown(
-        included_content_layers={ContentLayer.BODY, ContentLayer.FURNITURE}
-    )
+            # Export batch to markdown and append
+            batch_md = batch_doc.export_to_markdown(
+                included_content_layers={ContentLayer.BODY, ContentLayer.FURNITURE}
+            )
+            full_markdown += batch_md + "\n\n"
 
-    # Replace NBSP (\xa0) with standard spaces for better RAG processing
-    markdown_content = markdown_content.replace("\xa0", " ")
-
-    # Ensure processed directory exists
+    # Clean up and normalize
+    full_markdown = full_markdown.replace("\xa0", " ")
     output_md_path.parent.mkdir(parents=True, exist_ok=True)
 
     with open(output_md_path, "w", encoding="utf-8") as f:
-        f.write(markdown_content)
+        f.write(full_markdown)
 
-    return markdown_content
+    print(f"Success! Result saved to: {output_md_path}")
+    return full_markdown
 
 
 def clean_pdf_text(content: str) -> str:

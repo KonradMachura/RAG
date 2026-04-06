@@ -29,7 +29,6 @@ def main():
         
         try:
             content = convert_pdf_to_markdown_docling(pdf_path, output_path)
-            print(f"Sukces! Wynik zapisany w: {output_path}")
             
             # Szybka weryfikacja oznaczeń
             headers = content.count("[HEADER]")
