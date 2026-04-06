@@ -29,13 +29,7 @@ def main():
         
         try:
             content = convert_pdf_to_markdown_docling(pdf_path, output_path)
-            
-            # Szybka weryfikacja oznaczeń
-            headers = content.count("[HEADER]")
-            footers = content.count("[FOOTER]")
-            footnotes = content.count("[FOOTNOTE]")
-            print(f"Statystyki oznaczeń: [HEADER]: {headers}, [FOOTER]: {footers}, [FOOTNOTE]: {footnotes}")
-            
+            print(f"Success! Result saved to: {output_path}")
         except Exception as e:
             print(f"BŁĄD podczas przetwarzania {pdf_path.name}: {e}")
 

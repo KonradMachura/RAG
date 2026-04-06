@@ -71,27 +71,27 @@ def convert_pdf_to_markdown_docling(pdf_path: Path, output_md_path: Path, batch_
             result = converter.convert(source)
             batch_doc = result.document
 
-            # Mark headers, footers and footnotes
+            # 1. Ignore headers, footers and footnotes by clearing their text
             for item, _ in batch_doc.iterate_items(
                     included_content_layers={ContentLayer.BODY, ContentLayer.FURNITURE}
             ):
                 if not hasattr(item, "text") or not item.text:
                     continue
                 
-                mark_prefix = ""
+                is_furniture = False
                 if item.label == DocItemLabel.PAGE_HEADER:
-                    mark_prefix = "[HEADER]"
+                    is_furniture = True
                 elif item.label == DocItemLabel.PAGE_FOOTER:
-                    mark_prefix = "[FOOTER]"
+                    is_furniture = True
                 elif item.label == DocItemLabel.FOOTNOTE:
                     # Heuristic: Polish dialogue starts with a dash. 
-                    # If it starts with a dash, it's likely misclassified speech, not a footnote.
+                    # If it starts with a dash, it's likely misclassified speech, so we keep it.
                     stripped_text = item.text.strip()
                     if not stripped_text.startswith(("—", "–", "- ")):
-                        mark_prefix = "[FOOTNOTE]"
+                        is_furniture = True
 
-                if mark_prefix and not item.text.startswith(mark_prefix):
-                    item.text = f"{mark_prefix} {item.text}"
+                if is_furniture:
+                    item.text = ""
 
             # Export batch to markdown and append
             batch_md = batch_doc.export_to_markdown(
@@ -101,12 +101,12 @@ def convert_pdf_to_markdown_docling(pdf_path: Path, output_md_path: Path, batch_
 
     # Clean up and normalize
     full_markdown = full_markdown.replace("\xa0", " ")
+    full_markdown = re.sub(r'(\w+)[-\xad]\s*\n+\s*(\w+)', r'\1\2', full_markdown)
     output_md_path.parent.mkdir(parents=True, exist_ok=True)
 
     with open(output_md_path, "w", encoding="utf-8") as f:
         f.write(full_markdown)
 
-    print(f"Success! Result saved to: {output_md_path}")
     return full_markdown
 
 
