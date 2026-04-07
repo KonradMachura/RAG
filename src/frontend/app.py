@@ -249,7 +249,7 @@ def vectorize_and_store_document(file_path: Path, collection: Collection, chunki
     chunks = chunking.semantic_chunking(doc_content, model=chunking_model)
     
     # 3. Save to vector DB
-    build_db.save_chunks_to_vectordb(collection, chunks, file_path.name)
+    build_db.save_chunks_to_vectordb(collection, chunks, file_hash)
     return len(chunks)
 
 
@@ -289,7 +289,7 @@ def validate_search_conditions(collection: Collection, selected_documents: list[
 
 def add_selected_documents_to_where_filter(selected_documents: list[dict]) -> (dict[str, dict] |
                                                                                dict[str, dict[str, list[dict]]]):
-    sources = [library_entry["file_name"] for library_entry in selected_documents]
+    sources = [library_entry["file_hash"] for library_entry in selected_documents]
     if len(sources) == 1:
         return {"source": sources[0]}
     else:
@@ -301,9 +301,10 @@ def retrieve_context_and_sources(collection: Collection, user_query: str, where_
         query_texts=[user_query],
         n_results=cfg.N_RESULTS,
         where=where_filter)
-
     documents = results['documents'][0]
     metadatas = results['metadatas'][0]
+    print(documents)
+    print(metadatas)
 
     context: str = "\n\n---\n\n".join(documents)
     sources = set([meta.get("source", "Not found") for meta in metadatas])
