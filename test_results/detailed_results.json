@@ -1,0 +1,1082 @@
+[
+    {
+        "document": "Polityka_bezpieczenstwa_i_IT.md",
+        "method": "fixed",
+        "chunk_count": 11,
+        "avg_chunk_length": 231.72727272727272,
+        "evaluations": [
+            {
+                "question": "What laptops can employees choose from?",
+                "answer": "Employees can choose between a MacBook Pro 14\" (seria M) and a Dell XPS 15.",
+                "success": true,
+                "chunks": [
+                    "ć produktywność.\n\n### 1.1. Zestaw standardowy\nPo zatrudnieniu pracownicy wybierają pomiędzy MacBookiem Pro 14\" (seria M) a Dell XPS 15. Wszyscy pracownicy otrzymują 27-calowy monitor Dell Ultrasharp, bezprzewodową mysz i klawiaturę.\n\n### 1.2. Wyposaż",
+                    "ez cały czas korzystać z korporacyjnego VPN SuperTech (Cisco Secure Client).\n\n### 2.3. Osobiste użytkowanie urządzeń\nLaptopy służbowe są przeznaczone do użytku biznesowego. Minimalne wykorzystanie osobiste (np. czytanie wiadomości, poczta prywatna) j",
+                    "całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199).\n\n---\n\n## 2. Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną.\n\n### 2.1. Polityka haseł\n* Minimum 14 znaków.\n*"
+                ]
+            },
+            {
+                "question": "What is the standard set for every employee?",
+                "answer": "NOT_FOUND",
+                "success": false,
+                "chunks": [
+                    ".\n\n### 2.1. Polityka haseł\n* Minimum 14 znaków.\n* Muszą być zmieniane co 90 dni.\n* Wszyscy pracownicy muszą korzystać z firmowego menedżera haseł (*1Password*).\n* Uwierzytelnianie wieloskładnikowe (MFA) jest ściśle egzekwowane na wszystkich kontach f",
+                    "bezprzewodową mysz i klawiaturę.\n\n### 1.2. Wyposażenie biura zdalnego\nZgodnie z polityką modelu pracy, pracownicy w pełni zdalni otrzymują ryczałt w wysokości 500 USD na dodatkowe wyposażenie (np. krzesła ergonomiczne).\n\n### 1.3. Wsparcie IT\nWszelkie",
+                    "# Podręcznik pracownika SuperTech: Polityka IT i bezpieczeństwa\n*Ostatnia aktualizacja: marzec 2025*\n\n## 1. Polityka sprzętowa\n\nSuperTech wyposaża pracowników w wysokiej jakości narzędzia, aby zapewnić produktywność.\n\n### 1.1. Zestaw standardowy\nPo z"
+                ]
+            },
+            {
+                "question": "How much is the remote office allowance?",
+                "answer": "500 USD",
+                "success": true,
+                "chunks": [
+                    "bezprzewodową mysz i klawiaturę.\n\n### 1.2. Wyposażenie biura zdalnego\nZgodnie z polityką modelu pracy, pracownicy w pełni zdalni otrzymują ryczałt w wysokości 500 USD na dodatkowe wyposażenie (np. krzesła ergonomiczne).\n\n### 1.3. Wsparcie IT\nWszelkie",
+                    "ez cały czas korzystać z korporacyjnego VPN SuperTech (Cisco Secure Client).\n\n### 2.3. Osobiste użytkowanie urządzeń\nLaptopy służbowe są przeznaczone do użytku biznesowego. Minimalne wykorzystanie osobiste (np. czytanie wiadomości, poczta prywatna) j",
+                    "ć produktywność.\n\n### 1.1. Zestaw standardowy\nPo zatrudnieniu pracownicy wybierają pomiędzy MacBookiem Pro 14\" (seria M) a Dell XPS 15. Wszyscy pracownicy otrzymują 27-calowy monitor Dell Ultrasharp, bezprzewodową mysz i klawiaturę.\n\n### 1.2. Wyposaż"
+                ]
+            },
+            {
+                "question": "How should IT problems be reported?",
+                "answer": "IT problems should be reported by creating a ticket in the Jira Service Desk system, and critical problems (such as a complete laptop failure) should be escalated via a phone call to the IT hotline (+1 800 555 0199).",
+                "success": true,
+                "chunks": [
+                    "esła ergonomiczne).\n\n### 1.3. Wsparcie IT\nWszelkie problemy ze sprzętem i oprogramowaniem należy zgłaszać poprzez utworzenie zgłoszenia (ticket) w systemie *Jira Service Desk*. Problemy krytyczne (np. całkowita awaria laptopa) powinny być eskalowane",
+                    "całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199).\n\n---\n\n## 2. Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną.\n\n### 2.1. Polityka haseł\n* Minimum 14 znaków.\n*",
+                    ".\n\n### 2.1. Polityka haseł\n* Minimum 14 znaków.\n* Muszą być zmieniane co 90 dni.\n* Wszyscy pracownicy muszą korzystać z firmowego menedżera haseł (*1Password*).\n* Uwierzytelnianie wieloskładnikowe (MFA) jest ściśle egzekwowane na wszystkich kontach f"
+                ]
+            },
+            {
+                "question": "What is the phone number for critical IT issues?",
+                "answer": "+1 800 555 0199",
+                "success": true,
+                "chunks": [
+                    "całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199).\n\n---\n\n## 2. Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną.\n\n### 2.1. Polityka haseł\n* Minimum 14 znaków.\n*",
+                    "esła ergonomiczne).\n\n### 1.3. Wsparcie IT\nWszelkie problemy ze sprzętem i oprogramowaniem należy zgłaszać poprzez utworzenie zgłoszenia (ticket) w systemie *Jira Service Desk*. Problemy krytyczne (np. całkowita awaria laptopa) powinny być eskalowane",
+                    "A) jest ściśle egzekwowane na wszystkich kontach firmowych za pośrednictwem aplikacji *Okta Verify*.\n\n### 2.2. Sieci publiczne\nPracując zdalnie z kawiarni, lotnisk lub hoteli, pracownicy **muszą** przez cały czas korzystać z korporacyjnego VPN SuperT"
+                ]
+            },
+            {
+                "question": "What are the password requirements?",
+                "answer": "Minimum 14 znaków.",
+                "success": true,
+                "chunks": [
+                    "całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199).\n\n---\n\n## 2. Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną.\n\n### 2.1. Polityka haseł\n* Minimum 14 znaków.\n*",
+                    "esła ergonomiczne).\n\n### 1.3. Wsparcie IT\nWszelkie problemy ze sprzętem i oprogramowaniem należy zgłaszać poprzez utworzenie zgłoszenia (ticket) w systemie *Jira Service Desk*. Problemy krytyczne (np. całkowita awaria laptopa) powinny być eskalowane",
+                    "ez cały czas korzystać z korporacyjnego VPN SuperTech (Cisco Secure Client).\n\n### 2.3. Osobiste użytkowanie urządzeń\nLaptopy służbowe są przeznaczone do użytku biznesowego. Minimalne wykorzystanie osobiste (np. czytanie wiadomości, poczta prywatna) j"
+                ]
+            },
+            {
+                "question": "How often must passwords be changed?",
+                "answer": "Passwords must be changed every 90 days.",
+                "success": true,
+                "chunks": [
+                    ".\n\n### 2.1. Polityka haseł\n* Minimum 14 znaków.\n* Muszą być zmieniane co 90 dni.\n* Wszyscy pracownicy muszą korzystać z firmowego menedżera haseł (*1Password*).\n* Uwierzytelnianie wieloskładnikowe (MFA) jest ściśle egzekwowane na wszystkich kontach f",
+                    "całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199).\n\n---\n\n## 2. Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną.\n\n### 2.1. Polityka haseł\n* Minimum 14 znaków.\n*",
+                    "ez cały czas korzystać z korporacyjnego VPN SuperTech (Cisco Secure Client).\n\n### 2.3. Osobiste użytkowanie urządzeń\nLaptopy służbowe są przeznaczone do użytku biznesowego. Minimalne wykorzystanie osobiste (np. czytanie wiadomości, poczta prywatna) j"
+                ]
+            },
+            {
+                "question": "Which password manager is used?",
+                "answer": "NOT_FOUND",
+                "success": false,
+                "chunks": [
+                    "ez cały czas korzystać z korporacyjnego VPN SuperTech (Cisco Secure Client).\n\n### 2.3. Osobiste użytkowanie urządzeń\nLaptopy służbowe są przeznaczone do użytku biznesowego. Minimalne wykorzystanie osobiste (np. czytanie wiadomości, poczta prywatna) j",
+                    "A) jest ściśle egzekwowane na wszystkich kontach firmowych za pośrednictwem aplikacji *Okta Verify*.\n\n### 2.2. Sieci publiczne\nPracując zdalnie z kawiarni, lotnisk lub hoteli, pracownicy **muszą** przez cały czas korzystać z korporacyjnego VPN SuperT",
+                    "całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199).\n\n---\n\n## 2. Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną.\n\n### 2.1. Polityka haseł\n* Minimum 14 znaków.\n*"
+                ]
+            },
+            {
+                "question": "What VPN must be used on public networks?",
+                "answer": "SuperTech (Cisco Secure Client)",
+                "success": true,
+                "chunks": [
+                    "ez cały czas korzystać z korporacyjnego VPN SuperTech (Cisco Secure Client).\n\n### 2.3. Osobiste użytkowanie urządzeń\nLaptopy służbowe są przeznaczone do użytku biznesowego. Minimalne wykorzystanie osobiste (np. czytanie wiadomości, poczta prywatna) j",
+                    "A) jest ściśle egzekwowane na wszystkich kontach firmowych za pośrednictwem aplikacji *Okta Verify*.\n\n### 2.2. Sieci publiczne\nPracując zdalnie z kawiarni, lotnisk lub hoteli, pracownicy **muszą** przez cały czas korzystać z korporacyjnego VPN SuperT",
+                    "biste (np. czytanie wiadomości, poczta prywatna) jest tolerowane, pod warunkiem, że nie koliduje z pracą i nie narusza Polityki dopuszczalnego użytkowania (np. zakaz pobierania pirackiego oprogramowania lub odwiedzania złośliwych stron).\n\n### 2.4. Pr"
+                ]
+            },
+            {
+                "question": "Where must all company documents be stored?",
+                "answer": "All company documents must be stored in Google Workspace (Dysk) or Confluence.",
+                "success": true,
+                "chunks": [
+                    "ia lub odwiedzania złośliwych stron).\n\n### 2.4. Przechowywanie danych\nWszystkie dokumenty firmowe muszą być przechowywane w Google Workspace (Dysk) lub Confluence. Zapisywanie poufnych plików firmowych lokalnie na dysku twardym laptopa jest zabronion",
+                    "całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199).\n\n---\n\n## 2. Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną.\n\n### 2.1. Polityka haseł\n* Minimum 14 znaków.\n*",
+                    "esła ergonomiczne).\n\n### 1.3. Wsparcie IT\nWszelkie problemy ze sprzętem i oprogramowaniem należy zgłaszać poprzez utworzenie zgłoszenia (ticket) w systemie *Jira Service Desk*. Problemy krytyczne (np. całkowita awaria laptopa) powinny być eskalowane"
+                ]
+            }
+        ]
+    },
+    {
+        "document": "Polityka_bezpieczenstwa_i_IT.md",
+        "method": "semantic",
+        "chunk_count": 20,
+        "avg_chunk_length": 101.25,
+        "evaluations": [
+            {
+                "question": "What laptops can employees choose from?",
+                "answer": "MacBook Pro 14\" (seria M) i Dell XPS 15.",
+                "success": true,
+                "chunks": [
+                    "Osobiste użytkowanie urządzeń\nLaptopy służbowe są przeznaczone do użytku biznesowego. Minimalne wykorzystanie osobiste (np. czytanie wiadomości, poczta prywatna) jest tolerowane, pod warunkiem, że nie koliduje z pracą i nie narusza Polityki dopuszczalnego użytkowania (np. zakaz pobierania pirackiego oprogramowania lub odwiedzania złośliwych stron).",
+                    "Zestaw standardowy\nPo zatrudnieniu pracownicy wybierają pomiędzy MacBookiem Pro 14\" (seria M) a Dell XPS 15. Wszyscy pracownicy otrzymują 27-calowy monitor Dell Ultrasharp, bezprzewodową mysz i klawiaturę.",
+                    "całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199)."
+                ]
+            },
+            {
+                "question": "What is the standard set for every employee?",
+                "answer": "The standard set for every employee includes: \n1. Using the firm's password manager (*1Password*).\n2. Enforcing multi-factor authentication (MFA) on all company accounts through *Okta Verify*.",
+                "success": true,
+                "chunks": [
+                    "* Wszyscy pracownicy muszą korzystać z firmowego menedżera haseł (*1Password*). * Uwierzytelnianie wieloskładnikowe (MFA) jest ściśle egzekwowane na wszystkich kontach firmowych za pośrednictwem aplikacji *Okta Verify*.",
+                    "Wyposażenie biura zdalnego\nZgodnie z polityką modelu pracy, pracownicy w pełni zdalni otrzymują ryczałt w wysokości 500 USD na dodatkowe wyposażenie (np.",
+                    "# Podręcznik pracownika SuperTech: Polityka IT i bezpieczeństwa\n*Ostatnia aktualizacja: marzec 2025*\n\n## 1. Polityka sprzętowa\n\nSuperTech wyposaża pracowników w wysokiej jakości narzędzia, aby zapewnić produktywność."
+                ]
+            },
+            {
+                "question": "How much is the remote office allowance?",
+                "answer": "500 USD",
+                "success": true,
+                "chunks": [
+                    "Wyposażenie biura zdalnego\nZgodnie z polityką modelu pracy, pracownicy w pełni zdalni otrzymują ryczałt w wysokości 500 USD na dodatkowe wyposażenie (np.",
+                    "całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199).",
+                    "Osobiste użytkowanie urządzeń\nLaptopy służbowe są przeznaczone do użytku biznesowego. Minimalne wykorzystanie osobiste (np. czytanie wiadomości, poczta prywatna) jest tolerowane, pod warunkiem, że nie koliduje z pracą i nie narusza Polityki dopuszczalnego użytkowania (np. zakaz pobierania pirackiego oprogramowania lub odwiedzania złośliwych stron)."
+                ]
+            },
+            {
+                "question": "How should IT problems be reported?",
+                "answer": "IT problems should be reported by creating a ticket in the Jira Service Desk system. However, for critical problems, they should also be escalated via a phone call to the IT hotline (+1 800 555 0199).",
+                "success": true,
+                "chunks": [
+                    "Wsparcie IT\nWszelkie problemy ze sprzętem i oprogramowaniem należy zgłaszać poprzez utworzenie zgłoszenia (ticket) w systemie *Jira Service Desk*. Problemy krytyczne (np.",
+                    "całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199).",
+                    "Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną."
+                ]
+            },
+            {
+                "question": "What is the phone number for critical IT issues?",
+                "answer": "+1 800 555 0199",
+                "success": true,
+                "chunks": [
+                    "całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199).",
+                    "Wsparcie IT\nWszelkie problemy ze sprzętem i oprogramowaniem należy zgłaszać poprzez utworzenie zgłoszenia (ticket) w systemie *Jira Service Desk*. Problemy krytyczne (np.",
+                    "Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną."
+                ]
+            },
+            {
+                "question": "What are the password requirements?",
+                "answer": "NOT_FOUND",
+                "success": false,
+                "chunks": [
+                    "Wsparcie IT\nWszelkie problemy ze sprzętem i oprogramowaniem należy zgłaszać poprzez utworzenie zgłoszenia (ticket) w systemie *Jira Service Desk*. Problemy krytyczne (np.",
+                    "Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną.",
+                    "całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199)."
+                ]
+            },
+            {
+                "question": "How often must passwords be changed?",
+                "answer": "Muszą być zmieniane co 90 dni.",
+                "success": true,
+                "chunks": [
+                    "* Muszą być zmieniane co 90 dni.",
+                    "Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną.",
+                    "Osobiste użytkowanie urządzeń\nLaptopy służbowe są przeznaczone do użytku biznesowego. Minimalne wykorzystanie osobiste (np. czytanie wiadomości, poczta prywatna) jest tolerowane, pod warunkiem, że nie koliduje z pracą i nie narusza Polityki dopuszczalnego użytkowania (np. zakaz pobierania pirackiego oprogramowania lub odwiedzania złośliwych stron)."
+                ]
+            },
+            {
+                "question": "Which password manager is used?",
+                "answer": "*1Password*",
+                "success": true,
+                "chunks": [
+                    "* Wszyscy pracownicy muszą korzystać z firmowego menedżera haseł (*1Password*). * Uwierzytelnianie wieloskładnikowe (MFA) jest ściśle egzekwowane na wszystkich kontach firmowych za pośrednictwem aplikacji *Okta Verify*.",
+                    "Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną.",
+                    "Wsparcie IT\nWszelkie problemy ze sprzętem i oprogramowaniem należy zgłaszać poprzez utworzenie zgłoszenia (ticket) w systemie *Jira Service Desk*. Problemy krytyczne (np."
+                ]
+            },
+            {
+                "question": "What VPN must be used on public networks?",
+                "answer": "Cisco Secure Client (korporacyjny VPN SuperTech)",
+                "success": true,
+                "chunks": [
+                    "Sieci publiczne\nPracując zdalnie z kawiarni, lotnisk lub hoteli, pracownicy **muszą** przez cały czas korzystać z korporacyjnego VPN SuperTech (Cisco Secure Client).",
+                    "Osobiste użytkowanie urządzeń\nLaptopy służbowe są przeznaczone do użytku biznesowego. Minimalne wykorzystanie osobiste (np. czytanie wiadomości, poczta prywatna) jest tolerowane, pod warunkiem, że nie koliduje z pracą i nie narusza Polityki dopuszczalnego użytkowania (np. zakaz pobierania pirackiego oprogramowania lub odwiedzania złośliwych stron).",
+                    "Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną."
+                ]
+            },
+            {
+                "question": "Where must all company documents be stored?",
+                "answer": "All company documents must be stored in Google Workspace (Dysk) or Confluence.",
+                "success": true,
+                "chunks": [
+                    "Przechowywanie danych\nWszystkie dokumenty firmowe muszą być przechowywane w Google Workspace (Dysk) lub Confluence. Zapisywanie poufnych plików firmowych lokalnie na dysku twardym laptopa jest zabronione.",
+                    "Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną.",
+                    "* Wszyscy pracownicy muszą korzystać z firmowego menedżera haseł (*1Password*). * Uwierzytelnianie wieloskładnikowe (MFA) jest ściśle egzekwowane na wszystkich kontach firmowych za pośrednictwem aplikacji *Okta Verify*."
+                ]
+            }
+        ]
+    },
+    {
+        "document": "Polityka_bezpieczenstwa_i_IT.md",
+        "method": "subsection",
+        "chunk_count": 10,
+        "avg_chunk_length": 202.9,
+        "evaluations": [
+            {
+                "question": "What laptops can employees choose from?",
+                "answer": "MacBook Pro 14\" (seria M) i Dell XPS 15.",
+                "success": true,
+                "chunks": [
+                    "### 2.3. Osobiste użytkowanie urządzeń\nLaptopy służbowe są przeznaczone do użytku biznesowego. Minimalne wykorzystanie osobiste (np. czytanie wiadomości, poczta prywatna) jest tolerowane, pod warunkiem, że nie koliduje z pracą i nie narusza Polityki dopuszczalnego użytkowania (np. zakaz pobierania pirackiego oprogramowania lub odwiedzania złośliwych stron).",
+                    "### 1.1. Zestaw standardowy\nPo zatrudnieniu pracownicy wybierają pomiędzy MacBookiem Pro 14\" (seria M) a Dell XPS 15. Wszyscy pracownicy otrzymują 27-calowy monitor Dell Ultrasharp, bezprzewodową mysz i klawiaturę.",
+                    "### 1.2. Wyposażenie biura zdalnego\nZgodnie z polityką modelu pracy, pracownicy w pełni zdalni otrzymują ryczałt w wysokości 500 USD na dodatkowe wyposażenie (np. krzesła ergonomiczne)."
+                ]
+            },
+            {
+                "question": "What is the standard set for every employee?",
+                "answer": "The standards set for every employee include:\n1. Using firm's password manager (*1Password*).\n2. Enabling multi-factor authentication (MFA) through *Okta Verify* on all company accounts.\n3. Changing passwords every 90 days, with a minimum of 14 characters.\n4. Receiving a $500 stipend for home office equipment if they are fully remote workers.",
+                "success": true,
+                "chunks": [
+                    "### 2.1. Polityka haseł\n* Minimum 14 znaków.\n* Muszą być zmieniane co 90 dni.\n* Wszyscy pracownicy muszą korzystać z firmowego menedżera haseł (*1Password*).\n* Uwierzytelnianie wieloskładnikowe (MFA) jest ściśle egzekwowane na wszystkich kontach firmowych za pośrednictwem aplikacji *Okta Verify*.",
+                    "### 1.2. Wyposażenie biura zdalnego\nZgodnie z polityką modelu pracy, pracownicy w pełni zdalni otrzymują ryczałt w wysokości 500 USD na dodatkowe wyposażenie (np. krzesła ergonomiczne).",
+                    "## 1. Polityka sprzętowa\n\nSuperTech wyposaża pracowników w wysokiej jakości narzędzia, aby zapewnić produktywność."
+                ]
+            },
+            {
+                "question": "How much is the remote office allowance?",
+                "answer": "500 USD",
+                "success": true,
+                "chunks": [
+                    "### 1.2. Wyposażenie biura zdalnego\nZgodnie z polityką modelu pracy, pracownicy w pełni zdalni otrzymują ryczałt w wysokości 500 USD na dodatkowe wyposażenie (np. krzesła ergonomiczne).",
+                    "### 2.3. Osobiste użytkowanie urządzeń\nLaptopy służbowe są przeznaczone do użytku biznesowego. Minimalne wykorzystanie osobiste (np. czytanie wiadomości, poczta prywatna) jest tolerowane, pod warunkiem, że nie koliduje z pracą i nie narusza Polityki dopuszczalnego użytkowania (np. zakaz pobierania pirackiego oprogramowania lub odwiedzania złośliwych stron).",
+                    "### 1.1. Zestaw standardowy\nPo zatrudnieniu pracownicy wybierają pomiędzy MacBookiem Pro 14\" (seria M) a Dell XPS 15. Wszyscy pracownicy otrzymują 27-calowy monitor Dell Ultrasharp, bezprzewodową mysz i klawiaturę."
+                ]
+            },
+            {
+                "question": "How should IT problems be reported?",
+                "answer": "IT problems should be reported by creating a ticket in the Jira Service Desk system, and critical problems should also be escalated via phone call to the IT hotline (+1 800 555 0199).",
+                "success": true,
+                "chunks": [
+                    "### 1.3. Wsparcie IT\nWszelkie problemy ze sprzętem i oprogramowaniem należy zgłaszać poprzez utworzenie zgłoszenia (ticket) w systemie *Jira Service Desk*. Problemy krytyczne (np. całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199).",
+                    "# Podręcznik pracownika SuperTech: Polityka IT i bezpieczeństwa\n*Ostatnia aktualizacja: marzec 2025*",
+                    "### 2.1. Polityka haseł\n* Minimum 14 znaków.\n* Muszą być zmieniane co 90 dni.\n* Wszyscy pracownicy muszą korzystać z firmowego menedżera haseł (*1Password*).\n* Uwierzytelnianie wieloskładnikowe (MFA) jest ściśle egzekwowane na wszystkich kontach firmowych za pośrednictwem aplikacji *Okta Verify*."
+                ]
+            },
+            {
+                "question": "What is the phone number for critical IT issues?",
+                "answer": "+1 800 555 0199",
+                "success": true,
+                "chunks": [
+                    "### 1.3. Wsparcie IT\nWszelkie problemy ze sprzętem i oprogramowaniem należy zgłaszać poprzez utworzenie zgłoszenia (ticket) w systemie *Jira Service Desk*. Problemy krytyczne (np. całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199).",
+                    "# Podręcznik pracownika SuperTech: Polityka IT i bezpieczeństwa\n*Ostatnia aktualizacja: marzec 2025*",
+                    "### 2.1. Polityka haseł\n* Minimum 14 znaków.\n* Muszą być zmieniane co 90 dni.\n* Wszyscy pracownicy muszą korzystać z firmowego menedżera haseł (*1Password*).\n* Uwierzytelnianie wieloskładnikowe (MFA) jest ściśle egzekwowane na wszystkich kontach firmowych za pośrednictwem aplikacji *Okta Verify*."
+                ]
+            },
+            {
+                "question": "What are the password requirements?",
+                "answer": "The password requirements are:\n1. Minimum 14 characters.\n2. Must be changed every 90 days.\n3. All employees must use the company's password manager (1Password).\n4. Multi-factor authentication (MFA) is strictly enforced on all company accounts through Okta Verify.",
+                "success": true,
+                "chunks": [
+                    "### 1.3. Wsparcie IT\nWszelkie problemy ze sprzętem i oprogramowaniem należy zgłaszać poprzez utworzenie zgłoszenia (ticket) w systemie *Jira Service Desk*. Problemy krytyczne (np. całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199).",
+                    "### 2.1. Polityka haseł\n* Minimum 14 znaków.\n* Muszą być zmieniane co 90 dni.\n* Wszyscy pracownicy muszą korzystać z firmowego menedżera haseł (*1Password*).\n* Uwierzytelnianie wieloskładnikowe (MFA) jest ściśle egzekwowane na wszystkich kontach firmowych za pośrednictwem aplikacji *Okta Verify*.",
+                    "## 2. Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną."
+                ]
+            },
+            {
+                "question": "How often must passwords be changed?",
+                "answer": "Passwords must be changed every 90 days.",
+                "success": true,
+                "chunks": [
+                    "### 2.1. Polityka haseł\n* Minimum 14 znaków.\n* Muszą być zmieniane co 90 dni.\n* Wszyscy pracownicy muszą korzystać z firmowego menedżera haseł (*1Password*).\n* Uwierzytelnianie wieloskładnikowe (MFA) jest ściśle egzekwowane na wszystkich kontach firmowych za pośrednictwem aplikacji *Okta Verify*.",
+                    "### 2.3. Osobiste użytkowanie urządzeń\nLaptopy służbowe są przeznaczone do użytku biznesowego. Minimalne wykorzystanie osobiste (np. czytanie wiadomości, poczta prywatna) jest tolerowane, pod warunkiem, że nie koliduje z pracą i nie narusza Polityki dopuszczalnego użytkowania (np. zakaz pobierania pirackiego oprogramowania lub odwiedzania złośliwych stron).",
+                    "## 2. Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną."
+                ]
+            },
+            {
+                "question": "Which password manager is used?",
+                "answer": "*1Password*",
+                "success": true,
+                "chunks": [
+                    "## 2. Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną.",
+                    "### 2.1. Polityka haseł\n* Minimum 14 znaków.\n* Muszą być zmieniane co 90 dni.\n* Wszyscy pracownicy muszą korzystać z firmowego menedżera haseł (*1Password*).\n* Uwierzytelnianie wieloskładnikowe (MFA) jest ściśle egzekwowane na wszystkich kontach firmowych za pośrednictwem aplikacji *Okta Verify*.",
+                    "### 1.3. Wsparcie IT\nWszelkie problemy ze sprzętem i oprogramowaniem należy zgłaszać poprzez utworzenie zgłoszenia (ticket) w systemie *Jira Service Desk*. Problemy krytyczne (np. całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199)."
+                ]
+            },
+            {
+                "question": "What VPN must be used on public networks?",
+                "answer": "Korporacyjnego VPN SuperTech (Cisco Secure Client)",
+                "success": true,
+                "chunks": [
+                    "### 2.2. Sieci publiczne\nPracując zdalnie z kawiarni, lotnisk lub hoteli, pracownicy **muszą** przez cały czas korzystać z korporacyjnego VPN SuperTech (Cisco Secure Client).",
+                    "### 2.3. Osobiste użytkowanie urządzeń\nLaptopy służbowe są przeznaczone do użytku biznesowego. Minimalne wykorzystanie osobiste (np. czytanie wiadomości, poczta prywatna) jest tolerowane, pod warunkiem, że nie koliduje z pracą i nie narusza Polityki dopuszczalnego użytkowania (np. zakaz pobierania pirackiego oprogramowania lub odwiedzania złośliwych stron).",
+                    "## 2. Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną."
+                ]
+            },
+            {
+                "question": "Where must all company documents be stored?",
+                "answer": "All company documents must be stored in Google Workspace (Dysk) or Confluence.",
+                "success": true,
+                "chunks": [
+                    "### 2.4. Przechowywanie danych\nWszystkie dokumenty firmowe muszą być przechowywane w Google Workspace (Dysk) lub Confluence. Zapisywanie poufnych plików firmowych lokalnie na dysku twardym laptopa jest zabronione.",
+                    "## 2. Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną.",
+                    "### 2.1. Polityka haseł\n* Minimum 14 znaków.\n* Muszą być zmieniane co 90 dni.\n* Wszyscy pracownicy muszą korzystać z firmowego menedżera haseł (*1Password*).\n* Uwierzytelnianie wieloskładnikowe (MFA) jest ściśle egzekwowane na wszystkich kontach firmowych za pośrednictwem aplikacji *Okta Verify*."
+                ]
+            }
+        ]
+    },
+    {
+        "document": "Polityka_bezpieczenstwa_i_IT.md",
+        "method": "paragraph",
+        "chunk_count": 3,
+        "avg_chunk_length": 681.0,
+        "evaluations": [
+            {
+                "question": "What laptops can employees choose from?",
+                "answer": "Employees can choose between a MacBook Pro 14\" (M series) and a Dell XPS 15.",
+                "success": true,
+                "chunks": [
+                    "## 1. Polityka sprzętowa\n\nSuperTech wyposaża pracowników w wysokiej jakości narzędzia, aby zapewnić produktywność.\n\n### 1.1. Zestaw standardowy\nPo zatrudnieniu pracownicy wybierają pomiędzy MacBookiem Pro 14\" (seria M) a Dell XPS 15. Wszyscy pracownicy otrzymują 27-calowy monitor Dell Ultrasharp, bezprzewodową mysz i klawiaturę.\n\n### 1.2. Wyposażenie biura zdalnego\nZgodnie z polityką modelu pracy, pracownicy w pełni zdalni otrzymują ryczałt w wysokości 500 USD na dodatkowe wyposażenie (np. krzesła ergonomiczne).\n\n### 1.3. Wsparcie IT\nWszelkie problemy ze sprzętem i oprogramowaniem należy zgłaszać poprzez utworzenie zgłoszenia (ticket) w systemie *Jira Service Desk*. Problemy krytyczne (np. całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199).",
+                    "## 2. Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną.\n\n### 2.1. Polityka haseł\n* Minimum 14 znaków.\n* Muszą być zmieniane co 90 dni.\n* Wszyscy pracownicy muszą korzystać z firmowego menedżera haseł (*1Password*).\n* Uwierzytelnianie wieloskładnikowe (MFA) jest ściśle egzekwowane na wszystkich kontach firmowych za pośrednictwem aplikacji *Okta Verify*.\n\n### 2.2. Sieci publiczne\nPracując zdalnie z kawiarni, lotnisk lub hoteli, pracownicy **muszą** przez cały czas korzystać z korporacyjnego VPN SuperTech (Cisco Secure Client).\n\n### 2.3. Osobiste użytkowanie urządzeń\nLaptopy służbowe są przeznaczone do użytku biznesowego. Minimalne wykorzystanie osobiste (np. czytanie wiadomości, poczta prywatna) jest tolerowane, pod warunkiem, że nie koliduje z pracą i nie narusza Polityki dopuszczalnego użytkowania (np. zakaz pobierania pirackiego oprogramowania lub odwiedzania złośliwych stron).\n\n### 2.4. Przechowywanie danych\nWszystkie dokumenty firmowe muszą być przechowywane w Google Workspace (Dysk) lub Confluence. Zapisywanie poufnych plików firmowych lokalnie na dysku twardym laptopa jest zabronione.",
+                    "# Podręcznik pracownika SuperTech: Polityka IT i bezpieczeństwa\n*Ostatnia aktualizacja: marzec 2025*"
+                ]
+            },
+            {
+                "question": "What is the standard set for every employee?",
+                "answer": "The standard set for every employee includes a choice between a MacBook Pro 14\" (M series) and a Dell XPS 15, a 27-inch Dell Ultrasharp monitor, a wireless mouse, and a keyboard.",
+                "success": true,
+                "chunks": [
+                    "## 2. Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną.\n\n### 2.1. Polityka haseł\n* Minimum 14 znaków.\n* Muszą być zmieniane co 90 dni.\n* Wszyscy pracownicy muszą korzystać z firmowego menedżera haseł (*1Password*).\n* Uwierzytelnianie wieloskładnikowe (MFA) jest ściśle egzekwowane na wszystkich kontach firmowych za pośrednictwem aplikacji *Okta Verify*.\n\n### 2.2. Sieci publiczne\nPracując zdalnie z kawiarni, lotnisk lub hoteli, pracownicy **muszą** przez cały czas korzystać z korporacyjnego VPN SuperTech (Cisco Secure Client).\n\n### 2.3. Osobiste użytkowanie urządzeń\nLaptopy służbowe są przeznaczone do użytku biznesowego. Minimalne wykorzystanie osobiste (np. czytanie wiadomości, poczta prywatna) jest tolerowane, pod warunkiem, że nie koliduje z pracą i nie narusza Polityki dopuszczalnego użytkowania (np. zakaz pobierania pirackiego oprogramowania lub odwiedzania złośliwych stron).\n\n### 2.4. Przechowywanie danych\nWszystkie dokumenty firmowe muszą być przechowywane w Google Workspace (Dysk) lub Confluence. Zapisywanie poufnych plików firmowych lokalnie na dysku twardym laptopa jest zabronione.",
+                    "## 1. Polityka sprzętowa\n\nSuperTech wyposaża pracowników w wysokiej jakości narzędzia, aby zapewnić produktywność.\n\n### 1.1. Zestaw standardowy\nPo zatrudnieniu pracownicy wybierają pomiędzy MacBookiem Pro 14\" (seria M) a Dell XPS 15. Wszyscy pracownicy otrzymują 27-calowy monitor Dell Ultrasharp, bezprzewodową mysz i klawiaturę.\n\n### 1.2. Wyposażenie biura zdalnego\nZgodnie z polityką modelu pracy, pracownicy w pełni zdalni otrzymują ryczałt w wysokości 500 USD na dodatkowe wyposażenie (np. krzesła ergonomiczne).\n\n### 1.3. Wsparcie IT\nWszelkie problemy ze sprzętem i oprogramowaniem należy zgłaszać poprzez utworzenie zgłoszenia (ticket) w systemie *Jira Service Desk*. Problemy krytyczne (np. całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199).",
+                    "# Podręcznik pracownika SuperTech: Polityka IT i bezpieczeństwa\n*Ostatnia aktualizacja: marzec 2025*"
+                ]
+            },
+            {
+                "question": "How much is the remote office allowance?",
+                "answer": "The remote office allowance is $500 USD.",
+                "success": true,
+                "chunks": [
+                    "## 1. Polityka sprzętowa\n\nSuperTech wyposaża pracowników w wysokiej jakości narzędzia, aby zapewnić produktywność.\n\n### 1.1. Zestaw standardowy\nPo zatrudnieniu pracownicy wybierają pomiędzy MacBookiem Pro 14\" (seria M) a Dell XPS 15. Wszyscy pracownicy otrzymują 27-calowy monitor Dell Ultrasharp, bezprzewodową mysz i klawiaturę.\n\n### 1.2. Wyposażenie biura zdalnego\nZgodnie z polityką modelu pracy, pracownicy w pełni zdalni otrzymują ryczałt w wysokości 500 USD na dodatkowe wyposażenie (np. krzesła ergonomiczne).\n\n### 1.3. Wsparcie IT\nWszelkie problemy ze sprzętem i oprogramowaniem należy zgłaszać poprzez utworzenie zgłoszenia (ticket) w systemie *Jira Service Desk*. Problemy krytyczne (np. całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199).",
+                    "## 2. Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną.\n\n### 2.1. Polityka haseł\n* Minimum 14 znaków.\n* Muszą być zmieniane co 90 dni.\n* Wszyscy pracownicy muszą korzystać z firmowego menedżera haseł (*1Password*).\n* Uwierzytelnianie wieloskładnikowe (MFA) jest ściśle egzekwowane na wszystkich kontach firmowych za pośrednictwem aplikacji *Okta Verify*.\n\n### 2.2. Sieci publiczne\nPracując zdalnie z kawiarni, lotnisk lub hoteli, pracownicy **muszą** przez cały czas korzystać z korporacyjnego VPN SuperTech (Cisco Secure Client).\n\n### 2.3. Osobiste użytkowanie urządzeń\nLaptopy służbowe są przeznaczone do użytku biznesowego. Minimalne wykorzystanie osobiste (np. czytanie wiadomości, poczta prywatna) jest tolerowane, pod warunkiem, że nie koliduje z pracą i nie narusza Polityki dopuszczalnego użytkowania (np. zakaz pobierania pirackiego oprogramowania lub odwiedzania złośliwych stron).\n\n### 2.4. Przechowywanie danych\nWszystkie dokumenty firmowe muszą być przechowywane w Google Workspace (Dysk) lub Confluence. Zapisywanie poufnych plików firmowych lokalnie na dysku twardym laptopa jest zabronione.",
+                    "# Podręcznik pracownika SuperTech: Polityka IT i bezpieczeństwa\n*Ostatnia aktualizacja: marzec 2025*"
+                ]
+            },
+            {
+                "question": "How should IT problems be reported?",
+                "answer": "Wszelkie problemy ze sprzętem i oprogramowaniem należy zgłaszać poprzez utworzenie zgłoszenia (ticket) w systemie *Jira Service Desk*. Problemy krytyczne (np. całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199).",
+                "success": true,
+                "chunks": [
+                    "## 2. Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną.\n\n### 2.1. Polityka haseł\n* Minimum 14 znaków.\n* Muszą być zmieniane co 90 dni.\n* Wszyscy pracownicy muszą korzystać z firmowego menedżera haseł (*1Password*).\n* Uwierzytelnianie wieloskładnikowe (MFA) jest ściśle egzekwowane na wszystkich kontach firmowych za pośrednictwem aplikacji *Okta Verify*.\n\n### 2.2. Sieci publiczne\nPracując zdalnie z kawiarni, lotnisk lub hoteli, pracownicy **muszą** przez cały czas korzystać z korporacyjnego VPN SuperTech (Cisco Secure Client).\n\n### 2.3. Osobiste użytkowanie urządzeń\nLaptopy służbowe są przeznaczone do użytku biznesowego. Minimalne wykorzystanie osobiste (np. czytanie wiadomości, poczta prywatna) jest tolerowane, pod warunkiem, że nie koliduje z pracą i nie narusza Polityki dopuszczalnego użytkowania (np. zakaz pobierania pirackiego oprogramowania lub odwiedzania złośliwych stron).\n\n### 2.4. Przechowywanie danych\nWszystkie dokumenty firmowe muszą być przechowywane w Google Workspace (Dysk) lub Confluence. Zapisywanie poufnych plików firmowych lokalnie na dysku twardym laptopa jest zabronione.",
+                    "# Podręcznik pracownika SuperTech: Polityka IT i bezpieczeństwa\n*Ostatnia aktualizacja: marzec 2025*",
+                    "## 1. Polityka sprzętowa\n\nSuperTech wyposaża pracowników w wysokiej jakości narzędzia, aby zapewnić produktywność.\n\n### 1.1. Zestaw standardowy\nPo zatrudnieniu pracownicy wybierają pomiędzy MacBookiem Pro 14\" (seria M) a Dell XPS 15. Wszyscy pracownicy otrzymują 27-calowy monitor Dell Ultrasharp, bezprzewodową mysz i klawiaturę.\n\n### 1.2. Wyposażenie biura zdalnego\nZgodnie z polityką modelu pracy, pracownicy w pełni zdalni otrzymują ryczałt w wysokości 500 USD na dodatkowe wyposażenie (np. krzesła ergonomiczne).\n\n### 1.3. Wsparcie IT\nWszelkie problemy ze sprzętem i oprogramowaniem należy zgłaszać poprzez utworzenie zgłoszenia (ticket) w systemie *Jira Service Desk*. Problemy krytyczne (np. całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199)."
+                ]
+            },
+            {
+                "question": "What is the phone number for critical IT issues?",
+                "answer": "+1 800 555 0199",
+                "success": true,
+                "chunks": [
+                    "# Podręcznik pracownika SuperTech: Polityka IT i bezpieczeństwa\n*Ostatnia aktualizacja: marzec 2025*",
+                    "## 2. Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną.\n\n### 2.1. Polityka haseł\n* Minimum 14 znaków.\n* Muszą być zmieniane co 90 dni.\n* Wszyscy pracownicy muszą korzystać z firmowego menedżera haseł (*1Password*).\n* Uwierzytelnianie wieloskładnikowe (MFA) jest ściśle egzekwowane na wszystkich kontach firmowych za pośrednictwem aplikacji *Okta Verify*.\n\n### 2.2. Sieci publiczne\nPracując zdalnie z kawiarni, lotnisk lub hoteli, pracownicy **muszą** przez cały czas korzystać z korporacyjnego VPN SuperTech (Cisco Secure Client).\n\n### 2.3. Osobiste użytkowanie urządzeń\nLaptopy służbowe są przeznaczone do użytku biznesowego. Minimalne wykorzystanie osobiste (np. czytanie wiadomości, poczta prywatna) jest tolerowane, pod warunkiem, że nie koliduje z pracą i nie narusza Polityki dopuszczalnego użytkowania (np. zakaz pobierania pirackiego oprogramowania lub odwiedzania złośliwych stron).\n\n### 2.4. Przechowywanie danych\nWszystkie dokumenty firmowe muszą być przechowywane w Google Workspace (Dysk) lub Confluence. Zapisywanie poufnych plików firmowych lokalnie na dysku twardym laptopa jest zabronione.",
+                    "## 1. Polityka sprzętowa\n\nSuperTech wyposaża pracowników w wysokiej jakości narzędzia, aby zapewnić produktywność.\n\n### 1.1. Zestaw standardowy\nPo zatrudnieniu pracownicy wybierają pomiędzy MacBookiem Pro 14\" (seria M) a Dell XPS 15. Wszyscy pracownicy otrzymują 27-calowy monitor Dell Ultrasharp, bezprzewodową mysz i klawiaturę.\n\n### 1.2. Wyposażenie biura zdalnego\nZgodnie z polityką modelu pracy, pracownicy w pełni zdalni otrzymują ryczałt w wysokości 500 USD na dodatkowe wyposażenie (np. krzesła ergonomiczne).\n\n### 1.3. Wsparcie IT\nWszelkie problemy ze sprzętem i oprogramowaniem należy zgłaszać poprzez utworzenie zgłoszenia (ticket) w systemie *Jira Service Desk*. Problemy krytyczne (np. całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199)."
+                ]
+            },
+            {
+                "question": "What are the password requirements?",
+                "answer": "The password requirements are: \n* Minimum 14 znaków.\n* Muszą być zmieniane co 90 dni.\n* Wszyscy pracownicy muszą korzystać z firmowego menedżera haseł (*1Password*).\n* Uwierzytelnianie wieloskładnikowe (MFA) jest ściśle egzekwowane na wszystkich kontach firmowych za pośrednictwem aplikacji *Okta Verify*.",
+                "success": true,
+                "chunks": [
+                    "## 2. Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną.\n\n### 2.1. Polityka haseł\n* Minimum 14 znaków.\n* Muszą być zmieniane co 90 dni.\n* Wszyscy pracownicy muszą korzystać z firmowego menedżera haseł (*1Password*).\n* Uwierzytelnianie wieloskładnikowe (MFA) jest ściśle egzekwowane na wszystkich kontach firmowych za pośrednictwem aplikacji *Okta Verify*.\n\n### 2.2. Sieci publiczne\nPracując zdalnie z kawiarni, lotnisk lub hoteli, pracownicy **muszą** przez cały czas korzystać z korporacyjnego VPN SuperTech (Cisco Secure Client).\n\n### 2.3. Osobiste użytkowanie urządzeń\nLaptopy służbowe są przeznaczone do użytku biznesowego. Minimalne wykorzystanie osobiste (np. czytanie wiadomości, poczta prywatna) jest tolerowane, pod warunkiem, że nie koliduje z pracą i nie narusza Polityki dopuszczalnego użytkowania (np. zakaz pobierania pirackiego oprogramowania lub odwiedzania złośliwych stron).\n\n### 2.4. Przechowywanie danych\nWszystkie dokumenty firmowe muszą być przechowywane w Google Workspace (Dysk) lub Confluence. Zapisywanie poufnych plików firmowych lokalnie na dysku twardym laptopa jest zabronione.",
+                    "# Podręcznik pracownika SuperTech: Polityka IT i bezpieczeństwa\n*Ostatnia aktualizacja: marzec 2025*",
+                    "## 1. Polityka sprzętowa\n\nSuperTech wyposaża pracowników w wysokiej jakości narzędzia, aby zapewnić produktywność.\n\n### 1.1. Zestaw standardowy\nPo zatrudnieniu pracownicy wybierają pomiędzy MacBookiem Pro 14\" (seria M) a Dell XPS 15. Wszyscy pracownicy otrzymują 27-calowy monitor Dell Ultrasharp, bezprzewodową mysz i klawiaturę.\n\n### 1.2. Wyposażenie biura zdalnego\nZgodnie z polityką modelu pracy, pracownicy w pełni zdalni otrzymują ryczałt w wysokości 500 USD na dodatkowe wyposażenie (np. krzesła ergonomiczne).\n\n### 1.3. Wsparcie IT\nWszelkie problemy ze sprzętem i oprogramowaniem należy zgłaszać poprzez utworzenie zgłoszenia (ticket) w systemie *Jira Service Desk*. Problemy krytyczne (np. całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199)."
+                ]
+            },
+            {
+                "question": "How often must passwords be changed?",
+                "answer": "Passwords must be changed every 90 days.",
+                "success": true,
+                "chunks": [
+                    "## 2. Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną.\n\n### 2.1. Polityka haseł\n* Minimum 14 znaków.\n* Muszą być zmieniane co 90 dni.\n* Wszyscy pracownicy muszą korzystać z firmowego menedżera haseł (*1Password*).\n* Uwierzytelnianie wieloskładnikowe (MFA) jest ściśle egzekwowane na wszystkich kontach firmowych za pośrednictwem aplikacji *Okta Verify*.\n\n### 2.2. Sieci publiczne\nPracując zdalnie z kawiarni, lotnisk lub hoteli, pracownicy **muszą** przez cały czas korzystać z korporacyjnego VPN SuperTech (Cisco Secure Client).\n\n### 2.3. Osobiste użytkowanie urządzeń\nLaptopy służbowe są przeznaczone do użytku biznesowego. Minimalne wykorzystanie osobiste (np. czytanie wiadomości, poczta prywatna) jest tolerowane, pod warunkiem, że nie koliduje z pracą i nie narusza Polityki dopuszczalnego użytkowania (np. zakaz pobierania pirackiego oprogramowania lub odwiedzania złośliwych stron).\n\n### 2.4. Przechowywanie danych\nWszystkie dokumenty firmowe muszą być przechowywane w Google Workspace (Dysk) lub Confluence. Zapisywanie poufnych plików firmowych lokalnie na dysku twardym laptopa jest zabronione.",
+                    "# Podręcznik pracownika SuperTech: Polityka IT i bezpieczeństwa\n*Ostatnia aktualizacja: marzec 2025*",
+                    "## 1. Polityka sprzętowa\n\nSuperTech wyposaża pracowników w wysokiej jakości narzędzia, aby zapewnić produktywność.\n\n### 1.1. Zestaw standardowy\nPo zatrudnieniu pracownicy wybierają pomiędzy MacBookiem Pro 14\" (seria M) a Dell XPS 15. Wszyscy pracownicy otrzymują 27-calowy monitor Dell Ultrasharp, bezprzewodową mysz i klawiaturę.\n\n### 1.2. Wyposażenie biura zdalnego\nZgodnie z polityką modelu pracy, pracownicy w pełni zdalni otrzymują ryczałt w wysokości 500 USD na dodatkowe wyposażenie (np. krzesła ergonomiczne).\n\n### 1.3. Wsparcie IT\nWszelkie problemy ze sprzętem i oprogramowaniem należy zgłaszać poprzez utworzenie zgłoszenia (ticket) w systemie *Jira Service Desk*. Problemy krytyczne (np. całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199)."
+                ]
+            },
+            {
+                "question": "Which password manager is used?",
+                "answer": "*1Password*",
+                "success": true,
+                "chunks": [
+                    "## 2. Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną.\n\n### 2.1. Polityka haseł\n* Minimum 14 znaków.\n* Muszą być zmieniane co 90 dni.\n* Wszyscy pracownicy muszą korzystać z firmowego menedżera haseł (*1Password*).\n* Uwierzytelnianie wieloskładnikowe (MFA) jest ściśle egzekwowane na wszystkich kontach firmowych za pośrednictwem aplikacji *Okta Verify*.\n\n### 2.2. Sieci publiczne\nPracując zdalnie z kawiarni, lotnisk lub hoteli, pracownicy **muszą** przez cały czas korzystać z korporacyjnego VPN SuperTech (Cisco Secure Client).\n\n### 2.3. Osobiste użytkowanie urządzeń\nLaptopy służbowe są przeznaczone do użytku biznesowego. Minimalne wykorzystanie osobiste (np. czytanie wiadomości, poczta prywatna) jest tolerowane, pod warunkiem, że nie koliduje z pracą i nie narusza Polityki dopuszczalnego użytkowania (np. zakaz pobierania pirackiego oprogramowania lub odwiedzania złośliwych stron).\n\n### 2.4. Przechowywanie danych\nWszystkie dokumenty firmowe muszą być przechowywane w Google Workspace (Dysk) lub Confluence. Zapisywanie poufnych plików firmowych lokalnie na dysku twardym laptopa jest zabronione.",
+                    "# Podręcznik pracownika SuperTech: Polityka IT i bezpieczeństwa\n*Ostatnia aktualizacja: marzec 2025*",
+                    "## 1. Polityka sprzętowa\n\nSuperTech wyposaża pracowników w wysokiej jakości narzędzia, aby zapewnić produktywność.\n\n### 1.1. Zestaw standardowy\nPo zatrudnieniu pracownicy wybierają pomiędzy MacBookiem Pro 14\" (seria M) a Dell XPS 15. Wszyscy pracownicy otrzymują 27-calowy monitor Dell Ultrasharp, bezprzewodową mysz i klawiaturę.\n\n### 1.2. Wyposażenie biura zdalnego\nZgodnie z polityką modelu pracy, pracownicy w pełni zdalni otrzymują ryczałt w wysokości 500 USD na dodatkowe wyposażenie (np. krzesła ergonomiczne).\n\n### 1.3. Wsparcie IT\nWszelkie problemy ze sprzętem i oprogramowaniem należy zgłaszać poprzez utworzenie zgłoszenia (ticket) w systemie *Jira Service Desk*. Problemy krytyczne (np. całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199)."
+                ]
+            },
+            {
+                "question": "What VPN must be used on public networks?",
+                "answer": "Korporacyjny VPN SuperTech (Cisco Secure Client).",
+                "success": true,
+                "chunks": [
+                    "## 2. Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną.\n\n### 2.1. Polityka haseł\n* Minimum 14 znaków.\n* Muszą być zmieniane co 90 dni.\n* Wszyscy pracownicy muszą korzystać z firmowego menedżera haseł (*1Password*).\n* Uwierzytelnianie wieloskładnikowe (MFA) jest ściśle egzekwowane na wszystkich kontach firmowych za pośrednictwem aplikacji *Okta Verify*.\n\n### 2.2. Sieci publiczne\nPracując zdalnie z kawiarni, lotnisk lub hoteli, pracownicy **muszą** przez cały czas korzystać z korporacyjnego VPN SuperTech (Cisco Secure Client).\n\n### 2.3. Osobiste użytkowanie urządzeń\nLaptopy służbowe są przeznaczone do użytku biznesowego. Minimalne wykorzystanie osobiste (np. czytanie wiadomości, poczta prywatna) jest tolerowane, pod warunkiem, że nie koliduje z pracą i nie narusza Polityki dopuszczalnego użytkowania (np. zakaz pobierania pirackiego oprogramowania lub odwiedzania złośliwych stron).\n\n### 2.4. Przechowywanie danych\nWszystkie dokumenty firmowe muszą być przechowywane w Google Workspace (Dysk) lub Confluence. Zapisywanie poufnych plików firmowych lokalnie na dysku twardym laptopa jest zabronione.",
+                    "# Podręcznik pracownika SuperTech: Polityka IT i bezpieczeństwa\n*Ostatnia aktualizacja: marzec 2025*",
+                    "## 1. Polityka sprzętowa\n\nSuperTech wyposaża pracowników w wysokiej jakości narzędzia, aby zapewnić produktywność.\n\n### 1.1. Zestaw standardowy\nPo zatrudnieniu pracownicy wybierają pomiędzy MacBookiem Pro 14\" (seria M) a Dell XPS 15. Wszyscy pracownicy otrzymują 27-calowy monitor Dell Ultrasharp, bezprzewodową mysz i klawiaturę.\n\n### 1.2. Wyposażenie biura zdalnego\nZgodnie z polityką modelu pracy, pracownicy w pełni zdalni otrzymują ryczałt w wysokości 500 USD na dodatkowe wyposażenie (np. krzesła ergonomiczne).\n\n### 1.3. Wsparcie IT\nWszelkie problemy ze sprzętem i oprogramowaniem należy zgłaszać poprzez utworzenie zgłoszenia (ticket) w systemie *Jira Service Desk*. Problemy krytyczne (np. całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199)."
+                ]
+            },
+            {
+                "question": "Where must all company documents be stored?",
+                "answer": "All company documents must be stored in Google Workspace (Dysk) or Confluence.",
+                "success": true,
+                "chunks": [
+                    "## 2. Bezpieczeństwo danych i prywatność\n\nOchrona danych klientów i firmy jest sprawą nadrzędną.\n\n### 2.1. Polityka haseł\n* Minimum 14 znaków.\n* Muszą być zmieniane co 90 dni.\n* Wszyscy pracownicy muszą korzystać z firmowego menedżera haseł (*1Password*).\n* Uwierzytelnianie wieloskładnikowe (MFA) jest ściśle egzekwowane na wszystkich kontach firmowych za pośrednictwem aplikacji *Okta Verify*.\n\n### 2.2. Sieci publiczne\nPracując zdalnie z kawiarni, lotnisk lub hoteli, pracownicy **muszą** przez cały czas korzystać z korporacyjnego VPN SuperTech (Cisco Secure Client).\n\n### 2.3. Osobiste użytkowanie urządzeń\nLaptopy służbowe są przeznaczone do użytku biznesowego. Minimalne wykorzystanie osobiste (np. czytanie wiadomości, poczta prywatna) jest tolerowane, pod warunkiem, że nie koliduje z pracą i nie narusza Polityki dopuszczalnego użytkowania (np. zakaz pobierania pirackiego oprogramowania lub odwiedzania złośliwych stron).\n\n### 2.4. Przechowywanie danych\nWszystkie dokumenty firmowe muszą być przechowywane w Google Workspace (Dysk) lub Confluence. Zapisywanie poufnych plików firmowych lokalnie na dysku twardym laptopa jest zabronione.",
+                    "# Podręcznik pracownika SuperTech: Polityka IT i bezpieczeństwa\n*Ostatnia aktualizacja: marzec 2025*",
+                    "## 1. Polityka sprzętowa\n\nSuperTech wyposaża pracowników w wysokiej jakości narzędzia, aby zapewnić produktywność.\n\n### 1.1. Zestaw standardowy\nPo zatrudnieniu pracownicy wybierają pomiędzy MacBookiem Pro 14\" (seria M) a Dell XPS 15. Wszyscy pracownicy otrzymują 27-calowy monitor Dell Ultrasharp, bezprzewodową mysz i klawiaturę.\n\n### 1.2. Wyposażenie biura zdalnego\nZgodnie z polityką modelu pracy, pracownicy w pełni zdalni otrzymują ryczałt w wysokości 500 USD na dodatkowe wyposażenie (np. krzesła ergonomiczne).\n\n### 1.3. Wsparcie IT\nWszelkie problemy ze sprzętem i oprogramowaniem należy zgłaszać poprzez utworzenie zgłoszenia (ticket) w systemie *Jira Service Desk*. Problemy krytyczne (np. całkowita awaria laptopa) powinny być eskalowane telefonicznie na infolinię IT (+1 800 555 0199)."
+                ]
+            }
+        ]
+    },
+    {
+        "document": "wybrane_filozoficzne_koncepcje_rozumu_ludzkiego.pdf",
+        "method": "fixed",
+        "chunk_count": 311,
+        "avg_chunk_length": 249.2315112540193,
+        "evaluations": [
+            {
+                "question": "Is philosophy a static or dynamic field?",
+                "answer": "Philosophy is a dynamic field, as it is described as \"tworem dynamicznym, ciągle się rozwijającym\" which translates to \"a dynamic creation, constantly developing\".",
+                "success": true,
+                "chunks": [
+                    "1. Wprowadzenie1 Filozofia jako część kultury, jako jedna z dziedzin ludzkiego poznania, nie jest tworem statycznym, niepodlegającym zmianie. Przeciwnie, jest tworem dynamicznym, ciągle się rozwijającym. Panuje nawet przekonanie, że to właśnie z filo",
+                    "wo „okres filozofii” bowiem oznacza nie tylko fragment czasu rozwoju tej dziedziny poznania, ale przede wszystkim pewną dającą się, mniej lub bardziej szczegółowo, określić specyfikę zespołu rozstrzygnięć dotyczących świata przyrody, kultury i samego",
+                    "runkiem filozoficznym” są uzależnione od zaakceptowania określonej koncepcji filozofii. Słów: „koncepcja filozofii” i „kierunek filozofii” używa się niekiedy zamiennie, co jednak należy odgraniczać.7 Mając takie rozumienie sensu wyżej wymienionych wy"
+                ]
+            },
+            {
+                "question": "What is the relationship between philosophy and 'detailed sciences' (nauki szczegółowe)?",
+                "answer": "NOT_FOUND",
+                "success": false,
+                "chunks": [
+                    "wo „okres filozofii” bowiem oznacza nie tylko fragment czasu rozwoju tej dziedziny poznania, ale przede wszystkim pewną dającą się, mniej lub bardziej szczegółowo, określić specyfikę zespołu rozstrzygnięć dotyczących świata przyrody, kultury i samego",
+                    "filozofii” składać się więc będą: rozumienie przedmiotu badań w znaczeniu tego, co jest badane, rozumienie przedmiotu jako aspektu, w jakim badany jest przedmiot, rozumienie przedmiotu w punkcie wyjścia, rozumienie metody, którą się ów przedmiot bad",
+                    "iego i racjonalność Zależnie od treści tych założeń oraz ich stopnia wykorzystania w naukach, naukowe koncepcje umysłu i jego funkcji mogą być bardziej lub mniej bliskie koncepcjom filozoficznym. Gdy mowa o koncepcjach filozofii, warto zauważyć, iż s"
+                ]
+            },
+            {
+                "question": "Why is the concept of mind fundamental for philosophy and science?",
+                "answer": "The concept of mind is fundamental for philosophy and science because it ultimately determines the character of these fields of knowledge and decides whether they stay within the boundaries of rationality.",
+                "success": true,
+                "chunks": [
+                    "i szczegółowymi”. Pojęcie umysłu jest fundamentalne zarówno dla filozofii, jak i nauk szczegółowych w tym sensie, że w filozofii i nauce to umysł ostatecznie rozstrzyga o charakterze tych dziedzin poznania, które jako takie dostarczają wiedzy o świec",
+                    "nania, które jako takie dostarczają wiedzy o świecie i człowieku. Od filozoficznej i naukowej koncepcji umysłu zależy, czy dana filozofia lub nauka mieści się w granicach racjonalności, czy też granice te przekracza. Chociaż pojęcie umysłu jest w tyc",
+                    "powiedzieć, że zarówno w filozofii, jak i naukach szczegółowych koncepcja umysłu warunkuje stopień racjonalności. We wspomnianych dziedzinach poznania pojęcie rozumu jest odkrywane, a może nawet tworzone, co daje podstawy do wyróżnienia dwóch koncep"
+                ]
+            },
+            {
+                "question": "What determines if a philosophy or science stays within the boundaries of rationality?",
+                "answer": "The concept of the mind and its functions determines the degree of rationality in both philosophy and science. \n\nAnswer: The concept of the mind.",
+                "success": true,
+                "chunks": [
+                    "iego i racjonalność Zależnie od treści tych założeń oraz ich stopnia wykorzystania w naukach, naukowe koncepcje umysłu i jego funkcji mogą być bardziej lub mniej bliskie koncepcjom filozoficznym. Gdy mowa o koncepcjach filozofii, warto zauważyć, iż s",
+                    "powiedzieć, że zarówno w filozofii, jak i naukach szczegółowych koncepcja umysłu warunkuje stopień racjonalności. We wspomnianych dziedzinach poznania pojęcie rozumu jest odkrywane, a może nawet tworzone, co daje podstawy do wyróżnienia dwóch koncep",
+                    "rozumu ludzkiego i racjonalność racjonalności oraz dyskursów. W tym fakcie objawia się to, co powszechnie uznane jest w filozofii za „inne rozumy”. W tym również fakcie objawia się krytyka metafizyki klasycznej, która bez kategorii rozumu nie jest po"
+                ]
+            },
+            {
+                "question": "What are the two distinguished concepts of mind mentioned?",
+                "answer": "There are two concepts of mind mentioned: \n\n1. Umysł jako element władzy poznawczej, składającej się ze związanych z ciałem rozumu i zmysłów.\n2. Umysł związany z duszą, od strony ontycznej.",
+                "success": true,
+                "chunks": [
+                    "padało na początku tych rozważań uczynić. Drugą jest ta, w której przyjmuje się, że umysł jest elementem władzy poznawczej, składającej się ze związanych z ciałem rozumu i zmysłów. Umysł jest związany z duszą i od strony ontycznej prezentuje się jako",
+                    "celu dojścia do prawdy umysłowej. Intelekt i rozum stanowią dwie funkcje poznawcze jednej i tej samej władzy poznawczej, właściwej duszy ludzkiej, i nazywanej umysłową władzą poznawczą. Według Arystotelesa, jak i późniejszych filozofów, te dwie funk",
+                    "cniały się w świadomości podmiotu poznającego. Rezultatem pojmowania jest pojęcie. Należy przypomnieć tu, że w procesie dochodzenia do zrozumienia rzeczy, czyli tworzenia pojęć, ważne są dwie funkcje poznawcze – intelekt czynny i intelekt bierny. Roz"
+                ]
+            },
+            {
+                "question": "How does the concept of mind relate to human culture?",
+                "answer": "The concept of mind is closely related to human culture, as it largely determines its existence and shape. The mind is considered a driving force behind human theoretical and practical knowledge, and thus, human activity as a whole.",
+                "success": true,
+                "chunks": [
+                    "retnych elementów kultury, zauważa się, że pojęcie umysłu wiąże się ściśle również z całokształtem ludzkiej kultury w tym sensie, że w dużym stopniu rozstrzyga o jej istnieniu, a przede wszystkim kształcie. Jest to zauważalne nawet przy pobieżnej ana",
+                    "zie obojętna wobec kultury. Jest tak, dlatego że umysł ludzki, tak lub inaczej pojęty, z natury swej stanowi siłę kierującą poznaniem teoretycznym i praktycznym, a w ten sposób całokształtem ludzkiej działalności. Nadal za taką siłę jest uważany i ja",
+                    "Wiązanie pojęcia umysłu ludzkiego z filozofią, z różnymi koncepcjami filozofii, które powstały w ramach jej rozwoju, sprawiło, że słowa „umysł ludzki” i „funkcje umysłu ludzkiego” nabrały specyficznego znaczenia. W każdym z dających się wyróżnić okre"
+                ]
+            },
+            {
+                "question": "What role does the human mind play in theoretical and practical cognition?",
+                "answer": "NOT_FOUND",
+                "success": false,
+                "chunks": [
+                    "padało na początku tych rozważań uczynić. Drugą jest ta, w której przyjmuje się, że umysł jest elementem władzy poznawczej, składającej się ze związanych z ciałem rozumu i zmysłów. Umysł jest związany z duszą i od strony ontycznej prezentuje się jako",
+                    "nkcji poznawczych jako swoistych procesów psychicznych człowieka, ale o ich zewnętrzną charakterystykę. Uzyskane pojęcie umysłu w tej nauce prezentuje umysł ludzki w takim aspekcie, na jaki pozwala mu analiza psychologiczna takich zjawisk mentalnych,",
+                    "tu wymienić szereg innych nauk szczegółowych, z których każda zgodnie ze swą naturą tworzy sobie obraz ludzkiego umysłu i jego funkcji. Jeżeli w jakiejś empirycznej nauce występuje pojęcie ludzkiego umysłu, to jest ono najczęściej zapożyczone. Gdyby"
+                ]
+            },
+            {
+                "question": "Is the attitude of humans towards the mind indifferent to culture?",
+                "answer": "No, the attitude of humans towards the mind is not indifferent to culture. According to the text: \"postawa człowieka wobec umysłu, jako twórcy kultury, z natury swojej nie jest, nie była i nie będzie obojętna wobec kultury.\" which translates to \"the attitude of a person towards the mind, as the creator of culture, by its nature is not, has not been, and will not be indifferent to culture.\"",
+                "success": true,
+                "chunks": [
+                    "ałcie. Jest to zauważalne nawet przy pobieżnej analizie historii kultury. Inaczej być nie może, bowiem postawa człowieka wobec umysłu, jako twórcy kultury, z natury swojej nie jest, nie była i nie będzie obojętna wobec kultury. Jest tak, dlatego że u",
+                    "zie obojętna wobec kultury. Jest tak, dlatego że umysł ludzki, tak lub inaczej pojęty, z natury swej stanowi siłę kierującą poznaniem teoretycznym i praktycznym, a w ten sposób całokształtem ludzkiej działalności. Nadal za taką siłę jest uważany i ja",
+                    "retnych elementów kultury, zauważa się, że pojęcie umysłu wiąże się ściśle również z całokształtem ludzkiej kultury w tym sensie, że w dużym stopniu rozstrzyga o jej istnieniu, a przede wszystkim kształcie. Jest to zauważalne nawet przy pobieżnej ana"
+                ]
+            },
+            {
+                "question": "According to the text, what decides the existence and shape of culture?",
+                "answer": "The concept of the human mind (umysł) decides the existence and shape of culture.",
+                "success": true,
+                "chunks": [
+                    "ałcie. Jest to zauważalne nawet przy pobieżnej analizie historii kultury. Inaczej być nie może, bowiem postawa człowieka wobec umysłu, jako twórcy kultury, z natury swojej nie jest, nie była i nie będzie obojętna wobec kultury. Jest tak, dlatego że u",
+                    "retnych elementów kultury, zauważa się, że pojęcie umysłu wiąże się ściśle również z całokształtem ludzkiej kultury w tym sensie, że w dużym stopniu rozstrzyga o jej istnieniu, a przede wszystkim kształcie. Jest to zauważalne nawet przy pobieżnej ana",
+                    "zie obojętna wobec kultury. Jest tak, dlatego że umysł ludzki, tak lub inaczej pojęty, z natury swej stanowi siłę kierującą poznaniem teoretycznym i praktycznym, a w ten sposób całokształtem ludzkiej działalności. Nadal za taką siłę jest uważany i ja"
+                ]
+            },
+            {
+                "question": "What does the text say about the genetic and substantive connection between philosophy and detailed sciences?",
+                "answer": "The text mentions that there is a \"głębokie powiązanie genetycznego, a także merytorycznego\" (a deep genetic and substantive connection) between philosophy and detailed sciences, as they are concrete elements of culture.",
+                "success": true,
+                "chunks": [
+                    "iego i racjonalność Zależnie od treści tych założeń oraz ich stopnia wykorzystania w naukach, naukowe koncepcje umysłu i jego funkcji mogą być bardziej lub mniej bliskie koncepcjom filozoficznym. Gdy mowa o koncepcjach filozofii, warto zauważyć, iż s",
+                    "zone, co daje podstawy do wyróżnienia dwóch koncepcji umysłu – przedmiotowej i podmiotowej. Z racji głębokiego powiązania genetycznego, a także merytorycznego filozofii i nauk szczegółowych, jako konkretnych elementów kultury, zauważa się, że pojęcie",
+                    "ia to wyposażenie od strony genetycznej? W mniejszym lub większym stopniu na pytania te odpowiada się w różny sposób w różnych okresach filozofii i wypełniających je różnych systemach filozoficznych. Wiązanie pojęcia umysłu ludzkiego z filozofią, z r"
+                ]
+            }
+        ]
+    },
+    {
+        "document": "wybrane_filozoficzne_koncepcje_rozumu_ludzkiego.pdf",
+        "method": "semantic",
+        "chunk_count": 90,
+        "avg_chunk_length": 688.9,
+        "evaluations": [
+            {
+                "question": "Is philosophy a static or dynamic field?",
+                "answer": "Philosophy is a dynamic field, as it is described as \"tworem dynamicznym, ciągle się rozwijającym\" which translates to \"a dynamic creation, constantly developing\".",
+                "success": true,
+                "chunks": [
+                    "Wprowadzenie1 Filozofia jako część kultury, jako jedna z dziedzin ludzkiego poznania, nie jest tworem statycznym, niepodlegającym zmianie. Przeciwnie, jest tworem dynamicznym, ciągle się rozwijającym.",
+                    "Panuje nawet przekonanie, że to właśnie z filozofii jako pierwszej postaci poznania racjonalnego, zgodnie z prawami rozwoju, zrodziły się pozafilozoficzne dziedziny poznania, zwane obecnie „naukami szczegółowymi”. Pojęcie umysłu jest fundamentalne zarówno dla filozofii, jak i nauk szczegółowych w tym sensie, że w filozofii i nauce to umysł ostatecznie rozstrzyga o charakterze tych dziedzin poznania, które jako takie dostarczają wiedzy o świecie i człowieku. Od filozoficznej i naukowej koncepcji umysłu zależy, czy dana filozofia lub nauka mieści się w granicach racjonalności, czy też granice te przekracza. Chociaż pojęcie umysłu jest w tych typach nauk przyjęte najczęściej z zewnątrz, założone, to jednak jako takie nie jest bez wpływu na stosowane w nich procesy naukotwórcze. Można więc powiedzieć, że zarówno w filozofii, jak i naukach szczegółowych koncepcja umysłu warunkuje stopień racjonalności. We wspomnianych dziedzinach poznania pojęcie rozumu jest odkrywane, a może nawet tworzone, co daje podstawy do wyróżnienia dwóch koncepcji umysłu – przedmiotowej i podmiotowej. Z racji głębokiego powiązania genetycznego, a także merytorycznego filozofii i nauk szczegółowych, jako konkretnych elementów kultury, zauważa się, że pojęcie umysłu wiąże się ściśle również z całokształtem ludzkiej kultury w tym sensie, że w dużym stopniu rozstrzyga o jej istnieniu, a przede wszystkim kształcie. Jest to zauważalne nawet przy pobieżnej analizie historii kultury. Inaczej być nie może, bowiem postawa człowieka wobec umysłu, jako twórcy kultury, z natury swojej nie jest, nie była i nie będzie obojętna wobec kultury. Jest tak, dlatego że umysł ludzki, tak lub inaczej pojęty, z natury swej stanowi siłę kierującą poznaniem teoretycznym i praktycznym, a w ten sposób całokształtem ludzkiej działalności. Nadal za taką siłę jest uważany i jako tak pojęta siła nie tylko może być, ale jest uznawany za źródło kryzysu kultury. Wszelkie kryzysy w szeroko pojętej działalności człowieka można uważać za zjawiska mniej lub bardziej bezpośrednio wiążące się z kryzysem rozumu ludzkiego i postawą wobec niego jako siły twórczej. 1  Wprowadzenie nie ma charakteru wstępu w sensie metodologicznym, ma jedynie informować o ważnych zagadnieniach ściśle związanych z pojęciem rozumu. Niektóre z nich zostaną podjęte w niniejszej rozprawie.",
+                    "fakt, że ostatnia faza czasów współczesnych charakteryzuje się w filozofii tak negatywnym nastawieniem w stosunku do rozumu, że podobnego nastawienia nie spotykano w przeszłości. Mam tu na myśli filozofię postmodernistyczną, która znajduje się na pozycjach irracjonalnych zarówno w dziedzinie teoretycznej, jak i praktycznej. Gdy chodzi zaś o urabianie sobie pojęcia rozumu w naukach szczegółowych, nie stawia się pytań pod adresem umysłu i jego funkcji tak ogólnych, Część pierwsza  •  Rozwój koncepcji rozumu ludzkiego w filozofii Edmund Morawiec  •  Wybrane filozoficzne koncepcje rozumu ludzkiego i racjonalność jak czyni się to w filozofii. Nie poddaje się umysłu analizie z punktu widzenia tego, co go konstytuuje w jego naturze, ale poddaje się analizie jego funkcje z punktu widzenia ich różnych uwarunkowań. W każdej nauce szczegółowej podejmującej problematykę umysłu badane są różnego typu uwarunkowania, stąd każda z tych nauk ma właściwą sobie problematykę związaną z koncepcją ludzkiego umysłu."
+                ]
+            },
+            {
+                "question": "What is the relationship between philosophy and 'detailed sciences' (nauki szczegółowe)?",
+                "answer": "According to the context, philosophy is considered the first form of rational knowledge, and from it, the \"detailed sciences\" (nauki szczegółowe) emerged. This suggests a genetic and merytoryczne (substantive) connection between philosophy and the detailed sciences, with philosophy being the foundation or precursor to these sciences.",
+                "success": true,
+                "chunks": [
+                    "Panuje nawet przekonanie, że to właśnie z filozofii jako pierwszej postaci poznania racjonalnego, zgodnie z prawami rozwoju, zrodziły się pozafilozoficzne dziedziny poznania, zwane obecnie „naukami szczegółowymi”. Pojęcie umysłu jest fundamentalne zarówno dla filozofii, jak i nauk szczegółowych w tym sensie, że w filozofii i nauce to umysł ostatecznie rozstrzyga o charakterze tych dziedzin poznania, które jako takie dostarczają wiedzy o świecie i człowieku. Od filozoficznej i naukowej koncepcji umysłu zależy, czy dana filozofia lub nauka mieści się w granicach racjonalności, czy też granice te przekracza. Chociaż pojęcie umysłu jest w tych typach nauk przyjęte najczęściej z zewnątrz, założone, to jednak jako takie nie jest bez wpływu na stosowane w nich procesy naukotwórcze. Można więc powiedzieć, że zarówno w filozofii, jak i naukach szczegółowych koncepcja umysłu warunkuje stopień racjonalności. We wspomnianych dziedzinach poznania pojęcie rozumu jest odkrywane, a może nawet tworzone, co daje podstawy do wyróżnienia dwóch koncepcji umysłu – przedmiotowej i podmiotowej. Z racji głębokiego powiązania genetycznego, a także merytorycznego filozofii i nauk szczegółowych, jako konkretnych elementów kultury, zauważa się, że pojęcie umysłu wiąże się ściśle również z całokształtem ludzkiej kultury w tym sensie, że w dużym stopniu rozstrzyga o jej istnieniu, a przede wszystkim kształcie. Jest to zauważalne nawet przy pobieżnej analizie historii kultury. Inaczej być nie może, bowiem postawa człowieka wobec umysłu, jako twórcy kultury, z natury swojej nie jest, nie była i nie będzie obojętna wobec kultury. Jest tak, dlatego że umysł ludzki, tak lub inaczej pojęty, z natury swej stanowi siłę kierującą poznaniem teoretycznym i praktycznym, a w ten sposób całokształtem ludzkiej działalności. Nadal za taką siłę jest uważany i jako tak pojęta siła nie tylko może być, ale jest uznawany za źródło kryzysu kultury. Wszelkie kryzysy w szeroko pojętej działalności człowieka można uważać za zjawiska mniej lub bardziej bezpośrednio wiążące się z kryzysem rozumu ludzkiego i postawą wobec niego jako siły twórczej. 1  Wprowadzenie nie ma charakteru wstępu w sensie metodologicznym, ma jedynie informować o ważnych zagadnieniach ściśle związanych z pojęciem rozumu. Niektóre z nich zostaną podjęte w niniejszej rozprawie.",
+                    "W mniejszym lub większym stopniu na pytania te odpowiada się w różny sposób w różnych okresach filozofii i wypełniających je różnych systemach filozoficznych. Wiązanie pojęcia umysłu ludzkiego z filozofią, z różnymi koncepcjami filozofii, które powstały w ramach jej rozwoju, sprawiło, że słowa „umysł ludzki” i „funkcje umysłu ludzkiego” nabrały specyficznego znaczenia. W każdym z dających się wyróżnić okresów filozofii umysł ludzki wraz ze swymi funkcjami był wielorako interpretowany i różne wobec niego zajmowano postawy. Jest to zjawisko naturalne, słowo „okres filozofii” bowiem oznacza nie tylko fragment czasu rozwoju tej dziedziny poznania, ale przede wszystkim pewną dającą się, mniej lub bardziej szczegółowo, określić specyfikę zespołu rozstrzygnięć dotyczących świata przyrody, kultury i samego człowieka, „zamkniętą” w pewnych granicach czasowych. Słowo „okres filozofii” oznacza więc specyfikę zespołu rozstrzygnięć zamkniętych w pewnym określonym fragmencie czasu. Różnorodność rozstrzygnięć ocen i nastawień to nic innego jak właśnie określone kierunki filozoficzne, wypełniające przestrzeń czasową tych okresów. Można przyjąć, że w filozofii starożytnej, średniowiecznej, nowożytnej i współczesnej, w ramach różnych kierunków filozoficznych, które w tych okresach zrodziły się i funkcjonowały, spotykamy różne koncepcje ludzkiego umysłu i jego funkcji. Zjawisko to jest znaczące, rozstrzyga bowiem o sposobie patrzenia na rzeczywistość otaczającą człowieka, ludzkie poznanie tej rzeczywistości i ludzkie działanie. Posiadanie koncepcji umysłu ludzkiego wyrażone jest w takich postawach, jak radykalny empiryzm, racjonalizm oraz irracjonalizm. Postawy określone tymi nazwami występują w mniejszym lub większym napięciu prawie w każdym okresie filozofii.",
+                    "Część pierwsza  •  Rozwój koncepcji rozumu ludzkiego w filozofii Edmund Morawiec  •  Wybrane filozoficzne koncepcje rozumu ludzkiego i racjonalność Zależnie od treści tych założeń oraz ich stopnia wykorzystania w naukach, naukowe koncepcje umysłu i jego funkcji mogą być bardziej lub mniej bliskie koncepcjom filozoficznym. Gdy mowa o koncepcjach filozofii, warto zauważyć, iż słowo „koncepcja filozofii” oznacza pewien pogląd na temat tego, czym jest filozofia, jakie wykonuje zadania, jaką ma wartość. Na sens słowa „koncepcja filozofii” składać się więc będą: rozumienie przedmiotu badań w znaczeniu tego, co jest badane, rozumienie przedmiotu jako aspektu, w jakim badany jest przedmiot, rozumienie przedmiotu w punkcie wyjścia, rozumienie metody, którą się ów przedmiot bada, rozumienie zadania wyznaczanego filozofii. Słowo „kierunek filozofii” rozumiane jest tu w sensie poglądu lub zbioru poglądów zbliżonych do siebie treścią rozwiązań, ze względu na podejmowaną problematykę lub ze względu na stosowanie metod filozofowania. Treść twierdzeń, problematyka, metody filozofowania, składające się na to, co nazywa się „kierunkiem filozoficznym” są uzależnione od zaakceptowania określonej koncepcji filozofii. Słów: „koncepcja filozofii” i „kierunek filozofii” używa się niekiedy zamiennie, co jednak należy odgraniczać.7 Mając takie rozumienie sensu wyżej wymienionych wyrażeń, można dostrzec m.in. takie główne koncepcje filozofii, jak: a) filozofię przedmiotu, do której zalicza się filozofię starożytną i średniowieczną ze wszystkimi jej wersjami, ten nurt filozofii najczęściej określa się także mianem „filozofia klasyczna”; b) filozofię nauki, do której zalicza się koncepcję filozofii prezentowaną przez pozytywizm, neopozytywizm; c) filozofię języka, do której zalicza się filozofię lingwistyczną; d) filozofię podmiotu, do której zalicza się filozofię transcendentalną, łącznie z fenomenologią i egzystencjalizmem; e) filozofię irracjonalistyczną. W klasycznej koncepcji filozofii, gdy się ją rozpatruje od strony przedmiotu, można rozróżnić idealizm ontologiczny i realizm ontologiczny, a gdy się ją rozpatruje od strony zawartej w niej teorii poznania – empiryzm w różnych jego odmianach, racjonalizm i irracjonalizm. W przypadku pozytywistycznej koncepcji filozofii za kierunki uznać należy pozytywizm w różnych odmianach, pragmatyzm, operacjonizm. W transcendentalnej koncepcji filozofii za kierunki uznać można różne odmiany idealizmu transcendentalnego, związane z ich twórcami, np. idealizm Kanta, idealizm neokantowski i fenomenologię Edmunda Husserla (1859-1938). W irracjonalistycznej koncepcji filozofii jako kierunki pojawiają się m.in. egzystencjalizm i wyrosły na nim postmodernizm."
+                ]
+            },
+            {
+                "question": "Why is the concept of mind fundamental for philosophy and science?",
+                "answer": "The concept of mind is fundamental for philosophy and science because in both, the mind ultimately decides on the character of these fields of knowledge, which provide knowledge about the world and humans. The concept of mind influences the degree of rationality in these fields and is not without impact on the scientific processes used in them.",
+                "success": true,
+                "chunks": [
+                    "Panuje nawet przekonanie, że to właśnie z filozofii jako pierwszej postaci poznania racjonalnego, zgodnie z prawami rozwoju, zrodziły się pozafilozoficzne dziedziny poznania, zwane obecnie „naukami szczegółowymi”. Pojęcie umysłu jest fundamentalne zarówno dla filozofii, jak i nauk szczegółowych w tym sensie, że w filozofii i nauce to umysł ostatecznie rozstrzyga o charakterze tych dziedzin poznania, które jako takie dostarczają wiedzy o świecie i człowieku. Od filozoficznej i naukowej koncepcji umysłu zależy, czy dana filozofia lub nauka mieści się w granicach racjonalności, czy też granice te przekracza. Chociaż pojęcie umysłu jest w tych typach nauk przyjęte najczęściej z zewnątrz, założone, to jednak jako takie nie jest bez wpływu na stosowane w nich procesy naukotwórcze. Można więc powiedzieć, że zarówno w filozofii, jak i naukach szczegółowych koncepcja umysłu warunkuje stopień racjonalności. We wspomnianych dziedzinach poznania pojęcie rozumu jest odkrywane, a może nawet tworzone, co daje podstawy do wyróżnienia dwóch koncepcji umysłu – przedmiotowej i podmiotowej. Z racji głębokiego powiązania genetycznego, a także merytorycznego filozofii i nauk szczegółowych, jako konkretnych elementów kultury, zauważa się, że pojęcie umysłu wiąże się ściśle również z całokształtem ludzkiej kultury w tym sensie, że w dużym stopniu rozstrzyga o jej istnieniu, a przede wszystkim kształcie. Jest to zauważalne nawet przy pobieżnej analizie historii kultury. Inaczej być nie może, bowiem postawa człowieka wobec umysłu, jako twórcy kultury, z natury swojej nie jest, nie była i nie będzie obojętna wobec kultury. Jest tak, dlatego że umysł ludzki, tak lub inaczej pojęty, z natury swej stanowi siłę kierującą poznaniem teoretycznym i praktycznym, a w ten sposób całokształtem ludzkiej działalności. Nadal za taką siłę jest uważany i jako tak pojęta siła nie tylko może być, ale jest uznawany za źródło kryzysu kultury. Wszelkie kryzysy w szeroko pojętej działalności człowieka można uważać za zjawiska mniej lub bardziej bezpośrednio wiążące się z kryzysem rozumu ludzkiego i postawą wobec niego jako siły twórczej. 1  Wprowadzenie nie ma charakteru wstępu w sensie metodologicznym, ma jedynie informować o ważnych zagadnieniach ściśle związanych z pojęciem rozumu. Niektóre z nich zostaną podjęte w niniejszej rozprawie.",
+                    "W mniejszym lub większym stopniu na pytania te odpowiada się w różny sposób w różnych okresach filozofii i wypełniających je różnych systemach filozoficznych. Wiązanie pojęcia umysłu ludzkiego z filozofią, z różnymi koncepcjami filozofii, które powstały w ramach jej rozwoju, sprawiło, że słowa „umysł ludzki” i „funkcje umysłu ludzkiego” nabrały specyficznego znaczenia. W każdym z dających się wyróżnić okresów filozofii umysł ludzki wraz ze swymi funkcjami był wielorako interpretowany i różne wobec niego zajmowano postawy. Jest to zjawisko naturalne, słowo „okres filozofii” bowiem oznacza nie tylko fragment czasu rozwoju tej dziedziny poznania, ale przede wszystkim pewną dającą się, mniej lub bardziej szczegółowo, określić specyfikę zespołu rozstrzygnięć dotyczących świata przyrody, kultury i samego człowieka, „zamkniętą” w pewnych granicach czasowych. Słowo „okres filozofii” oznacza więc specyfikę zespołu rozstrzygnięć zamkniętych w pewnym określonym fragmencie czasu. Różnorodność rozstrzygnięć ocen i nastawień to nic innego jak właśnie określone kierunki filozoficzne, wypełniające przestrzeń czasową tych okresów. Można przyjąć, że w filozofii starożytnej, średniowiecznej, nowożytnej i współczesnej, w ramach różnych kierunków filozoficznych, które w tych okresach zrodziły się i funkcjonowały, spotykamy różne koncepcje ludzkiego umysłu i jego funkcji. Zjawisko to jest znaczące, rozstrzyga bowiem o sposobie patrzenia na rzeczywistość otaczającą człowieka, ludzkie poznanie tej rzeczywistości i ludzkie działanie. Posiadanie koncepcji umysłu ludzkiego wyrażone jest w takich postawach, jak radykalny empiryzm, racjonalizm oraz irracjonalizm. Postawy określone tymi nazwami występują w mniejszym lub większym napięciu prawie w każdym okresie filozofii.",
+                    "\u0007 Empirystyczne koncepcje umysłu ludzkiego w filozofii starożytnej Pojęcia zmysłów i pojęcie rozumu były już analizowane przez filozofów w starożytności. Stały się przedmiotem analiz z racji tego, że to, co Część pierwsza  •  Rozwój koncepcji rozumu ludzkiego w filozofii Edmund Morawiec  •  Wybrane filozoficzne koncepcje rozumu ludzkiego i racjonalność oznaczały, było odpowiedzialne za wartość nowego typu poznania, które nazywano poznaniem racjonalnym. Koncentrując naszą uwagę na pojęciu rozumu w starożytności, stwierdzić należy, że w omawianej filozofii rozum wiązano zawsze z duszą, i to w dodatku najpierw z duszą świata przyrody, a dopiero w dalszym etapie rozwoju filozofii starożytnej z duszą człowieka. W pierwszym przypadku dotyczyło to reprezentantów starszej i młodszej szkoły jońskiej, w której duszę najczęściej pojmowano jako własność zasady bytu, od której wywodzono wszystko, co istnieje, a więc cały pluralizm bytowy."
+                ]
+            },
+            {
+                "question": "What determines if a philosophy or science stays within the boundaries of rationality?",
+                "answer": "NOT_FOUND",
+                "success": false,
+                "chunks": [
+                    "fakt, że ostatnia faza czasów współczesnych charakteryzuje się w filozofii tak negatywnym nastawieniem w stosunku do rozumu, że podobnego nastawienia nie spotykano w przeszłości. Mam tu na myśli filozofię postmodernistyczną, która znajduje się na pozycjach irracjonalnych zarówno w dziedzinie teoretycznej, jak i praktycznej. Gdy chodzi zaś o urabianie sobie pojęcia rozumu w naukach szczegółowych, nie stawia się pytań pod adresem umysłu i jego funkcji tak ogólnych, Część pierwsza  •  Rozwój koncepcji rozumu ludzkiego w filozofii Edmund Morawiec  •  Wybrane filozoficzne koncepcje rozumu ludzkiego i racjonalność jak czyni się to w filozofii. Nie poddaje się umysłu analizie z punktu widzenia tego, co go konstytuuje w jego naturze, ale poddaje się analizie jego funkcje z punktu widzenia ich różnych uwarunkowań. W każdej nauce szczegółowej podejmującej problematykę umysłu badane są różnego typu uwarunkowania, stąd każda z tych nauk ma właściwą sobie problematykę związaną z koncepcją ludzkiego umysłu.",
+                    "Zaprezentowane pojęcie rozumu w ujęciu funkcjonalnym niewiele nam mówi o rozumie w aspekcie statycznym, to jest od strony ontycznej. Aspekt ten wyraża się w pytaniu: co to jest rozum? Określenia rozumu z punktu widzenia funkcjonalnego dawały jedynie cząstkowe określenia umysłu z punktu widzenia ontycznego. I tak powiedziano, że rozum to „władza poznawcza”, „zdolność poznawcza”, „siła poznawcza” itp. Wszystko to jest prawdą, ale odpowiedzi te rodzą następne pytania: co to jest ta „władza”, ta „zdolność”, ta „siła”?",
+                    "Jak wynika z tego, co dotychczas powiedziano, racjonalność, według Platona, związana jest z umysłowym postrzeganiem „ładu”. Platon wyróżnił dwa pojęcia ładu – ład kosmiczny, właściwy dla każdego tego, co istnieje, charakterystyczny dla całej rzeczywistości, i ład taki, jakim on jest w swej istocie. Aby urzeczywistnić w pełni możliwości rozumu, należy ład widzieć takim, jakim on jest sam w sobie. Według Platona niedorzecznością jest myśleć o osobie jako doskonale racjonalnej, która pomimo to błędnie rozumiałaby ład. Ów ład, z którym rozum jest nieodłącznie związany, nie jest 32  Por. Ch. Taylor, Źródła podmiotowości. Narodziny tożsamości nowoczesnej, tłum. M. Gruszczyński i in., Warszawa: Wydawnictwo Naukowe PWN 2001, 231."
+                ]
+            },
+            {
+                "question": "What are the two distinguished concepts of mind mentioned?",
+                "answer": "The two distinguished concepts of mind mentioned are: \n1. przedmiotowej (objective)\n2. podmiotowej (subjective)",
+                "success": true,
+                "chunks": [
+                    "Panuje nawet przekonanie, że to właśnie z filozofii jako pierwszej postaci poznania racjonalnego, zgodnie z prawami rozwoju, zrodziły się pozafilozoficzne dziedziny poznania, zwane obecnie „naukami szczegółowymi”. Pojęcie umysłu jest fundamentalne zarówno dla filozofii, jak i nauk szczegółowych w tym sensie, że w filozofii i nauce to umysł ostatecznie rozstrzyga o charakterze tych dziedzin poznania, które jako takie dostarczają wiedzy o świecie i człowieku. Od filozoficznej i naukowej koncepcji umysłu zależy, czy dana filozofia lub nauka mieści się w granicach racjonalności, czy też granice te przekracza. Chociaż pojęcie umysłu jest w tych typach nauk przyjęte najczęściej z zewnątrz, założone, to jednak jako takie nie jest bez wpływu na stosowane w nich procesy naukotwórcze. Można więc powiedzieć, że zarówno w filozofii, jak i naukach szczegółowych koncepcja umysłu warunkuje stopień racjonalności. We wspomnianych dziedzinach poznania pojęcie rozumu jest odkrywane, a może nawet tworzone, co daje podstawy do wyróżnienia dwóch koncepcji umysłu – przedmiotowej i podmiotowej. Z racji głębokiego powiązania genetycznego, a także merytorycznego filozofii i nauk szczegółowych, jako konkretnych elementów kultury, zauważa się, że pojęcie umysłu wiąże się ściśle również z całokształtem ludzkiej kultury w tym sensie, że w dużym stopniu rozstrzyga o jej istnieniu, a przede wszystkim kształcie. Jest to zauważalne nawet przy pobieżnej analizie historii kultury. Inaczej być nie może, bowiem postawa człowieka wobec umysłu, jako twórcy kultury, z natury swojej nie jest, nie była i nie będzie obojętna wobec kultury. Jest tak, dlatego że umysł ludzki, tak lub inaczej pojęty, z natury swej stanowi siłę kierującą poznaniem teoretycznym i praktycznym, a w ten sposób całokształtem ludzkiej działalności. Nadal za taką siłę jest uważany i jako tak pojęta siła nie tylko może być, ale jest uznawany za źródło kryzysu kultury. Wszelkie kryzysy w szeroko pojętej działalności człowieka można uważać za zjawiska mniej lub bardziej bezpośrednio wiążące się z kryzysem rozumu ludzkiego i postawą wobec niego jako siły twórczej. 1  Wprowadzenie nie ma charakteru wstępu w sensie metodologicznym, ma jedynie informować o ważnych zagadnieniach ściśle związanych z pojęciem rozumu. Niektóre z nich zostaną podjęte w niniejszej rozprawie.",
+                    "W mniejszym lub większym stopniu na pytania te odpowiada się w różny sposób w różnych okresach filozofii i wypełniających je różnych systemach filozoficznych. Wiązanie pojęcia umysłu ludzkiego z filozofią, z różnymi koncepcjami filozofii, które powstały w ramach jej rozwoju, sprawiło, że słowa „umysł ludzki” i „funkcje umysłu ludzkiego” nabrały specyficznego znaczenia. W każdym z dających się wyróżnić okresów filozofii umysł ludzki wraz ze swymi funkcjami był wielorako interpretowany i różne wobec niego zajmowano postawy. Jest to zjawisko naturalne, słowo „okres filozofii” bowiem oznacza nie tylko fragment czasu rozwoju tej dziedziny poznania, ale przede wszystkim pewną dającą się, mniej lub bardziej szczegółowo, określić specyfikę zespołu rozstrzygnięć dotyczących świata przyrody, kultury i samego człowieka, „zamkniętą” w pewnych granicach czasowych. Słowo „okres filozofii” oznacza więc specyfikę zespołu rozstrzygnięć zamkniętych w pewnym określonym fragmencie czasu. Różnorodność rozstrzygnięć ocen i nastawień to nic innego jak właśnie określone kierunki filozoficzne, wypełniające przestrzeń czasową tych okresów. Można przyjąć, że w filozofii starożytnej, średniowiecznej, nowożytnej i współczesnej, w ramach różnych kierunków filozoficznych, które w tych okresach zrodziły się i funkcjonowały, spotykamy różne koncepcje ludzkiego umysłu i jego funkcji. Zjawisko to jest znaczące, rozstrzyga bowiem o sposobie patrzenia na rzeczywistość otaczającą człowieka, ludzkie poznanie tej rzeczywistości i ludzkie działanie. Posiadanie koncepcji umysłu ludzkiego wyrażone jest w takich postawach, jak radykalny empiryzm, racjonalizm oraz irracjonalizm. Postawy określone tymi nazwami występują w mniejszym lub większym napięciu prawie w każdym okresie filozofii.",
+                    "\u0007 Apriorystyczne koncepcje umysłu ludzkiego u Parmenidesa i Platona W odległej starożytności, w okresie tworzenia się racjonalnej wiedzy o świecie i człowieku, ukształtowały się oprócz empirystycznej koncepcji umysłu ludzkiego, dalsze dwie koncepcje, obie apriorystyczne."
+                ]
+            },
+            {
+                "question": "How does the concept of mind relate to human culture?",
+                "answer": "The concept of mind is closely related to human culture, as it determines its existence and shape. The attitude of humans towards the mind influences culture, and the mind is considered a driving force behind human theoretical and practical knowledge, as well as overall human activity. Additionally, crises in human activity can be linked to a crisis of human reason and the attitude towards it as a creative force.",
+                "success": true,
+                "chunks": [
+                    "W mniejszym lub większym stopniu na pytania te odpowiada się w różny sposób w różnych okresach filozofii i wypełniających je różnych systemach filozoficznych. Wiązanie pojęcia umysłu ludzkiego z filozofią, z różnymi koncepcjami filozofii, które powstały w ramach jej rozwoju, sprawiło, że słowa „umysł ludzki” i „funkcje umysłu ludzkiego” nabrały specyficznego znaczenia. W każdym z dających się wyróżnić okresów filozofii umysł ludzki wraz ze swymi funkcjami był wielorako interpretowany i różne wobec niego zajmowano postawy. Jest to zjawisko naturalne, słowo „okres filozofii” bowiem oznacza nie tylko fragment czasu rozwoju tej dziedziny poznania, ale przede wszystkim pewną dającą się, mniej lub bardziej szczegółowo, określić specyfikę zespołu rozstrzygnięć dotyczących świata przyrody, kultury i samego człowieka, „zamkniętą” w pewnych granicach czasowych. Słowo „okres filozofii” oznacza więc specyfikę zespołu rozstrzygnięć zamkniętych w pewnym określonym fragmencie czasu. Różnorodność rozstrzygnięć ocen i nastawień to nic innego jak właśnie określone kierunki filozoficzne, wypełniające przestrzeń czasową tych okresów. Można przyjąć, że w filozofii starożytnej, średniowiecznej, nowożytnej i współczesnej, w ramach różnych kierunków filozoficznych, które w tych okresach zrodziły się i funkcjonowały, spotykamy różne koncepcje ludzkiego umysłu i jego funkcji. Zjawisko to jest znaczące, rozstrzyga bowiem o sposobie patrzenia na rzeczywistość otaczającą człowieka, ludzkie poznanie tej rzeczywistości i ludzkie działanie. Posiadanie koncepcji umysłu ludzkiego wyrażone jest w takich postawach, jak radykalny empiryzm, racjonalizm oraz irracjonalizm. Postawy określone tymi nazwami występują w mniejszym lub większym napięciu prawie w każdym okresie filozofii.",
+                    "w empirycznej psychologii, zgodnie z naturą tej nauki, nie szuka się odpowiedzi na pytanie o istotę ludzkiego umysłu i jego funkcji, ale raczej dokonuje się opisu funkcji umysłowych jako swoistych zjawisk psychicznych oraz zachodzenia w nich prawidłowości. W tym badaniu chodzi nie o próbę wyjaśnienia funkcji poznawczych jako swoistych procesów psychicznych człowieka, ale o ich zewnętrzną charakterystykę. Uzyskane pojęcie umysłu w tej nauce prezentuje umysł ludzki w takim aspekcie, na jaki pozwala mu analiza psychologiczna takich zjawisk mentalnych, jakimi są zjawiska poznania. Analiza ta ze swej natury nie może dotrzeć do natury ludzkiego umysłu, stąd też trzeba mocno zaznaczyć, że psychologia empiryczna nie daje pełnego pojęcia ludzkiego umysłu.",
+                    "Panuje nawet przekonanie, że to właśnie z filozofii jako pierwszej postaci poznania racjonalnego, zgodnie z prawami rozwoju, zrodziły się pozafilozoficzne dziedziny poznania, zwane obecnie „naukami szczegółowymi”. Pojęcie umysłu jest fundamentalne zarówno dla filozofii, jak i nauk szczegółowych w tym sensie, że w filozofii i nauce to umysł ostatecznie rozstrzyga o charakterze tych dziedzin poznania, które jako takie dostarczają wiedzy o świecie i człowieku. Od filozoficznej i naukowej koncepcji umysłu zależy, czy dana filozofia lub nauka mieści się w granicach racjonalności, czy też granice te przekracza. Chociaż pojęcie umysłu jest w tych typach nauk przyjęte najczęściej z zewnątrz, założone, to jednak jako takie nie jest bez wpływu na stosowane w nich procesy naukotwórcze. Można więc powiedzieć, że zarówno w filozofii, jak i naukach szczegółowych koncepcja umysłu warunkuje stopień racjonalności. We wspomnianych dziedzinach poznania pojęcie rozumu jest odkrywane, a może nawet tworzone, co daje podstawy do wyróżnienia dwóch koncepcji umysłu – przedmiotowej i podmiotowej. Z racji głębokiego powiązania genetycznego, a także merytorycznego filozofii i nauk szczegółowych, jako konkretnych elementów kultury, zauważa się, że pojęcie umysłu wiąże się ściśle również z całokształtem ludzkiej kultury w tym sensie, że w dużym stopniu rozstrzyga o jej istnieniu, a przede wszystkim kształcie. Jest to zauważalne nawet przy pobieżnej analizie historii kultury. Inaczej być nie może, bowiem postawa człowieka wobec umysłu, jako twórcy kultury, z natury swojej nie jest, nie była i nie będzie obojętna wobec kultury. Jest tak, dlatego że umysł ludzki, tak lub inaczej pojęty, z natury swej stanowi siłę kierującą poznaniem teoretycznym i praktycznym, a w ten sposób całokształtem ludzkiej działalności. Nadal za taką siłę jest uważany i jako tak pojęta siła nie tylko może być, ale jest uznawany za źródło kryzysu kultury. Wszelkie kryzysy w szeroko pojętej działalności człowieka można uważać za zjawiska mniej lub bardziej bezpośrednio wiążące się z kryzysem rozumu ludzkiego i postawą wobec niego jako siły twórczej. 1  Wprowadzenie nie ma charakteru wstępu w sensie metodologicznym, ma jedynie informować o ważnych zagadnieniach ściśle związanych z pojęciem rozumu. Niektóre z nich zostaną podjęte w niniejszej rozprawie."
+                ]
+            },
+            {
+                "question": "What role does the human mind play in theoretical and practical cognition?",
+                "answer": "The human mind is considered a guiding force in both theoretical and practical cognition, and as such, it plays a crucial role in shaping human activity.",
+                "success": true,
+                "chunks": [
+                    "w empirycznej psychologii, zgodnie z naturą tej nauki, nie szuka się odpowiedzi na pytanie o istotę ludzkiego umysłu i jego funkcji, ale raczej dokonuje się opisu funkcji umysłowych jako swoistych zjawisk psychicznych oraz zachodzenia w nich prawidłowości. W tym badaniu chodzi nie o próbę wyjaśnienia funkcji poznawczych jako swoistych procesów psychicznych człowieka, ale o ich zewnętrzną charakterystykę. Uzyskane pojęcie umysłu w tej nauce prezentuje umysł ludzki w takim aspekcie, na jaki pozwala mu analiza psychologiczna takich zjawisk mentalnych, jakimi są zjawiska poznania. Analiza ta ze swej natury nie może dotrzeć do natury ludzkiego umysłu, stąd też trzeba mocno zaznaczyć, że psychologia empiryczna nie daje pełnego pojęcia ludzkiego umysłu.",
+                    "W mniejszym lub większym stopniu na pytania te odpowiada się w różny sposób w różnych okresach filozofii i wypełniających je różnych systemach filozoficznych. Wiązanie pojęcia umysłu ludzkiego z filozofią, z różnymi koncepcjami filozofii, które powstały w ramach jej rozwoju, sprawiło, że słowa „umysł ludzki” i „funkcje umysłu ludzkiego” nabrały specyficznego znaczenia. W każdym z dających się wyróżnić okresów filozofii umysł ludzki wraz ze swymi funkcjami był wielorako interpretowany i różne wobec niego zajmowano postawy. Jest to zjawisko naturalne, słowo „okres filozofii” bowiem oznacza nie tylko fragment czasu rozwoju tej dziedziny poznania, ale przede wszystkim pewną dającą się, mniej lub bardziej szczegółowo, określić specyfikę zespołu rozstrzygnięć dotyczących świata przyrody, kultury i samego człowieka, „zamkniętą” w pewnych granicach czasowych. Słowo „okres filozofii” oznacza więc specyfikę zespołu rozstrzygnięć zamkniętych w pewnym określonym fragmencie czasu. Różnorodność rozstrzygnięć ocen i nastawień to nic innego jak właśnie określone kierunki filozoficzne, wypełniające przestrzeń czasową tych okresów. Można przyjąć, że w filozofii starożytnej, średniowiecznej, nowożytnej i współczesnej, w ramach różnych kierunków filozoficznych, które w tych okresach zrodziły się i funkcjonowały, spotykamy różne koncepcje ludzkiego umysłu i jego funkcji. Zjawisko to jest znaczące, rozstrzyga bowiem o sposobie patrzenia na rzeczywistość otaczającą człowieka, ludzkie poznanie tej rzeczywistości i ludzkie działanie. Posiadanie koncepcji umysłu ludzkiego wyrażone jest w takich postawach, jak radykalny empiryzm, racjonalizm oraz irracjonalizm. Postawy określone tymi nazwami występują w mniejszym lub większym napięciu prawie w każdym okresie filozofii.",
+                    "Panuje nawet przekonanie, że to właśnie z filozofii jako pierwszej postaci poznania racjonalnego, zgodnie z prawami rozwoju, zrodziły się pozafilozoficzne dziedziny poznania, zwane obecnie „naukami szczegółowymi”. Pojęcie umysłu jest fundamentalne zarówno dla filozofii, jak i nauk szczegółowych w tym sensie, że w filozofii i nauce to umysł ostatecznie rozstrzyga o charakterze tych dziedzin poznania, które jako takie dostarczają wiedzy o świecie i człowieku. Od filozoficznej i naukowej koncepcji umysłu zależy, czy dana filozofia lub nauka mieści się w granicach racjonalności, czy też granice te przekracza. Chociaż pojęcie umysłu jest w tych typach nauk przyjęte najczęściej z zewnątrz, założone, to jednak jako takie nie jest bez wpływu na stosowane w nich procesy naukotwórcze. Można więc powiedzieć, że zarówno w filozofii, jak i naukach szczegółowych koncepcja umysłu warunkuje stopień racjonalności. We wspomnianych dziedzinach poznania pojęcie rozumu jest odkrywane, a może nawet tworzone, co daje podstawy do wyróżnienia dwóch koncepcji umysłu – przedmiotowej i podmiotowej. Z racji głębokiego powiązania genetycznego, a także merytorycznego filozofii i nauk szczegółowych, jako konkretnych elementów kultury, zauważa się, że pojęcie umysłu wiąże się ściśle również z całokształtem ludzkiej kultury w tym sensie, że w dużym stopniu rozstrzyga o jej istnieniu, a przede wszystkim kształcie. Jest to zauważalne nawet przy pobieżnej analizie historii kultury. Inaczej być nie może, bowiem postawa człowieka wobec umysłu, jako twórcy kultury, z natury swojej nie jest, nie była i nie będzie obojętna wobec kultury. Jest tak, dlatego że umysł ludzki, tak lub inaczej pojęty, z natury swej stanowi siłę kierującą poznaniem teoretycznym i praktycznym, a w ten sposób całokształtem ludzkiej działalności. Nadal za taką siłę jest uważany i jako tak pojęta siła nie tylko może być, ale jest uznawany za źródło kryzysu kultury. Wszelkie kryzysy w szeroko pojętej działalności człowieka można uważać za zjawiska mniej lub bardziej bezpośrednio wiążące się z kryzysem rozumu ludzkiego i postawą wobec niego jako siły twórczej. 1  Wprowadzenie nie ma charakteru wstępu w sensie metodologicznym, ma jedynie informować o ważnych zagadnieniach ściśle związanych z pojęciem rozumu. Niektóre z nich zostaną podjęte w niniejszej rozprawie."
+                ]
+            },
+            {
+                "question": "Is the attitude of humans towards the mind indifferent to culture?",
+                "answer": "NOT_FOUND",
+                "success": false,
+                "chunks": [
+                    "W mniejszym lub większym stopniu na pytania te odpowiada się w różny sposób w różnych okresach filozofii i wypełniających je różnych systemach filozoficznych. Wiązanie pojęcia umysłu ludzkiego z filozofią, z różnymi koncepcjami filozofii, które powstały w ramach jej rozwoju, sprawiło, że słowa „umysł ludzki” i „funkcje umysłu ludzkiego” nabrały specyficznego znaczenia. W każdym z dających się wyróżnić okresów filozofii umysł ludzki wraz ze swymi funkcjami był wielorako interpretowany i różne wobec niego zajmowano postawy. Jest to zjawisko naturalne, słowo „okres filozofii” bowiem oznacza nie tylko fragment czasu rozwoju tej dziedziny poznania, ale przede wszystkim pewną dającą się, mniej lub bardziej szczegółowo, określić specyfikę zespołu rozstrzygnięć dotyczących świata przyrody, kultury i samego człowieka, „zamkniętą” w pewnych granicach czasowych. Słowo „okres filozofii” oznacza więc specyfikę zespołu rozstrzygnięć zamkniętych w pewnym określonym fragmencie czasu. Różnorodność rozstrzygnięć ocen i nastawień to nic innego jak właśnie określone kierunki filozoficzne, wypełniające przestrzeń czasową tych okresów. Można przyjąć, że w filozofii starożytnej, średniowiecznej, nowożytnej i współczesnej, w ramach różnych kierunków filozoficznych, które w tych okresach zrodziły się i funkcjonowały, spotykamy różne koncepcje ludzkiego umysłu i jego funkcji. Zjawisko to jest znaczące, rozstrzyga bowiem o sposobie patrzenia na rzeczywistość otaczającą człowieka, ludzkie poznanie tej rzeczywistości i ludzkie działanie. Posiadanie koncepcji umysłu ludzkiego wyrażone jest w takich postawach, jak radykalny empiryzm, racjonalizm oraz irracjonalizm. Postawy określone tymi nazwami występują w mniejszym lub większym napięciu prawie w każdym okresie filozofii.",
+                    "w empirycznej psychologii, zgodnie z naturą tej nauki, nie szuka się odpowiedzi na pytanie o istotę ludzkiego umysłu i jego funkcji, ale raczej dokonuje się opisu funkcji umysłowych jako swoistych zjawisk psychicznych oraz zachodzenia w nich prawidłowości. W tym badaniu chodzi nie o próbę wyjaśnienia funkcji poznawczych jako swoistych procesów psychicznych człowieka, ale o ich zewnętrzną charakterystykę. Uzyskane pojęcie umysłu w tej nauce prezentuje umysł ludzki w takim aspekcie, na jaki pozwala mu analiza psychologiczna takich zjawisk mentalnych, jakimi są zjawiska poznania. Analiza ta ze swej natury nie może dotrzeć do natury ludzkiego umysłu, stąd też trzeba mocno zaznaczyć, że psychologia empiryczna nie daje pełnego pojęcia ludzkiego umysłu.",
+                    "Wprowadzenie1 Filozofia jako część kultury, jako jedna z dziedzin ludzkiego poznania, nie jest tworem statycznym, niepodlegającym zmianie. Przeciwnie, jest tworem dynamicznym, ciągle się rozwijającym."
+                ]
+            },
+            {
+                "question": "According to the text, what decides the existence and shape of culture?",
+                "answer": "NOT_FOUND",
+                "success": false,
+                "chunks": [
+                    "Jedność substancjalna człowieka, w którym rozum tkwi jako w swym podłożu, nie jest strukturą wspólną, ale jednostkową. Jest tak, dlatego że forma substancjalna każdego człowieka jest indywidualna i różna. Jest stworzona przez Boga dla każdego człowieka odrębnym aktem stwórczym, dodajmy – indywidualnym. Konsekwencją takiego boskiego działania jest to, że każdy człowiek posiada indywidualną duszę, a w następstwie tego stanowi niepowtarzalne indywiduum. Można więc sądzić, niebezpodstawnie, że i rozum jednostki ludzkiej jako element strukturalny ludzkiej duszy w relacji do drugiego rozumu ludzkiego jest w relacji niepowtarzalnej. Taka koncepcja rozumu funkcjonowała do czasów średniowiecza do czasów, w których nastąpiła zmiana pojęcia bytu jako bytu, a w związku z tym zmiana koncepcji substancji. Część pierwsza  •  Rozwój koncepcji rozumu ludzkiego w filozofii Edmund Morawiec  •  Wybrane filozoficzne koncepcje rozumu ludzkiego i racjonalność",
+                    "Wprowadzenie1 Filozofia jako część kultury, jako jedna z dziedzin ludzkiego poznania, nie jest tworem statycznym, niepodlegającym zmianie. Przeciwnie, jest tworem dynamicznym, ciągle się rozwijającym.",
+                    "Wydaje się, że w filozofii Arystotelesa można przyjąć tezę o indywidualizacji rozumu ludzkiego. Jest tak, ponieważ ludzka forma substancjalna, sprowadzająca się do „duszy”, jest zindywidualizowana tak, jak to jest w przypadku filozofii Tomasza. Forma substancjalna, ludzka w filozofii Arystotelesa jest czynnikiem wyznaczającym indywidualizację gatunkową człowieka. Wpływa ona na jednostkowość bytu ludzkiego łącznie z materią. Jako dusza ludzka jest ostateczną racją charakteru rozumu u człowieka."
+                ]
+            },
+            {
+                "question": "What does the text say about the genetic and substantive connection between philosophy and detailed sciences?",
+                "answer": "The text states that there is a \"głębokie powiązanie genetyczne, a także merytoryczne\" (deep genetic and substantive connection) between philosophy and detailed sciences, as elements of culture.",
+                "success": true,
+                "chunks": [
+                    "Panuje nawet przekonanie, że to właśnie z filozofii jako pierwszej postaci poznania racjonalnego, zgodnie z prawami rozwoju, zrodziły się pozafilozoficzne dziedziny poznania, zwane obecnie „naukami szczegółowymi”. Pojęcie umysłu jest fundamentalne zarówno dla filozofii, jak i nauk szczegółowych w tym sensie, że w filozofii i nauce to umysł ostatecznie rozstrzyga o charakterze tych dziedzin poznania, które jako takie dostarczają wiedzy o świecie i człowieku. Od filozoficznej i naukowej koncepcji umysłu zależy, czy dana filozofia lub nauka mieści się w granicach racjonalności, czy też granice te przekracza. Chociaż pojęcie umysłu jest w tych typach nauk przyjęte najczęściej z zewnątrz, założone, to jednak jako takie nie jest bez wpływu na stosowane w nich procesy naukotwórcze. Można więc powiedzieć, że zarówno w filozofii, jak i naukach szczegółowych koncepcja umysłu warunkuje stopień racjonalności. We wspomnianych dziedzinach poznania pojęcie rozumu jest odkrywane, a może nawet tworzone, co daje podstawy do wyróżnienia dwóch koncepcji umysłu – przedmiotowej i podmiotowej. Z racji głębokiego powiązania genetycznego, a także merytorycznego filozofii i nauk szczegółowych, jako konkretnych elementów kultury, zauważa się, że pojęcie umysłu wiąże się ściśle również z całokształtem ludzkiej kultury w tym sensie, że w dużym stopniu rozstrzyga o jej istnieniu, a przede wszystkim kształcie. Jest to zauważalne nawet przy pobieżnej analizie historii kultury. Inaczej być nie może, bowiem postawa człowieka wobec umysłu, jako twórcy kultury, z natury swojej nie jest, nie była i nie będzie obojętna wobec kultury. Jest tak, dlatego że umysł ludzki, tak lub inaczej pojęty, z natury swej stanowi siłę kierującą poznaniem teoretycznym i praktycznym, a w ten sposób całokształtem ludzkiej działalności. Nadal za taką siłę jest uważany i jako tak pojęta siła nie tylko może być, ale jest uznawany za źródło kryzysu kultury. Wszelkie kryzysy w szeroko pojętej działalności człowieka można uważać za zjawiska mniej lub bardziej bezpośrednio wiążące się z kryzysem rozumu ludzkiego i postawą wobec niego jako siły twórczej. 1  Wprowadzenie nie ma charakteru wstępu w sensie metodologicznym, ma jedynie informować o ważnych zagadnieniach ściśle związanych z pojęciem rozumu. Niektóre z nich zostaną podjęte w niniejszej rozprawie.",
+                    "W mniejszym lub większym stopniu na pytania te odpowiada się w różny sposób w różnych okresach filozofii i wypełniających je różnych systemach filozoficznych. Wiązanie pojęcia umysłu ludzkiego z filozofią, z różnymi koncepcjami filozofii, które powstały w ramach jej rozwoju, sprawiło, że słowa „umysł ludzki” i „funkcje umysłu ludzkiego” nabrały specyficznego znaczenia. W każdym z dających się wyróżnić okresów filozofii umysł ludzki wraz ze swymi funkcjami był wielorako interpretowany i różne wobec niego zajmowano postawy. Jest to zjawisko naturalne, słowo „okres filozofii” bowiem oznacza nie tylko fragment czasu rozwoju tej dziedziny poznania, ale przede wszystkim pewną dającą się, mniej lub bardziej szczegółowo, określić specyfikę zespołu rozstrzygnięć dotyczących świata przyrody, kultury i samego człowieka, „zamkniętą” w pewnych granicach czasowych. Słowo „okres filozofii” oznacza więc specyfikę zespołu rozstrzygnięć zamkniętych w pewnym określonym fragmencie czasu. Różnorodność rozstrzygnięć ocen i nastawień to nic innego jak właśnie określone kierunki filozoficzne, wypełniające przestrzeń czasową tych okresów. Można przyjąć, że w filozofii starożytnej, średniowiecznej, nowożytnej i współczesnej, w ramach różnych kierunków filozoficznych, które w tych okresach zrodziły się i funkcjonowały, spotykamy różne koncepcje ludzkiego umysłu i jego funkcji. Zjawisko to jest znaczące, rozstrzyga bowiem o sposobie patrzenia na rzeczywistość otaczającą człowieka, ludzkie poznanie tej rzeczywistości i ludzkie działanie. Posiadanie koncepcji umysłu ludzkiego wyrażone jest w takich postawach, jak radykalny empiryzm, racjonalizm oraz irracjonalizm. Postawy określone tymi nazwami występują w mniejszym lub większym napięciu prawie w każdym okresie filozofii.",
+                    "Stępień, Wstęp do filozofii, Lublin: Wydawnictwo KUL 1989, 20. Część pierwsza  •  Rozwój koncepcji rozumu ludzkiego w filozofii Edmund Morawiec  •  Wybrane filozoficzne koncepcje rozumu ludzkiego i racjonalność W powyższych ujęciach spotykamy różne koncepcje umysłowej władzy poznawczej łącznie z rozumem. Pojęcie umysłowej władzy poznawczej, a także rozumu właściwe sobie znaczenia czerpią z takich właśnie założeń, jak wyżej przedstawiono. W takim też aspekcie dokonana zostanie niniejsza refleksja nad umysłową władzą poznawczą, a w tym także nad rozumem, z uwzględnieniem poszczególnych epok historycznych wraz z ich głównymi reprezentantami."
+                ]
+            }
+        ]
+    },
+    {
+        "document": "hobbit.pdf",
+        "method": "fixed",
+        "chunk_count": 2641,
+        "avg_chunk_length": 249.61643316925407,
+        "evaluations": [
+            {
+                "question": "Jakiego koloru były drzwi do nory Bilba Bagginsa?",
+                "answer": "NOT_FOUND",
+                "success": false,
+                "chunks": [
+                    "aczne śniadanko. Słońce tymczasem już świeciło jasno, a przez otwarte drzwi wejściowe płynął do wnętrza ciepły, kwietniowy powiew. Bilbo zaczął głośno gwizdać i zapominać o zdarzeniach poprzedniego wieczora. Właśnie zasiadł pod otwartym oknem jadalni",
+                    "się z kopca po drugiej stronie i światło jego pochodni znikło z pola widzenia czatujących krasnoludów. Wkrótce jednak znów im błysnęło w oddali. Bilbo posuwał się teraz dnem pieczary. Szedł naprzód, aż dotarł do wielkich drzwi w przeciwległej ścianie",
+                    "był podniecony, by o czymś takim pomyśleć. Gdy zbliżała się pora podwieczorku, u drzwi wejściowych przenikliwie zadźwięczał dzwonek i wtedy dopiero Bilbo przypomniał sobie wszystko. Pędem pobiegł nastawić imbryk, do nakrycia dodał drugą filiżankę i t"
+                ]
+            },
+            {
+                "question": "Kim byli rodzice Bilba Bagginsa?",
+                "answer": "Matką Bilba Bagginsa była Belladonna Tuk, lecz ojcu nie ma wzmianki.",
+                "success": true,
+                "chunks": [
+                    "po obiedzie, który — w miarę możności — jadają dwa razy dziennie). Teraz jeż wiecie o nich dość na początek. Jak więc mówiłem, matką naszego hobbita — to jest Bilba Bagginsa — była słynna Belladonna Tuk, jedna z trzech niepospolitych córek Starego Tu",
+                    "życia nie uznali Bilba Bagginsa, który powrócił, za prawdziwego Bilba Bagginsa i nie utrzymywali z nim stosunków. Wielką mieli doprawdy ochotę mieszkać w jego ślicznej norce. Ale Bilbo miał wkrótce przekonać się, że stracił coś więcej niż srebrne łyż",
+                    "im są twoi towarzysze? — spytał wskazując Fila, Kila i Bilba. — Ci dwaj to synowie córki mojego ojca — odparł Thorin — Fili i Kili z rodu Durina. A to jest pan Baggins, który wraz z nami odbył podróż z zachodu. — Jeżeli przychodzicie w pokojowych zam"
+                ]
+            },
+            {
+                "question": "Jaki znak Gandalf wydrapał na drzwiach hobbita?",
+                "answer": "Dziwaczny znak.",
+                "success": true,
+                "chunks": [
+                    "tym strachu. Gandalf tymczasem wciąż jeszcze stał za drzwiami i śmiał się dość długo, chociaż cichutko. Po chwili podszedł bliżej i ostrzem laski wyskrobał na pięknych, zielonych drzwiach frontowych hobbita jakiś dziwaczny znak. Odszedł potem, w tym",
+                    "i. — Wybacz! — rzekł hobbit i pobiegł go drzwi. „A więc jesteś nareszcie” — chciał zawołać, pewny, że tym razem ujrzy Gandalfa. Ale to nie był Gandalf. Zamiast niego ukazał się w progu bardzo stary krasnolud z białą brodą, w czerwonym kapturze; ten r",
+                    "udy, czwórka! A za ich plecami stał Gandalf oparty o laskę i śmiał się głośno. Wydrapał laską porządną szramę w pięknych drzwiach, a przy tej sposobności zatarł tajemniczy znak, który na nich zrobił poprzedniego ranka. — Ostrożnie, ostrożnie! — rzekł"
+                ]
+            },
+            {
+                "question": "Jaki udział w zyskach obiecano Bilbowi w liście od Thorina?",
+                "answer": "czternastej części całego zysku",
+                "success": true,
+                "chunks": [
+                    "gwarantuje mi ten list; na szczęście mam go chyba przy sobie. — Tu Bilbo z kieszeni starej kurtki (wciąż jeszcze nosił ją na zbroi) wyciągnął zmięty i złożony kilkakrotnie list Thorina, ten sam list, który znalazł w maju pod zegarem na kominku. — Pro",
+                    "e, jeszcze zmieni. — Być może — powiedział Thorin. A tak potężnie owładnął nim już czar bogactw, że w głębi serca przemyśliwał, czyby z pomocą Daina nie udało się odbić klejnotu nie płacąc w zamian umówionej części skarbu. Bilbo spuścił się po murze",
+                    "zytał: Od Thorin i kompanii pozdrowienie dla włamywacza Bilba! Za gościnę serdeczne dzięki, a Twoją ofertę fachowej pomocy chętnie przyjmujemy. Warunki: zapłata przy dostawie w wysokości nie przekraczającej czternastej części całego zysku (jeżeli w o"
+                ]
+            },
+            {
+                "question": "Jak nazywały się trzy trolle, które schwytały krasnoludy?",
+                "answer": "NOT_FOUND",
+                "success": false,
+                "chunks": [
+                    "skończona. Nie ma co mówić, krasnoludy wpadły okropnie: wszystkie znalazły się w workach, mocno zawiązanych postronkiem, a trzech wściekłych trollów — z których dwaj na dobitkę byli poparzeni i posiniaczeni — radziło nad nimi, czy ich upiec na wolnym",
+                    "ącie, a worki i pakunki były pootwierany; gobliny przetrząsały rzeczy, obwąchiwały, obmacywały wszystko i kłóciły się o łup. Obawiam się, że po raz ostatni wówczas krasnoludy oglądały swoje dzielne, małe kuce, a między nimi ślicznego, krzepkiego siwk",
+                    "na; wkrótce też pięć kapturów: dwa purpurowe, jeden szary, jeden brązowy i jeden biały — zawisło na kołkach, krasnoludy zaś zatknąwszy krzepkie dłonie za złote i srebrne pasy, ruszyły do jadalni. Zebrała się tam już spora gromada. Ten wołał o piwo, t"
+                ]
+            },
+            {
+                "question": "Co Elrond odczytał na mapie dzięki światłu księżyca?",
+                "answer": "Elrond odczytał na mapie dzięki światłu księżyca litery księżycowe, które były niewidoczne w zwykłych warunkach. Konkretnie, odczytał informację, że drzwi są wysokie na pięć stóp i mogą zmieścić trzech osób wszerz.",
+                "success": true,
+                "chunks": [
+                    "chociaż sam pisząc stawiał litery jakby pajęcze i chuderlawe. — Litery księżycowe to także runy, ale niewidoczne w zwykłych warunkach — wyjaśnił Elrond. — Żeby je zobaczyć, trzeba patrzeć pod księżyc, a co więcej, gdy chodzi o runy bardzo sekretne,",
+                    "go wieczora szerokim sierpem. Elrond podniósł mapę tak, że biała poświata przeświecała przez pergamin. — A to co? — rzekł. — Oprócz zwykłych runów, które mówią: „drzwi wysokie na pięć stóp, trzech zmieści się wszerz” — widzę tu litery księżycowe. — C",
+                    "ni! Często sięgałpo mapę Thorina i wpatrywał się w nią, rozmyślając nad runami i wskazówką, którą Elrond wyczytał z księżycowego pisma. I nie kto inny, lecz właśnie pan Baggins namówił krasnoludów, żeby zabrali się do niebezpiecznych poszukiwań tajem"
+                ]
+            },
+            {
+                "question": "Jak Bilbo nazwał swój mieczyk po zabiciu pająka?",
+                "answer": "NOT_FOUND",
+                "success": false,
+                "chunks": [
+                    "ra rękami, tamten zaś usiłował obezwładnić go trucizną, jak to robią małe pająki z muchami; Bilbo jednak przypomniał sobie, że ma u boku mieczyk, i dobył go z pochwy. Pająk odskoczył, a hobbit błyskawicznie przeciął więzy krępujące mu nogi. Z kolei s",
+                    "który korzystając z drzemki Bilba oplótł go swoją siecią, wysunął się zza jego pleców. Bilbo widział tylko oczy napastnika, lecz czuł dotyk włochatych nóg, gdy pająk pracowicie owijał go całego obrzydliwą nicią. Na szczęście hobbit ocknął się w porę",
+                    "icznie przeciął więzy krępujące mu nogi. Z kolei sam zaatakował. Pająk najwidoczniej nigdy dotąd nie spotkał stworzenia uzbrojonego w tak groźne żądło; gdyby nie brak doświadczenia, umykałby z pewnością szybciej. Bilbo dopadł go, nim zniknął w ciemno"
+                ]
+            },
+            {
+                "question": "W jaki sposób krasnoludy uciekły z więzienia króla leśnych elfów?",
+                "answer": "NOT_FOUND",
+                "success": false,
+                "chunks": [
+                    "dziejskim sposobem, lecz niekiedy udawało mu się wymknąć przez nie, jeśli się pośpieszył. Gromady elfów z królem na czele od czasu do czasu wyprawiały się na polowanie lub za jakimiś innymi sprawami do lasu czy też na otwarte przestrzenie za jego wsc",
+                    ". Daleko w głąb Mrocznej Puszczy biegła nowina: „Smaug nie żyje!” Liście szeleściły, zwierzęta nastawiały uszu w zdumieniu. Nim jeszcze król elfów wyruszył ze swej siedziby, wieść dotarła na zachód od sosnowego boru w Górach Mglistych. Usłyszał ją ta",
+                    "ony jak flisacy ze służby króla elfów, siedzący na szarym końcu. Cisnąc się do władcy miasta krzyczeli: — To jeńcy naszego króle, którzy zbiegli z niewoli, włóczęgi, wędrowne krasnoludy! Nie umieli się wytłumaczyć, dlaczego przekradają się lasami i n"
+                ]
+            },
+            {
+                "question": "Kto i jaką bronią zabił smoka Smauga?",
+                "answer": "Bard z rodu Giri, strzałą z łuku.",
+                "success": true,
+                "chunks": [
+                    "ielkiego plemienia Durina, które niegdyś tutaj mieszkało, a dziś rozproszyło się po świecie. Jeśli chcecie posłyszeć moja radę, ufajcie nie władcy Miasta na Jeziorze, lecz raczej temu człowiekowi, który strzałą z łuku zabił smoka. To Bard z rodu Giri",
+                    "e, jak się ta historia skończy. „Oddałbym cały worek tych cennych pucharów — myślał — za jeden pokrzepiający łyk z drewnianego kubka Beorna”. — Thorinie! — krzyknął głośno. — Co dalej? Jesteśmy uzbrojeni, ale czy kiedykolwiek zbroja pomogła komu w wa",
+                    "y i wymordował większość wojowników; zwykła, nieszczęsna historia, aż nazbyt pospolita w tamtych czasach. Smok zawrócił do Głównej Bramy, wpełznął do środka, splądrował wszystkie hale, uliczki, tunele, zaułki, piwnice, mieszkania i korytarze. Nie zos"
+                ]
+            },
+            {
+                "question": "Co Bilbo zastał w swoim domu po powrocie z wyprawy?",
+                "answer": "NOT_FOUND",
+                "success": false,
+                "chunks": [
+                    "akiełkować. Okazja jednak się nie nadarzyła, aż Bilbo dorósł, skończył pięćdziesiąt lat czy coś koło tego, zamieszkał w pięknej hobbickiej norze zbudowanej przez ojca, w norze, którą wam już opisałem i — jak się zdawało — osiadł w swoim domu na dobre",
+                    "zawróciły do drzwi, których strzegły. Bilbo uciekł. Z PATELNI W OGIEŃ B ilbo umknął wprawdzie goblinom, ale nie miał pojęcia, gdzie jest. Stracił kaptur, płaszcz, prowianty, kuca, guziki i kompanię. Szedł naprzód, naprzód, póki słońce nie zaczęło chy",
+                    "unikną końca — rzekł Bilbo i odwrócił a plecami do kraju przygód. Krew Tuków znużyła się, krew Bagginsów z każdym dniem wzbierała silniej w jego żyłach. — Teraz marzę już tylko o moim wygodnym fotelu — powiedział Bilbo. OSTATNI AKT B ył pierwszy dzi"
+                ]
+            }
+        ]
+    },
+    {
+        "document": "hobbit.pdf",
+        "method": "semantic",
+        "chunk_count": 2554,
+        "avg_chunk_length": 205.7752545027408,
+        "evaluations": [
+            {
+                "question": "Jakiego koloru były drzwi do nory Bilba Bagginsa?",
+                "answer": "Zielone.",
+                "success": true,
+                "chunks": [
+                    "Miała drzwi doskonale okrągłe jak okienko okrętowe, pomalowane na zielono, z lśniącą, żółtą mosiężną klamką, sterczącą dokładnie pośrodku. Drzwi prowadziły do hallu, który miał kształt rury i wyglądał jak tunel: był to bardzo wygodny tunel, nie zadymiony, z boazerią na ścianach i chodnikiem na kafelkowej podłodze; nie brakowało tu politurowanych krzeseł ani mnóstwa wieszaków na kapelusze i płaszcze, bo hobbit bardzo lubił gości. Tunel wił się w skrętach, wił się i wił, wdrążając się głęboko, choć wcale nie prostą drogą, we wnętrze pagórka — a raczej: Pagórka, bo tak go nazywano w promieniu wielu mil — a mnóstwo okrągłych drzwiczek otwierało się to po jednej, to po drugiej jego stronie.",
+                    "I z ciemności łakomie zerkał na Bilba.",
+                    "Bilbo już widział otwarty świat: kilka stopni skalnych prowadziło w dół, do wąskiej doliny między dwiema wysokimi ścianami gór. Słońce wyjrzało zza chmury i świeciło jasno po drugiej stronie tych drzwi, ale Bilbo nie mógł się z nich wydostać. Nagle któryś z goblinów we wnętrzu pieczary krzyknął: — Widzę jakiś cień pod drzwiami! Ktoś za nimi stoi!"
+                ]
+            },
+            {
+                "question": "Kim byli rodzice Bilba Bagginsa?",
+                "answer": "NOT_FOUND",
+                "success": false,
+                "chunks": [
+                    "Jeśli o mnie chodzi, podejrzewam Bagginsów z Sackville; ci do końca życia nie uznali Bilba Bagginsa, który powrócił, za prawdziwego Bilba Bagginsa i nie utrzymywali z nim stosunków.",
+                    "— Nazywam się Bilbo Baggins.",
+                    "— Bilbo Baggins! — rzekł."
+                ]
+            },
+            {
+                "question": "Jaki znak Gandalf wydrapał na drzwiach hobbita?",
+                "answer": "NOT_FOUND",
+                "success": false,
+                "chunks": [
+                    "— To rzekłszy hobbit zrobił w tył zwrot, skoczył do wnętrza nory przez okrągłe, zielone drzwiczki, które zatrzasnął za sobą pośpiesznie, nie tak jednak pośpiesznie, by Gandalf mógł się poczuć dotknięty. Bądź co bądź czarodziej to czarodziej.",
+                    "— rzekł hobbit i pobiegł go drzwi. „A więc jesteś nareszcie” — chciał zawołać, pewny, że tym razem ujrzy Gandalfa. Ale to nie był Gandalf. Zamiast niego ukazał się w progu bardzo stary krasnolud z białą brodą, w czerwonym kapturze; ten również skoczył skwapliwie w uchylone drzwi, jakby został zaproszony. — Zaczynają się, jak widzę, schodzić — powiedział, spostrzegając na kołku zielony kaptur Dwalina, i powiesił w najbliższym sąsiedztwie swój, czerwony. — Balin, do usług — rzekł kładąc rękę na piersi. — Dziękuję — rzekł Bilbo, któremu zdumienie dech zaparło. Nie była to wcale stosowna odpowiedź, lecz słowa „zaczynają się schodzić” zrobiły na nim wstrząsające wrażenie.",
+                    "Gandalf tymczasem wciąż jeszcze stał za drzwiami i śmiał się dość długo, chociaż cichutko. Po chwili podszedł bliżej i ostrzem laski wyskrobał na pięknych, zielonych drzwiach frontowych hobbita jakiś dziwaczny znak. Odszedł potem, w tym samym momencie, gdy Bilbo, kończąc drugi kawałek ciasta, nabrał przeświadczenia, że bardzo sprytnie wymigał się od wszelkich przygód."
+                ]
+            },
+            {
+                "question": "Jaki udział w zyskach obiecano Bilbowi w liście od Thorina?",
+                "answer": "NOT_FOUND",
+                "success": false,
+                "chunks": [
+                    "W takim razie — rzekł Thorin — niech rzeczoznawca-włamywacz przedstawi nam swoje pomysły i propozycje. I Thorin z drwiącą uprzejmością zwrócił się do hobbita. — Najpierw chciałbym się czegoś więcej o tej sprawie dowiedzieć — rzekł Bilbo, bardzo zmieszany i trochę drżący w głębi serca, lecz wciąż jeszcze, jak przystało na potomka Tuków, niezachwiany w postanowieniu, ze weźmie udział w przygodzie.",
+                    "— zakończył podając mapę Thorinowi. — Nie rozumiem — rzekł Thorin, a Bilbo pomyślał, że chętnie powiedziałby to samo.",
+                    "— rzekł Thorin, gdy Bilbo otworzył celę i wywołał go szeptem na korytarz."
+                ]
+            },
+            {
+                "question": "Jak nazywały się trzy trolle, które schwytały krasnoludy?",
+                "answer": "NOT_FOUND",
+                "success": false,
+                "chunks": [
+                    "Nie ma co mówić, krasnoludy wpadły okropnie: wszystkie znalazły się w workach, mocno zawiązanych postronkiem, a trzech wściekłych trollów — z których dwaj na dobitkę byli poparzeni i posiniaczeni — radziło nad nimi, czy ich upiec na wolnym ogniu, czy posiekać w drobną kostkę i ugotować, czy po prostu, siadając kolejno na workach, zmiażdżyć na galaretę.",
+                    "— Znalazłem to na ziemi, kiedy trolle biły się między sobą.",
+                    "Stali przed strzelistą, sklepioną bramą, na której znać było jeszcze tu i ówdzie resztki starych rzeźb, chociaż zdartych, popękanych i sczerniałych. Przymglone słońce słało blade promienie między dwa ramiona Góry, snopy złotego blasku padały na kamienny próg. Nad głowami krasnoludów przemknął rój nietoperzy, zbudzonych i spłoszonych światłem pochodni. Rzucili się wszyscy naprzód, ślizgając się na kamieniach wygładzonych i lepkich po przejściu smoka. Woda, rozbryzgując się pieniście, spadała z hukiem w dolinę. Cisnęli na ziemie niepotrzebna już łuczywa i stanęli olśnieni."
+                ]
+            },
+            {
+                "question": "Co Elrond odczytał na mapie dzięki światłu księżyca?",
+                "answer": "Elrond odczytał na mapie: \"Stań na szarym głazie, kiedy drozd dziobem zastuka — a zachodzące słońce ostatnim promieniem dnia Durina wskaże ci dziurkę od klucza. — Durin, Durin!\"",
+                "success": true,
+                "chunks": [
+                    "Często sięgałpo mapę Thorina i wpatrywał się w nią, rozmyślając nad runami i wskazówką, którą Elrond wyczytał z księżycowego pisma.",
+                    "— Nic, co dałoby się odczytać przy tym księżycu — odparł Elrond i zwrócił mapę Thorinowi.",
+                    "— spytali jednocześnie Gandalf i Thorin, obaj trochę może dotknięci, że nie któryś z nich, lecz Elrond pierwszy odkrył tajemnicę; co prawda w inne dni nikt nie mógł był odczytać runów księżycowych, tak jak dziś nie mógł zgadnąć, kiedy zdarzy się znów po temu okazja. — Stań na szarym głazie, kiedy drozd dziobem zastuka — czytał Elrond — a zachodzące słońce ostatnim promieniem dnia Durina wskaże ci dziurkę od klucza. — Durin, Durin!"
+                ]
+            },
+            {
+                "question": "Jak Bilbo nazwał swój mieczyk po zabiciu pająka?",
+                "answer": "NOT_FOUND",
+                "success": false,
+                "chunks": [
+                    "Jeszcze chwila, a nie mógłby poruszyć bodaj jednym palcem, i tak musiał stoczyć ciężką walkę, nim się wyzwolił. Najpierw zaczął bić wstrętnego potwora rękami, tamten zaś usiłował obezwładnić go trucizną, jak to robią małe pająki z muchami; Bilbo jednak przypomniał sobie, że ma u boku mieczyk, i dobył go z pochwy. Pająk odskoczył, a hobbit błyskawicznie przeciął więzy krępujące mu nogi.",
+                    "Bo nim Bilbo uzbierał dość kamieni, pająk dostał się na gałąź Bombura i już gotował się go zabić. W tym okamgnieniu Bilbo cisnął kamieniem. Trafił prosto w głowę.",
+                    "Nagle Bilbo spostrzegł, że kilka pająków otoczyło starego Bombura leżącego na ziemi i spętawszy go po raz wtóry, usiłuje porwać z sobą. Bilbo krzyknął i z mieczem rzucił się na pająki, które miał przed sobą. Cofnęły się w popłochu, a hobbit zsunął się po pniu do stóp drzewa, w sam środek zgromadzonych wokół Bombura wrogów."
+                ]
+            },
+            {
+                "question": "W jaki sposób krasnoludy uciekły z więzienia króla leśnych elfów?",
+                "answer": "NOT_FOUND",
+                "success": false,
+                "chunks": [
+                    "Gromady elfów z królem na czele od czasu do czasu wyprawiały się na polowanie lub za jakimiś innymi sprawami do lasu czy też na otwarte przestrzenie za jego wschodnią granicą. Wówczas Bilbo, jeżeli się dobrze uwinął, mógł wyśliznąć się za elfami, chociaż zawsze było to niebezpieczne przedsięwzięcie. Raz i drugi omal nie zmiażdżyły go drzwi, zatrzaskujące się natychmiast po przejściu ostatniego elfa. Wmieszać się między elfy nie śmiał, bojąc się, że dostrzegą jego cień (jakkolwiek bardzo nikły i drżący w blasku pochodni) albo że któryś potknie się o niego i w ten sposób odkryje jego obecność. Nieczęsto więc wychodził z groty, a nawet gdy mu się to udawało, niewiele z tego miał pożytku. Nie chciał opuścić przyjaciół, nie wiedział też, jak by sobie bez nich poradził na świecie. Nie mógł dotrzymać kroku elfom na łowach, toteż nie zdołał odkryć drogi, która by go wyprowadziła z lasu; musiał włóczyć się biedak w pobliżu groty, wyczekując na sposobność powrotu do jej wnętrza. Poza nią głodował, ponieważ nie był myśliwym, lecz w grocie zdobywał pożywienie, kradnąc je po prostu ze spiżarni lub ze stołu, gdy nikogo nie było w pobliżu. „Jestem jak włamywacz, który nie może się wydostać i jest zmuszony okradać dzień po dniu wciąż ten sam dom — myślał. — Oto najobrzydliwsze, najnudniejsze zdarzenie z całej tej nieszczęsnej, męczącej, dokuczliwej przygody! Jakże bym chciał znaleźć się znowu w mojej własnej norce, przy ciepłym kominku i jasnej lampie!” Często też żałował, że nie może wezwać czarodzieja na ratunek, ale oczywiście nie było sposobu; wkrótce zrozumiał, że jeśli jest jakaś rada, musi ją znaleźć sam pan Baggins, bez niczyjej pomocy. Po tygodniu czy dwóch takiego przyczajonego życia, śledząc i tropiąc strażników, wykorzystując wszelkie możliwości, jakie się nadarzały, odkrył, gdzie więziono krasnoludów. Odszukał dwanaście cel rozrzuconych w różnych częściach pałacu i po jakimś czasie nauczył się trafiać, gdzie tylko chciał. Ze zdumieniem dowiedział się pewnego dnia z rozmowy strażników, że jest jeszcze trzynasty więzień, zamknięty w najgłębszym, najciemniejszym lochu.",
+                    "— A przecież to niezły elf i dość przyzwoicie odnosił się do więźniów. W dodatku zadziwimy elfów tym bardziej. Pomyślą, że znamy potężne czary, skoro umieliśmy wyjść przez zamknięte drzwi i zniknąć. Zniknąć! Jeśli to ma się nam również udać, trzeba działać szybko!",
+                    "Nim jeszcze król elfów wyruszył ze swej siedziby, wieść dotarła na zachód od sosnowego boru w Górach Mglistych. Usłyszał ją także Beorn w swoim drewnianym dworze, a gobliny zwołały naradę w podziemnych pieczarach. — Obawiam się, że nie usłyszymy już więcej o Thorinie zwanym Dębową Tarczą — powiedział król elfów."
+                ]
+            },
+            {
+                "question": "Kto i jaką bronią zabił smoka Smauga?",
+                "answer": "Z kontekstu wynika, że smoka Smauga zabiła czarna strzała, która utkwiła w jego ciele. Nie jest jednak podana informacja o tym, kto strzelił tę strzałę.",
+                "success": true,
+                "chunks": [
+                    "Jęknął olbrzymi łuk. Czarna strzała poszybowała prosto w zagłębienie pod lewą piersią Smauga, między rozstawione szeroko przednie łapy. Utkwiła w ciele potwora, a taki miała rozpęd, że schowała się w nim cała, z grotem, z drzewcem i piórkiem. Z wrzaskiem, który ogłuszał ludzi, walił drzewa i kruszył kamienie, Smaug poderwał się, przewrócił brzuchem do góry i runął z wysokości w dół. Padł w sam środek miasta. Miotając się w ostatnich podrygach, zasypał je skrami i popiołem.",
+                    "Płomień buchał z paszczy smoka. Smaug chwilę kołował wysoko w powietrzu, oświetlając całe jezioro; drzewa na brzegu zalśniły krwawo jak miedziane, a gęste, czarne cienie rozchwiały się u ich stóp. Smaug zniżył lot, nie zważając w swej wściekłości na grad strzał, nie pamiętając nawet o tym, by obracać się opancerzonymi bokami od nieprzyjaciół, za wszelką cenę pragnąc tylko podpalić miasto. Chociaż wszystko zawczasu zlano wodą, ogień wystrzelił z krytych strzechami dachów i wystających belek, gdy smok z szumem skrzydeł przeleciał nad domami, minął je i zawrócił raz jeszcze. Gdziekolwiek jednak pojawiała się iskra, sto par rąk spieszyło ją gasić. Smok zatoczył znów koło. Od jednego zamachu jego ogona dach na Wielkim Domu rozsypał się i zapadł.",
+                    "— Do licha, co też ten Smaug knuje — powiedział."
+                ]
+            },
+            {
+                "question": "Co Bilbo zastał w swoim domu po powrocie z wyprawy?",
+                "answer": "NOT_FOUND",
+                "success": false,
+                "chunks": [
+                    "Ruszył znów naprzód. Zsunął się z kopca po drugiej stronie i światło jego pochodni znikło z pola widzenia czatujących krasnoludów. Wkrótce jednak znów im błysnęło w oddali. Bilbo posuwał się teraz dnem pieczary. Szedł naprzód, aż dotarł do wielkich drzwi w przeciwległej ścianie; powiew świeżego powietrza orzeźwił go, lecz omal nie zgasił łuczywa. Bilbo nieśmiało wyjrzał przez drzwi: zamajaczył mu długi ciąg korytarzy i u ich końca pierwsze stopnie szerokich schodów wznoszących się w mroku ku górze.",
+                    "Oczywiście zgadujecie, że w końcu Bilbo wyratował przyjaciół z tej opresji; opowiem teraz, jak to się stało. Pewnego dnia, błąkając się i szperając po kątach, Bilbo zrobił ciekawe odkrycie: wielkie drzwi nie były jedynym wyjściem z groty. Pod najniższą częścią pałacu płynął strumień, który trochę dalej na wschód, za stromym stokiem mieszczącym główną bramę, wpadał do Leśnej Rzeki. W miejscu gdzie podziemny strumień wypływał na powierzchnię, w zboczu wzgórza była brama wodna. Zastawa, sięgająca aż do dna rzeki broniła tego dostępu do groty.",
+                    "Bilbo, samotny i znużony, siadł na progu; oczywiście nie było tam naprawdę progu, tak jednak kompania Thorina nazwała dla żartu mały trawiasty zakątek między ścianami wnęki a jej wejściem, na pamiątkę słów, które Bilbo wygłosił dawno, dawno temu, podczas niespodziewanego najścia gości w swojej norce, gdy radził krasnoludom siąść na progu i myśleć, dopóki czegoś nie wymyślą. Toteż siedzieli teraz i myśleli albo wałęsali się bez celu i z każdą chwilą miny im się przeciągały coraz bardziej. Podnieśli się nieco na duchu, gdy odkryli nową ścieżkę, teraz jednak znów dusze pouciekały im w pięty; mimo to nie chcieli dać za wygraną i wycofać się. Hobbit już także nie był lepszej myśli niż krasnoludy. Nic nie robił, tylko wciąż siedział, plecami do skały; patrząc przez wylot wnęki na zachód, daleko za urwiska, za rozległa krainę, za czarną ścianę Mrocznej Puszczy, tam gdzie majaczyły chwilami odległe i małe Góry Mgliste."
+                ]
+            }
+        ]
+    },
+    {
+        "document": "Do_Emotions_in_Prompts_Matter.pdf",
+        "method": "fixed",
+        "chunk_count": 275,
+        "avg_chunk_length": 249.10545454545453,
+        "evaluations": [
+            {
+                "question": "What six emotion categories were used in the study?",
+                "answer": "The six emotion categories used in the study are: happiness, sadness, fear, anger, disgust, and surprise.",
+                "success": true,
+                "chunks": [
+                    "ork [33] and Russell’s circumplex model of affect [34] to define six emotion categories: happiness, sadness, fear, anger, disgust, and surprise. These categories offer a compact yet diverse representation of affective states that can be succinctly in",
+                    "prepend short first-person emotional prefixes that express the user’s affective state and examine six emotion categories: happiness, surprise, fear, sadness, disgust, and anger, guided by Plutchik’s basic emotions framework [33] and Russell’s circum",
+                    "ncluding EmotionPrompt-style approaches designed to improve results across benchmarks [18–20]. Other lines of work have examined emotional expression in LLMs, responses to conflicting emotional cues, controlled affective text generation, and finegrai"
+                ]
+            },
+            {
+                "question": "What are the three levels of emotional intensity defined in the validation study?",
+                "answer": "The three levels of emotional intensity mentioned in the context are: \n1. slight \n2. (moderate is not mentioned, but) \n3. extreme. \n\nNote that 'modest' is also mentioned, but it seems to refer to the 'additional change' rather than a level of emotional intensity.",
+                "success": true,
+                "chunks": [
+                    "t. 2.5 Validation studies and further probing Emotion intensity study on MedQA-US To investigate the sensitivity of model performance to the intensity of emotional framing, we conducted an exhaustive analysis using the MedQA-US dataset. For each quer",
+                    "epSeek-V3.2 Qwen3-14B Fig. 4 Effect of emotional intensity on MedQA-US. Accuracy delta relative to the no-emotion baseline as the intensity of a prepended emotion injection statement increases from slight to extreme. All three models remain close to",
+                    "at this overall pattern is robust to targeted validation studies: increasing emotional intensity produces only modest additional change without creating a qualitatively different regime, and human-written prefixes reproduce the same qualitative concl"
+                ]
+            },
+            {
+                "question": "Which three large language models were evaluated in the experiments?",
+                "answer": "Qwen3-14B is mentioned as one of the models, but the other two models are not specified in the given context. Therefore, the answer is NOT_FOUND for the complete list of three models, but one model is Qwen3-14B.",
+                "success": false,
+                "chunks": [
+                    "rence settings We evaluate a representative suite of both proprietary and open-weight large language models (LLMs) under strictly controlled experimental conditions. Our selection includes three state-of-the-art open-source models: Qwen3-14B [42], Ll",
+                    "drops in accuracy. References [1] Liang, W., Zhang, Y., Codreanu, M., Wang, J., Cao, H., Zou, J.: The widespread adoption of large language model-assisted writing across society. Patterns 6(12) (2025) [2] Li, W., Song, M., Shen, Z., Zhao, D., Long,",
+                    ", A., Alsughayyir, A., Palli, A.S.: Impact of contradicting subtle emotion cues on Large Language Models with various prompting techniques. International Journal of Advanced Computer Science & Applications 15(4) (2024) [23] Singh, I., Barkati, A., Go"
+                ]
+            },
+            {
+                "question": "What is the name of the adaptive emotional prompting framework introduced in the paper?",
+                "answer": "EmotionRL",
+                "success": true,
+                "chunks": [
+                    "s only modest extra change, and that human-written prefixes reproduce the same qualitative pattern as LLMgenerated ones. We then introduce EmotionRL, an adaptive emotional prompting framework that selects emotional framing adaptively for each query.",
+                    "ted settings. 2.6 EmotionRL Problem definition We formulate adaptive emotional prompting as an instance-wise decision problem over a fixed emotion set A = {ANGER, DISGUST, FEAR, HAPPINESS, SADNESS, SURPRISE}. For each input question xi, the agent sel",
+                    "ative pattern as LLM-generated ones. The central takeaway is twofold. First, static emotional prompting is not a reliable general-purpose method for improving model performance. Second, emotional framing is not irrelevant: when it is selected adaptiv"
+                ]
+            },
+            {
+                "question": "How does the paper describe the overall effect of static emotional prefixes on LLM performance?",
+                "answer": "The paper describes the overall effect of static emotional prefixes on LLM performance as \"not a reliable general-purpose method for improving model performance.\"",
+                "success": true,
+                "chunks": [
+                    "g. 3 Effect of static emotional prefixes across benchmark tasks. Accuracy change relative to the matched no-emotion prompt for six prepended emotions across six benchmarks and three backbone models. Each bar isolates the effect of emotional framing w",
+                    "ative pattern as LLM-generated ones. The central takeaway is twofold. First, static emotional prompting is not a reliable general-purpose method for improving model performance. Second, emotional framing is not irrelevant: when it is selected adaptiv",
+                    "whether static emotional prefixes change task accuracy, whether stronger affective wording amplifies the effect, whether the source of the emotional text matters, and whether adaptive emotion selection can exploit any useful signal. 3.1 Static emoti"
+                ]
+            },
+            {
+                "question": "What benchmark was used to evaluate professional-level medical question answering?",
+                "answer": "MedQA (English) [38] was used to evaluate professional-level medical question answering.",
+                "success": true,
+                "chunks": [
+                    "(BBH) [37] captures challenging general reasoning across heterogeneous tasks. MedQA (English) [38]evaluates professional-level medical question answering. BoolQ [39] tests short-passage reading comprehension with binary yes/no decisions. OpenBookQA",
+                    "ts including question text, options, and task instructions remained intact to ensure controlled conditions. The original MedQA-US queries served as a neutral baseline. For consistency, we employed the same scoring protocols and metrics as in our prim",
+                    "six benchmark domains, including mathematical reasoning, medical question answering, reading comprehension, commonsense reasoning and social inference. Across models and tasks, static emotional prefixes usually produce only small changes in accuracy"
+                ]
+            },
+            {
+                "question": "According to the study, in which type of tasks are emotional effects more variable?",
+                "answer": "According to the study, emotional effects are more variable in \"socially grounded tasks\".",
+                "success": true,
+                "chunks": [
+                    "rm: effects are more variable in socially grounded tasks, where emotional context more plausibly interacts with interpersonal reasoning. Additional analyses show that stronger emotional wording induces only modest extra change, and that human-written",
+                    "basic emotions framework [33] and Russell’s circumplex model of affect [34]. We study these effects across reasoning and knowledge-based tasks, focusing on how task structure and complexity shape emotional modulation. Our contributions are threefold.",
+                    ", indicating that emotional intensity changes the magnitude of the perturbation without qualitatively changing task behavior. 3.2 Stronger emotional wording yields only a small additional shift We next vary the intensity of emotional wording amplifie"
+                ]
+            },
+            {
+                "question": "What does the paper conclude about human-written vs. LLM-generated emotional prefixes?",
+                "answer": "The paper concludes that human-written and LLM-generated emotional prefixes lead to the same qualitative pattern and that the main findings are not artifacts of a particular prefix-generation pipeline, indicating that the results are consistent regardless of whether the emotional text is produced by humans or LLMs.",
+                "success": true,
+                "chunks": [
+                    "hored. 3.3 Human- and LLM-authored emotional prefixes lead to the same conclusion To test whether the benchmark-level conclusions depend on how the emotional text is produced, we compare human-written and LLM-generated prefixes on a held-out MedQA-US",
+                    "s only modest extra change, and that human-written prefixes reproduce the same qualitative pattern as LLMgenerated ones. We then introduce EmotionRL, an adaptive emotional prompting framework that selects emotional framing adaptively for each query.",
+                    "at stronger emotion changes magnitude but not regime. Likewise, the close agreement between human-written and LLM-generated prefixes shows that the main findings are not artifacts of a particular prefix-generation pipeline. Together, these results su"
+                ]
+            },
+            {
+                "question": "What model was used to generate the short emotional expressions?",
+                "answer": "LLM (Large Language Model)",
+                "success": true,
+                "chunks": [
+                    "ncluding EmotionPrompt-style approaches designed to improve results across benchmarks [18–20]. Other lines of work have examined emotional expression in LLMs, responses to conflicting emotional cues, controlled affective text generation, and finegrai",
+                    "s only modest extra change, and that human-written prefixes reproduce the same qualitative pattern as LLMgenerated ones. We then introduce EmotionRL, an adaptive emotional prompting framework that selects emotional framing adaptively for each query.",
+                    "prepend short first-person emotional prefixes that express the user’s affective state and examine six emotion categories: happiness, surprise, fear, sadness, disgust, and anger, guided by Plutchik’s basic emotions framework [33] and Russell’s circum"
+                ]
+            },
+            {
+                "question": "At what temperature (T) was decoding set for the evaluations to ensure reproducibility?",
+                "answer": "0.0",
+                "success": true,
+                "chunks": [
+                    "standardized prompt templates across all datasets to unify task descriptions and output formats. To ensure reproducibility, decoding was set to be deterministic (temperature T = 0.0), with all other sampling parameters, such as top-p, held at their d",
+                    "PK j=1 exp \u0010 (r(j) i −¯ ri)/τ \u0011, (1) where τ is a temperature hyperparameter. In our practical setting, we set τ = 1 to provide a moderate degree of smoothing. Intuitively, w(k) i assigns greater probability mass to emotions that yield higher task r",
+                    "h Qwen3-14B under identical decoding settings. Of the 250 sampled questions, 219 had usable gold-answer labels for automatic scoring; the remaining items were excluded because no valid reference answer could be consistently recovered from the sampled"
+                ]
+            }
+        ]
+    },
+    {
+        "document": "Do_Emotions_in_Prompts_Matter.pdf",
+        "method": "semantic",
+        "chunk_count": 120,
+        "avg_chunk_length": 456.43333333333334,
+        "evaluations": [
+            {
+                "question": "What six emotion categories were used in the study?",
+                "answer": "The six emotion categories used in the study are: \n1. Happiness\n2. Sadness\n3. Fear\n4. Anger\n5. Disgust\n6. Surprise.",
+                "success": true,
+                "chunks": [
+                    "We generate emotion-conditioned inputs via canonical prepended cues and context-aligned variants, evaluate them with frozen LLMs across diverse benchmarks, and analyze performance sensitivity across models, tasks, and emotions. We also include adaptive per-instance emotion selection with EmotionRL. 2.1 Design and implementation of affective manipulations Emotion taxonomy. Emotion conditions were operationalized using a discrete taxonomy informed by established theories of affective organization. We drew on Plutchik’s basic emotions framework [33] and Russell’s circumplex model of affect [34] to define six emotion categories: happiness, sadness, fear, anger, disgust, and surprise. These categories offer a compact yet diverse representation of affective states that can be succinctly instantiated in text and consistently recognized in human annotation settings. This design preserves alignment with canonical theories of emotion while ensuring that the prompt manipulation remains interpretable, controlled, and methodologically tractable. Emotional Stimuli. External emotional stimuli were used to manipulate the affective framing of otherwise identical questions. For each target emotion, we used GPT-4o [35] to generate short, fluent, single-sentence emotional expressions that were grammatically correct, emotionally salient, and explicitly constrained not to alter the numerical values, entities, scope, difficulty, or factual content of the underlying question. The emotional stance was framed as the speaker’s attitude toward the assistant solving the problem, and could include colloquial, mildly rude, or emotionally raw language, while excluding hate speech, slurs, and explicit sexual content. For the main experiments, the GPT-4o-generated emotional sentence was prepended immediately before the original question.",
+                    "(eds.) Emotion: Theory, Research, and Experience vol.",
+                    "Table B1 Same MedQA-US question under six emotions: human-written vs."
+                ]
+            },
+            {
+                "question": "What are the three levels of emotional intensity defined in the validation study?",
+                "answer": "NOT_FOUND",
+                "success": false,
+                "chunks": [
+                    "First, we show that static emotional prompting is not a reliable general-purpose intervention: across benchmarks, fixed emotional prefixes typically induce only small average accuracy shifts, with effects that vary substantially across tasks, backbone models, and emotion categories rather than following a uniform pattern. Second, we demonstrate that this overall pattern is robust to targeted validation studies: increasing emotional intensity produces only modest additional change without creating a qualitatively different regime, and human-written prefixes reproduce the same qualitative conclusions as LLM-generated ones. Third, we introduce EmotionRL, an adaptive emotional prompting framework that formulates emotional prompting as an input-conditioned decision problem, and show that different questions benefit from different emotional framings. By selecting a more suitable emotion for each input, EmotionRL yields more reliable gains than either the no-emotion baseline or the average of fixed emotional prompts. 2 Methodology and Experiment Setup Emotional Modulation Approaches Multimodal LLMs & Benchmark Tasks Canonical Emotionally Grounded Prefixes Anger Disgust Fear Canonical Emotional Cues Happiness Sadness Surprise Plutchik's Basic Emotions (excluding Anticipation) Extended Context-Aligned Variants Extended Emotional Cues LLM LLM Paraphrasing & Human Authorship Math (GSM8K) Medicine (MedQA) General Reasoning (BIG-Bench Hard) Reading (BoolQ) Commonsense (OpenBookQA) LLaMa Social Intelligence (SocialIQA) Systematic Empirical Evaluation Performance Comparison (Across Tasks, Models, Emotions) Effect Modulation Analysis Adaptive Emotion Policy Evaluation (EmotionRL) Model Processing & Output Generation Empirical Insights & Methodological Implications Fig.",
+                    "(eds.) Emotion: Theory, Research, and Experience vol.",
+                    "(2). b, Online inference. For an unseen input x, EmotionRL computes s = femb(x), applies the trained policy πθ(ak | s), and selects a∗= arg maxak∈A πθ(ak | s). The selected emotion a∗is then used to construct a single emotion-conditioned prompt, which is submitted once to the frozen backbone LLM to obtain the final prediction ˆ y. 3 Results We organize the empirical findings around four questions: whether static emotional prefixes change task accuracy, whether stronger affective wording amplifies the effect, whether the source of the emotional text matters, and whether adaptive emotion selection can exploit any useful signal. 3.1 Static emotional prefixes have limited average effect across tasks Figure 3 shows the main empirical result of the paper: across a diverse benchmark suite, prepending emotional text rarely produces large changes in task accuracy."
+                ]
+            },
+            {
+                "question": "Which three large language models were evaluated in the experiments?",
+                "answer": "NOT_FOUND.",
+                "success": false,
+                "chunks": [
+                    "[26] Mahajan, A., Obermeyer, Z., Daneshjou, R., Lester, J.C., Powell, D.: Cognitive bias in clinical large language models. npj Digital Medicine 8(1) (2025) https: //doi.org/10.1038/s41746-025-01790-0 [27] Mao, R., Liu, Q., He, K., Li, W., Cambria, E.: The biases of pre-trained language models: An empirical study on prompt-based sentiment analysis and emotion detection. IEEE Transactions on Affective Computing 14(3), 1743–1753 (2023) https://doi.org/10.1109/TAFFC.2022.3204972 [28] Ke, Y., Yang, R., Lie, S.A., Lim, T.X.Y., Ning, Y., Li, I., Abdullah, H.R., Ting, D.S.W., Liu, N.: Mitigating cognitive biases in clinical decision-making through multi-agent conversations using large language models: simulation study. Journal of Medical Internet Research 26, 59439 (2024) https://doi.org/10.2196/59439 [29] Templin, T., Fort, S., Padmanabham, P., Seshadri, P., Rimal, R., Oliva, J., Lich, K.H., Sylvia, S., Sinnott-Armstrong, N.: Framework for bias evaluation in large language models in healthcare settings. npj Digital Medicine 8(1) (2025) https: //doi.org/10.1038/s41746-025-01786-w [30] Barcelona, V., Scharp, D., Moen, H., Davoudi, A., Idnay, B.R., Cato, K., Topaz, M.: Using natural language processing to identify stigmatizing language in labor and birth clinical notes. Maternal and Child Health Journal 28(3), 578–586 (2023) https://doi.org/10.1007/s10995-023-03842-w [31] Harrigian, K., Zirikly, A., Chee, B., Ahmad, A., Links, A., Saha, S., Beach, M.C., Dredze, M.: Characterization of stigmatizing language in medical records. In: Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL 2023), pp. 312–329 (2023). https://doi.org/10.18653/v1/2023.",
+                    "arXiv:2604.02236v1 [cs.AI] 2 Apr 2026 1 Introduction Large language models (LLMs) have become ubiquitous across domains including education, coding assistance, creative writing, and personal productivity [1–3]. As LLM-generated text increasingly appears in consumer communications, corporate messaging, and international correspondence [1], understanding how these systems process and respond to human communication has become critical. LLMs are trained on largescale human language corpora and learn statistical patterns of human communication, yet they do not operate as neutral systems [4]. This recognition has driven extensive research into LLM behaviors, including hallucination, fairness, toxicity, sycophancy, and consistency [5] Human communication is inherently emotional. Individuals convey affect through tone, framing, and lexical choice when expressing needs, negotiating disagreements, or seeking advice [6, 7]. Consequently, real-world human–LLM interactions often carry an emotional tone that, even when unstated, shapes model outputs and influences how users interpret responses [8]. Emotion is therefore central rather than peripheral to human–LLM interaction. Emotion plays a causal role in human decision-making. Emotional states guide attentional focus, bias interpretation under ambiguity, and influence reasoning in uncertain environments [9, 10].",
+                    "48550/arXiv.2504.14706 [22] Ul Huda, N., Sahito, S.F., Gilal, A.R., Abro, A., Alshanqiti, A., Alsughayyir, A., Palli, A.S.: Impact of contradicting subtle emotion cues on Large Language Models with various prompting techniques. International Journal of Advanced Computer Science & Applications 15(4) (2024) [23] Singh, I., Barkati, A., Goswamy, T., Modi, A.: Adapting a language model for controlled affective text generation."
+                ]
+            },
+            {
+                "question": "What is the name of the adaptive emotional prompting framework introduced in the paper?",
+                "answer": "The adaptive emotional prompting framework introduced in the paper is called EmotionRL.",
+                "success": true,
+                "chunks": [
+                    "First, static emotional prompting is not a reliable general-purpose method for improving model performance. Second, emotional framing is not irrelevant: when it is selected adaptively with EmotionRL, it yields more consistent gains than static emotional prompting. Taken together, these findings suggest that affective phrasing is usually a mild perturbation, but its residual signal can be exploited when emotion selection is matched to the input. We hope this provides a cleaner empirical foundation for future work on affective prompting, robust evaluation, and adaptive control of LLM behavior. Appendix A Emotion prefix generation prompts We generate one-sentence emotional prefixes with GPT-4o. The system message sets the role and safety constraints; the user message supplies the target emotion label and the task question text. Replace the placeholder text in the boxes below with the exact strings, temperature, and any few-shot examples used in your generation run.",
+                    "Empirically, it suggests that the limited effect of emotional framing is not an artifact of a particular promptgeneration pipeline. Methodologically, it shows that carefully written human stimuli can be used in place of LLM-generated ones without changing the qualitative outcome. This is useful for future studies that require tighter experimental control or clearer interpretation of the emotional manipulation. 3.4 Adaptive emotion selection is more effective than static emotional prompting The weak average effect of static emotional prompts does not imply that emotional framing contains no usable signal. Figure 6 shows that EmotionRL, which selects an emotion condition on a per-example basis, consistently matches or exceeds the average static-emotion baseline across the five tasks shown. In particular, the learned policy GSM8K OpenBookQA MedQA SocialIQA BoolQ 1.0 0.5 0.0 0.5 1.0 Gain over Baseline (pp) +0.06 -1.07 +0.56 -0.84 -0.89 +0.41 +0.00 +1.10 +0.05 +1.01 Average Emotion - Baseline EmotionRL - Baseline Fig. 6 EmotionRL versus static emotional prompting. Comparison of gains over the noemotion baseline obtained by averaging across static emotional prompts and by using EmotionRL to select an emotion for each example. Static emotional prompting is inconsistent and can be neutral or harmful on some tasks, whereas EmotionRL is uniformly competitive and often better across the five tasks shown here. This pattern suggests that affective prompting is more useful when treated as an input-conditioned control decision rather than as a single global template. removes the clear negative average effect observed for several datasets under static prompting and turns emotional framing into a more reliable intervention. This comparison changes the interpretation of the near-zero averages in Figure 3.",
+                    "We generate emotion-conditioned inputs via canonical prepended cues and context-aligned variants, evaluate them with frozen LLMs across diverse benchmarks, and analyze performance sensitivity across models, tasks, and emotions. We also include adaptive per-instance emotion selection with EmotionRL. 2.1 Design and implementation of affective manipulations Emotion taxonomy. Emotion conditions were operationalized using a discrete taxonomy informed by established theories of affective organization. We drew on Plutchik’s basic emotions framework [33] and Russell’s circumplex model of affect [34] to define six emotion categories: happiness, sadness, fear, anger, disgust, and surprise. These categories offer a compact yet diverse representation of affective states that can be succinctly instantiated in text and consistently recognized in human annotation settings. This design preserves alignment with canonical theories of emotion while ensuring that the prompt manipulation remains interpretable, controlled, and methodologically tractable. Emotional Stimuli. External emotional stimuli were used to manipulate the affective framing of otherwise identical questions. For each target emotion, we used GPT-4o [35] to generate short, fluent, single-sentence emotional expressions that were grammatically correct, emotionally salient, and explicitly constrained not to alter the numerical values, entities, scope, difficulty, or factual content of the underlying question. The emotional stance was framed as the speaker’s attitude toward the assistant solving the problem, and could include colloquial, mildly rude, or emotionally raw language, while excluding hate speech, slurs, and explicit sexual content. For the main experiments, the GPT-4o-generated emotional sentence was prepended immediately before the original question."
+                ]
+            },
+            {
+                "question": "How does the paper describe the overall effect of static emotional prefixes on LLM performance?",
+                "answer": "The paper describes the overall effect of static emotional prefixes on LLM performance as typically producing \"only small changes in accuracy\", suggesting that affective phrasing is \"usually a mild perturbation\" rather than a reliable general-purpose intervention.",
+                "success": true,
+                "chunks": [
+                    "Abstract Emotional tone is pervasive in human communication, yet its influence on large language model (LLM) behaviour remains unclear. Here, we examine how firstperson emotional framing in user-side queries affect LLM performance across six benchmark domains, including mathematical reasoning, medical question answering, reading comprehension, commonsense reasoning and social inference. Across models and tasks, static emotional prefixes usually produce only small changes in accuracy, suggesting that affective phrasing is typically a mild perturbation rather than a reliable general-purpose intervention. This stability is not uniform: effects are more variable in socially grounded tasks, where emotional context more plausibly interacts with interpersonal reasoning. Additional analyses show that stronger emotional wording induces only modest extra change, and that human-written prefixes reproduce the same qualitative pattern as LLMgenerated ones. We then introduce EmotionRL, an adaptive emotional prompting framework that selects emotional framing adaptively for each query. Although no single emotion is consistently beneficial, adaptive selection yields more reliable gains than fixed emotional prompting. Together, these findings show that emotional tone is neither a dominant driver of LLM performance nor irrelevant noise, but a weak and input-dependent signal that can be exploited through adaptive control.",
+                    "First, we show that static emotional prompting is not a reliable general-purpose intervention: across benchmarks, fixed emotional prefixes typically induce only small average accuracy shifts, with effects that vary substantially across tasks, backbone models, and emotion categories rather than following a uniform pattern. Second, we demonstrate that this overall pattern is robust to targeted validation studies: increasing emotional intensity produces only modest additional change without creating a qualitatively different regime, and human-written prefixes reproduce the same qualitative conclusions as LLM-generated ones. Third, we introduce EmotionRL, an adaptive emotional prompting framework that formulates emotional prompting as an input-conditioned decision problem, and show that different questions benefit from different emotional framings. By selecting a more suitable emotion for each input, EmotionRL yields more reliable gains than either the no-emotion baseline or the average of fixed emotional prompts. 2 Methodology and Experiment Setup Emotional Modulation Approaches Multimodal LLMs & Benchmark Tasks Canonical Emotionally Grounded Prefixes Anger Disgust Fear Canonical Emotional Cues Happiness Sadness Surprise Plutchik's Basic Emotions (excluding Anticipation) Extended Context-Aligned Variants Extended Emotional Cues LLM LLM Paraphrasing & Human Authorship Math (GSM8K) Medicine (MedQA) General Reasoning (BIG-Bench Hard) Reading (BoolQ) Commonsense (OpenBookQA) LLaMa Social Intelligence (SocialIQA) Systematic Empirical Evaluation Performance Comparison (Across Tasks, Models, Emotions) Effect Modulation Analysis Adaptive Emotion Policy Evaluation (EmotionRL) Model Processing & Output Generation Empirical Insights & Methodological Implications Fig.",
+                    "First, static emotional prompting is not a reliable general-purpose method for improving model performance. Second, emotional framing is not irrelevant: when it is selected adaptively with EmotionRL, it yields more consistent gains than static emotional prompting. Taken together, these findings suggest that affective phrasing is usually a mild perturbation, but its residual signal can be exploited when emotion selection is matched to the input. We hope this provides a cleaner empirical foundation for future work on affective prompting, robust evaluation, and adaptive control of LLM behavior. Appendix A Emotion prefix generation prompts We generate one-sentence emotional prefixes with GPT-4o. The system message sets the role and safety constraints; the user message supplies the target emotion label and the task question text. Replace the placeholder text in the boxes below with the exact strings, temperature, and any few-shot examples used in your generation run."
+                ]
+            },
+            {
+                "question": "What benchmark was used to evaluate professional-level medical question answering?",
+                "answer": "MedQA (English) was used to evaluate professional-level medical question answering.",
+                "success": true,
+                "chunks": [
+                    "A large-scale open domain question answering dataset from medical exams.",
+                    "MedQA (English) [38]evaluates professional-level medical question answering. BoolQ [39] tests short-passage reading comprehension with binary yes/no decisions. OpenBookQA [40] measures multiple-choice commonsense reasoning, whereas SocialIQA [41] evaluates social reasoning and everyday interpersonal inference. Collectively, these datasets cover numerical reasoning, general reasoning, domain knowledge, reading comprehension, commonsense judgment, and social inference, providing a broad behavioural evaluation suite. All datasets were used in their standard English versions, and official train, validation, and test splits were preserved whenever available to ensure comparability with prior work. 2.3 Models and inference settings We evaluate a representative suite of both proprietary and open-weight large language models (LLMs) under strictly controlled experimental conditions. Our selection includes three state-of-the-art open-source models: Qwen3-14B [42], Llama 3.3-70B [43], and DeepSeek-V3.2 [44]. These models were chosen to encompass a diverse range of architectures, parameter scales, and training paradigms. All evaluations were conducted in a zero-shot, inference-only setting without fine-tuning, ensuring that the observed behaviors reflect the models’ inherent pretrained capabilities. We utilized standardized prompt templates across all datasets to unify task descriptions and output formats.",
+                    "The original MedQA-US queries served as a neutral baseline. For consistency, we employed the same scoring protocols and metrics as in our primary experiments, enabling a direct comparative analysis across different intensity levels."
+                ]
+            },
+            {
+                "question": "According to the study, in which type of tasks are emotional effects more variable?",
+                "answer": "According to the study, emotional context interacts most strongly with tasks that already require reasoning about intentions, beliefs, and interpersonal situations, and the effect is heterogeneous rather than universal.",
+                "success": true,
+                "chunks": [
+                    "Here, the spread across models and emotions is visibly larger, and the direction of the effect is not consistent. This pattern suggests that emotional context interacts most strongly with tasks that already require reasoning about intentions, beliefs, and interpersonal situations. At the same time, the absence of a consistent best emotion indicates that the effect is heterogeneous rather than universal. Overall, static emotional framing is best characterized as a weak, model- and task-dependent perturbation. 0.76 0.78 0.80 0.82 0.84 0.86 0.88 0.90 Accuracy Anger Disgust Fear Original Slight Middle Extreme Intensity Level 0.76 0.78 0.80 0.82 0.84 0.86 0.88 0.90 Accuracy Joy Original Slight Middle Extreme Intensity Level Sadness Original Slight Middle Extreme Intensity Level Surprise LLaMA-3.3 DeepSeek-V3.2 Qwen3-14B Fig. 4 Effect of emotional intensity on MedQA-US. Accuracy delta relative to the no-emotion baseline as the intensity of a prepended emotion injection statement increases from slight to extreme.",
+                    "Stronger affective wording produces only a mild downward trend and does not induce an abrupt failure regime, indicating that emotional intensity changes the magnitude of the perturbation without qualitatively changing task behavior. 3.2 Stronger emotional wording yields only a small additional shift We next vary the intensity of emotional wording amplifies its effect on MedQAUS. Figure 4 compares the original no-emotion condition with slight, moderate, and extreme variants across six emotion categories and three backbone models. Overall, the effect of emotional intensity remains limited: accuracy varies only modestly across intensity levels, and stronger wording does not produce a consistent monotonic deterioration in performance. Instead, the pattern is heterogeneous across models and emotions. For some models, emotion pairs exhibit mild decreases as intensity increases, whereas others remain nearly flat or show small rebounds at moderate or extreme levels. This indicates that emotional intensity can modulate model performance, but the induced variation is bounded and directionally inconsistent rather than systematically harmful. Baseline Happiness Anger Fear Sadness Surprise Disgust 0.74 0.76 0.78 0.80 LLM-injected Human-injected Fig. 5 MedQA-US: human versus LLM emotion injection. Accuracy of Qwen3-14B on the held-out subset under the no-emotion baseline and six emotion conditions, comparing LLM-generated prefixes with human-written prefixes.",
+                    "The issue is not that emotion is irrelevant, but that a single fixed emotion is too coarse for a heterogeneous benchmark. Once emotion selection is conditioned on the input, the residual task- and instance-level structure becomes exploitable. EmotionRL therefore suggests that affective prompting is better understood as an adaptive control problem than as a universal prompt template. 4 Discussion Our experiments support a more conservative view of emotional prompting than is sometimes suggested by isolated positive examples. On standard accuracy-based benchmarks, fixed emotional prefixes are usually too weak and too heterogeneous to serve as a dependable performance intervention. For most tasks, the model’s underlying reasoning and knowledge dominate the small perturbation introduced by affective wording. A second lesson is that aggregate averages can hide the structure of the effect."
+                ]
+            },
+            {
+                "question": "What does the paper conclude about human-written vs. LLM-generated emotional prefixes?",
+                "answer": "The paper concludes that human-written and LLM-generated emotional prefixes lead to the same conclusion, with closely matched accuracies across conditions, suggesting that the main findings are not artifacts of a particular prefix-generation pipeline.",
+                "success": true,
+                "chunks": [
+                    "Table B1 Same MedQA-US question under six emotions: human-written vs.",
+                    "The qualitative effect of emotional framing is therefore robust to how the prefix is authored. 3.3 Human- and LLM-authored emotional prefixes lead to the same conclusion To test whether the benchmark-level conclusions depend on how the emotional text is produced, we compare human-written and LLM-generated prefixes on a held-out MedQA-US subset. Figure 5 shows closely matched accuracies across conditions, with small differences that change sign across emotions.",
+                    "Likewise, the close agreement between human-written and LLM-generated prefixes shows that the main findings are not artifacts of a particular prefix-generation pipeline. Together, these results suggest that the relevant variable is the fit between emotional framing and the input, not the specific source of the text. EmotionRL provides the clearest evidence that the observed heterogeneity is not merely noise. A fixed emotion is too coarse to help reliably, but an input-conditioned policy can recover modest and more consistent gains. This suggests a useful reframing: the key question is not whether one emotion works in general, but when a particular emotional framing is appropriate for a particular input. In this sense, affective prompting is better viewed as a routing problem than as a universally beneficial heuristic."
+                ]
+            },
+            {
+                "question": "What model was used to generate the short emotional expressions?",
+                "answer": "GPT-4o was used to generate the short, fluent, single-sentence emotional expressions.",
+                "success": true,
+                "chunks": [
+                    "We generate emotion-conditioned inputs via canonical prepended cues and context-aligned variants, evaluate them with frozen LLMs across diverse benchmarks, and analyze performance sensitivity across models, tasks, and emotions. We also include adaptive per-instance emotion selection with EmotionRL. 2.1 Design and implementation of affective manipulations Emotion taxonomy. Emotion conditions were operationalized using a discrete taxonomy informed by established theories of affective organization. We drew on Plutchik’s basic emotions framework [33] and Russell’s circumplex model of affect [34] to define six emotion categories: happiness, sadness, fear, anger, disgust, and surprise. These categories offer a compact yet diverse representation of affective states that can be succinctly instantiated in text and consistently recognized in human annotation settings. This design preserves alignment with canonical theories of emotion while ensuring that the prompt manipulation remains interpretable, controlled, and methodologically tractable. Emotional Stimuli. External emotional stimuli were used to manipulate the affective framing of otherwise identical questions. For each target emotion, we used GPT-4o [35] to generate short, fluent, single-sentence emotional expressions that were grammatically correct, emotionally salient, and explicitly constrained not to alter the numerical values, entities, scope, difficulty, or factual content of the underlying question. The emotional stance was framed as the speaker’s attitude toward the assistant solving the problem, and could include colloquial, mildly rude, or emotionally raw language, while excluding hate speech, slurs, and explicit sexual content. For the main experiments, the GPT-4o-generated emotional sentence was prepended immediately before the original question.",
+                    "(eds.) Emotion: Theory, Research, and Experience vol.",
+                    "Empirically, it suggests that the limited effect of emotional framing is not an artifact of a particular promptgeneration pipeline. Methodologically, it shows that carefully written human stimuli can be used in place of LLM-generated ones without changing the qualitative outcome. This is useful for future studies that require tighter experimental control or clearer interpretation of the emotional manipulation. 3.4 Adaptive emotion selection is more effective than static emotional prompting The weak average effect of static emotional prompts does not imply that emotional framing contains no usable signal. Figure 6 shows that EmotionRL, which selects an emotion condition on a per-example basis, consistently matches or exceeds the average static-emotion baseline across the five tasks shown. In particular, the learned policy GSM8K OpenBookQA MedQA SocialIQA BoolQ 1.0 0.5 0.0 0.5 1.0 Gain over Baseline (pp) +0.06 -1.07 +0.56 -0.84 -0.89 +0.41 +0.00 +1.10 +0.05 +1.01 Average Emotion - Baseline EmotionRL - Baseline Fig. 6 EmotionRL versus static emotional prompting. Comparison of gains over the noemotion baseline obtained by averaging across static emotional prompts and by using EmotionRL to select an emotion for each example. Static emotional prompting is inconsistent and can be neutral or harmful on some tasks, whereas EmotionRL is uniformly competitive and often better across the five tasks shown here. This pattern suggests that affective prompting is more useful when treated as an input-conditioned control decision rather than as a single global template. removes the clear negative average effect observed for several datasets under static prompting and turns emotional framing into a more reliable intervention. This comparison changes the interpretation of the near-zero averages in Figure 3."
+                ]
+            },
+            {
+                "question": "At what temperature (T) was decoding set for the evaluations to ensure reproducibility?",
+                "answer": "0.0",
+                "success": true,
+                "chunks": [
+                    "To ensure reproducibility, decoding was set to be deterministic (temperature T = 0.0), with all other sampling parameters, such as top-p, held at their default values.",
+                    "The original MedQA-US queries served as a neutral baseline. For consistency, we employed the same scoring protocols and metrics as in our primary experiments, enabling a direct comparative analysis across different intensity levels.",
+                    "In: Proceedings of COLING 2020 (2020)."
+                ]
+            }
+        ]
+    }
+]
