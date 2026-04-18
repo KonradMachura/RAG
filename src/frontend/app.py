@@ -14,6 +14,8 @@ from chromadb.api.models.Collection import Collection
 from sentence_transformers import SentenceTransformer
 from streamlit.delta_generator import DeltaGenerator
 from streamlit.runtime.uploaded_file_manager import UploadedFile
+import transformers
+transformers.logging.set_verbosity_error()
 
 root_path = str(Path(__file__).parent.parent.parent.absolute())
 if root_path not in sys.path:
@@ -22,7 +24,7 @@ if root_path not in sys.path:
 from src.core import config as cfg
 from src.services import vector_db as build_db
 from src.core import chunking
-from src.core.utils import read_pdf_file
+from src.core.utils import read_pdf_file, convert_pdf_to_markdown_docling
 
 API_URL = "http://127.0.0.1:8000"
 
@@ -225,7 +227,7 @@ def render_file_uploader(stored_documents: list[dict], placeholder: DeltaGenerat
             st.rerun()
 
 def build_target_file_path(file_hash: str ) -> Path:
-    return cfg.SOURCES_DIR / cfg.DB_NAME / file_hash
+    return cfg.DOCUMENTS_RAW_DIR / f"{file_hash}.pdf"
 
 def create_document_payload(uploaded_file: UploadedFile, file_path: Path, file_hash: str) -> dict[str, str | Any]:
     payload = {"file_name": uploaded_file.name, "file_hash": file_hash}
@@ -238,9 +240,16 @@ def save_to_disk(file_path: Path, uploaded_file: UploadedFile) -> None:
         f.write(uploaded_file.getbuffer())
 
 def vectorize_and_store_document(file_path: Path, collection: Collection, chunking_model: SentenceTransformer) -> int:
-    doc_content = read_pdf_file(file_path)
+    # 1. Convert PDF to Markdown using docling
+    file_hash = file_path.stem
+    processed_path = cfg.DOCUMENTS_PROCESSED_DIR / f"{file_hash}.md"
+    doc_content = convert_pdf_to_markdown_docling(file_path, processed_path)
+    
+    # 2. Chunk the Markdown content
     chunks = chunking.semantic_chunking(doc_content, model=chunking_model)
-    build_db.save_chunks_to_vectordb(collection, chunks, file_path.name)
+    
+    # 3. Save to vector DB
+    build_db.save_chunks_to_vectordb(collection, chunks, file_hash)
     return len(chunks)
 
 
@@ -280,7 +289,7 @@ def validate_search_conditions(collection: Collection, selected_documents: list[
 
 def add_selected_documents_to_where_filter(selected_documents: list[dict]) -> (dict[str, dict] |
                                                                                dict[str, dict[str, list[dict]]]):
-    sources = [library_entry["file_name"] for library_entry in selected_documents]
+    sources = [library_entry["file_hash"] for library_entry in selected_documents]
     if len(sources) == 1:
         return {"source": sources[0]}
     else:
@@ -292,9 +301,10 @@ def retrieve_context_and_sources(collection: Collection, user_query: str, where_
         query_texts=[user_query],
         n_results=cfg.N_RESULTS,
         where=where_filter)
-
     documents = results['documents'][0]
     metadatas = results['metadatas'][0]
+    print(documents)
+    print(metadatas)
 
     context: str = "\n\n---\n\n".join(documents)
     sources = set([meta.get("source", "Not found") for meta in metadatas])
@@ -345,18 +355,21 @@ def render_auth_ui():
             password = st.text_input("Password", type="password")
             submitted = st.form_submit_button("Login")
             if submitted:
-                res = requests.post(f"{API_URL}/token", data={"username": username, "password": password})
-                if res.status_code == 200:
-                    st.session_state.token = res.json()["access_token"]
-                    st.rerun()
-                else:
-                    try:
-                        detail = res.json().get("detail", "Invalid credentials")
-                        if isinstance(detail, list):
-                            detail = "; ".join([f"{err.get('msg', 'Error')}" for err in detail])
-                        st.error(detail)
-                    except (ValueError, requests.exceptions.JSONDecodeError):
-                        st.error(f"Login failed: {res.status_code} {res.reason}")
+                try:
+                    res = requests.post(f"{API_URL}/token", data={"username": username, "password": password})
+                    if res.status_code == 200:
+                        st.session_state.token = res.json()["access_token"]
+                        st.rerun()
+                    else:
+                        try:
+                            detail = res.json().get("detail", "Invalid credentials")
+                            if isinstance(detail, list):
+                                detail = "; ".join([f"{err.get('msg', 'Error')}" for err in detail])
+                            st.error(detail)
+                        except (ValueError, requests.exceptions.JSONDecodeError):
+                            st.error(f"Login failed: {res.status_code} {res.reason}")
+                except requests.exceptions.ConnectionError:
+                    st.error("Connection error: Unable to reach the backend server. Is it running?")
                     
     with tab2:
         with st.form("register_form"):
@@ -365,24 +378,27 @@ def render_auth_ui():
             new_password = st.text_input("Password", type="password")
             reg_submitted = st.form_submit_button("Register")
             if reg_submitted:
-                res = requests.post(f"{API_URL}/register", json={"username": new_username, "email": new_email, "password": new_password})
-                if res.status_code == 200:
-                    # Auto login after successful registration
-                    login_res = requests.post(f"{API_URL}/token", data={"username": new_username, "password": new_password})
-                    if login_res.status_code == 200:
-                        st.session_state.token = login_res.json()["access_token"]
-                        st.rerun()
+                try:
+                    res = requests.post(f"{API_URL}/register", json={"username": new_username, "email": new_email, "password": new_password})
+                    if res.status_code == 200:
+                        # Auto login after successful registration
+                        login_res = requests.post(f"{API_URL}/token", data={"username": new_username, "password": new_password})
+                        if login_res.status_code == 200:
+                            st.session_state.token = login_res.json()["access_token"]
+                            st.rerun()
+                        else:
+                            st.success("Registered successfully! Please login.")
                     else:
-                        st.success("Registered successfully! Please login.")
-                else:
-                    try:
-                        detail = res.json().get("detail", "Registration failed")
-                        if isinstance(detail, list):
-                            # Flatten Pydantic validation errors
-                            detail = "; ".join([f"{err.get('msg', 'Error')}" for err in detail])
-                        st.error(detail)
-                    except (ValueError, requests.exceptions.JSONDecodeError):
-                        st.error(f"Registration failed: {res.status_code} {res.reason}")
+                        try:
+                            detail = res.json().get("detail", "Registration failed")
+                            if isinstance(detail, list):
+                                # Flatten Pydantic validation errors
+                                detail = "; ".join([f"{err.get('msg', 'Error')}" for err in detail])
+                            st.error(detail)
+                        except (ValueError, requests.exceptions.JSONDecodeError):
+                            st.error(f"Registration failed: {res.status_code} {res.reason}")
+                except requests.exceptions.ConnectionError:
+                    st.error("Connection error: Unable to reach the backend server. Is it running?")
 
 
 def main():

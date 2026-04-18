@@ -2,10 +2,13 @@ import uuid
 from pathlib import Path
 from datetime import timedelta
 
-from fastapi import FastAPI, HTTPException, Depends, status
+from fastapi import FastAPI, HTTPException, Depends
+from starlette import status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session, joinedload
 import jwt
+import transformers
+transformers.logging.set_verbosity_error()
 
 from src.api.schemas import DocumentCreate, UserDocumentResponse, DocumentUpdate, UserCreate, Token, UserBase
 from src.database.models import User, Document, UserDocument
@@ -92,8 +95,6 @@ def get_document_by_id(
 
     if not document:
         raise HTTPException(status_code=404, detail="Document not found")
-    if UserDocument.user_id != current_user.id:
-        raise HTTPException(status_code=403, detail="No access to this file")
 
     return document
 
@@ -126,7 +127,7 @@ def add_document(
         db.refresh(new_link)
         return new_link
 
-    target_path = cfg.SOURCES_DIR / cfg.DB_NAME / document_in.file_hash
+    target_path = cfg.DOCUMENTS_RAW_DIR / f"{document_in.file_hash}.pdf"
     relative_path = target_path.relative_to(cfg.BASE_DIR).as_posix()
 
     new_document = Document(
@@ -152,12 +153,13 @@ def add_document(
 def update_document(
         doc_id: uuid.UUID,
         update_data: DocumentUpdate,
+        current_user: User = Depends(get_current_user),
         db: Session = Depends(get_db)
 ):
     user_doc_link = (
         db.query(UserDocument)
         .options(joinedload(UserDocument.document))
-        .filter(UserDocument.document_id == doc_id)
+        .filter(UserDocument.document_id == doc_id, UserDocument.user_id == current_user.id)
         .first()
     )
 

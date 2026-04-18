@@ -2,8 +2,112 @@ import re
 from pathlib import Path
 from typing import Callable
 import fitz  # PyMuPDF
+from docling.document_converter import DocumentConverter, PdfFormatOption
+from docling.datamodel.pipeline_options import PdfPipelineOptions
+from docling.datamodel.base_models import InputFormat
+from docling.datamodel.layout_model_specs import DOCLING_LAYOUT_EGRET_XLARGE
+from docling.datamodel.accelerator_options import AcceleratorDevice
+from docling_core.types.doc import ContentLayer, DocItemLabel
 
 from src.core import config as cfg
+
+import io
+from docling.datamodel.base_models import InputFormat, DocumentStream
+
+def convert_pdf_to_markdown_docling(pdf_path: Path, output_md_path: Path, batch_size: int = 20) -> str:
+    """
+    Convert a PDF file to Markdown using docling in batches to save memory.
+    Processes the document in segments to avoid std::bad_alloc errors.
+
+    Args:
+        pdf_path: Path to the input PDF file.
+        output_md_path: Path where the processed Markdown should be saved.
+        batch_size: Number of pages to process in a single batch.
+
+    Returns:
+        The full Markdown content as a string.
+    """
+    # 1. Configure the pipeline with memory-safe options
+    pipeline_options = PdfPipelineOptions()
+    pipeline_options.do_table_structure = False
+    pipeline_options.do_ocr = False
+    
+    # Use standard OCR (not forced) to maintain text quality
+    pipeline_options.ocr_options.force_full_page_ocr = False
+    # Only perform OCR on pages with significant non-text areas to save memory
+    pipeline_options.ocr_options.bitmap_area_threshold = 0.1
+
+    if cfg.DOCLING_MODEL == "egret_xl":
+        pipeline_options.layout_options.model_spec =    DOCLING_LAYOUT_EGRET_XLARGE
+
+    # Force CPU to avoid VRAM allocation issues on long documents
+    pipeline_options.accelerator_options.device = AcceleratorDevice.AUTO
+    
+    # Initialize converter
+    converter = DocumentConverter(
+        format_options={
+            InputFormat.PDF: PdfFormatOption(pipeline_options=pipeline_options)
+        }
+    )
+    
+    full_markdown = ""
+    
+    with fitz.open(pdf_path) as doc:
+        total_pages = len(doc)
+        print(f"Starting batch processing for {pdf_path.name} ({total_pages} pages)...")
+        
+        for start_page in range(0, total_pages, batch_size):
+            end_page = min(start_page + batch_size, total_pages)
+            print(f"Processing pages {start_page + 1} to {end_page}...")
+            
+            # Extract pages for current batch
+            batch_pdf = fitz.open()
+            batch_pdf.insert_pdf(doc, from_page=start_page, to_page=end_page-1)
+            pdf_bytes = io.BytesIO(batch_pdf.tobytes())
+            batch_pdf.close()
+            
+            # Convert batch
+            source = DocumentStream(name=f"{pdf_path.stem}_batch_{start_page}.pdf", stream=pdf_bytes)
+            result = converter.convert(source)
+            batch_doc = result.document
+
+            # 1. Ignore headers, footers and footnotes by clearing their text
+            for item, _ in batch_doc.iterate_items(
+                    included_content_layers={ContentLayer.BODY, ContentLayer.FURNITURE}
+            ):
+                if not hasattr(item, "text") or not item.text:
+                    continue
+                
+                is_furniture = False
+                if item.label == DocItemLabel.PAGE_HEADER:
+                    is_furniture = True
+                elif item.label == DocItemLabel.PAGE_FOOTER:
+                    is_furniture = True
+                elif item.label == DocItemLabel.FOOTNOTE:
+                    # Heuristic: Polish dialogue starts with a dash. 
+                    # If it starts with a dash, it's likely misclassified speech, so we keep it.
+                    stripped_text = item.text.strip()
+                    if not stripped_text.startswith(("—", "–", "- ")):
+                        is_furniture = True
+
+                if is_furniture:
+                    item.text = ""
+
+            # Export batch to markdown and append
+            batch_md = batch_doc.export_to_markdown(
+                included_content_layers={ContentLayer.BODY, ContentLayer.FURNITURE}
+            )
+            full_markdown += batch_md + "\n\n"
+
+    # Clean up and normalize
+    full_markdown = full_markdown.replace("\xa0", " ")
+    full_markdown = re.sub(r'(\w+)[-\xad]\s*\n+\s*(\w+)', r'\1\2', full_markdown)
+    output_md_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with open(output_md_path, "w", encoding="utf-8") as f:
+        f.write(full_markdown)
+
+    return full_markdown
 
 
 def clean_pdf_text(content: str) -> str:
@@ -76,12 +180,12 @@ FILE_PARSER: dict[str, Callable[[Path], str]] = {
 }
 
 
-def read_docs(directory_pattern: str = './books/*') -> tuple[list[str], list[str], list[Path]]:
+def read_docs(directory_pattern: str = "documents/processed/*.md") -> tuple[list[str], list[str], list[Path]]:
     """
-    Recursively search for and read documents within the project's base directory.
+    Recursively search for and read documents within the project's sources directory.
 
     Args:
-        directory_pattern: The glob pattern to search for files.
+        directory_pattern: The glob pattern to search for files relative to SOURCES_DIR.
 
     Returns:
         A tuple containing three lists:
@@ -93,7 +197,7 @@ def read_docs(directory_pattern: str = './books/*') -> tuple[list[str], list[str
     doc_paths: list[Path] = []
     doc_names: list[str] = []
 
-    file_paths = cfg.BASE_DIR.rglob(pattern=directory_pattern)
+    file_paths = cfg.SOURCES_DIR.rglob(pattern=directory_pattern)
     for file_path in file_paths:
         if file_path.is_dir():
             continue
