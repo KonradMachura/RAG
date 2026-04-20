@@ -53,33 +53,54 @@ def _chunk_by_regex(doc_content: str, pattern: str) -> list[str]:
     return [chunk.strip(" \n\r\t-") for chunk in chunks if chunk.strip()]
 
 
-def subsection_chunking(doc_content: str) -> list[str]:
+def subsection_chunking(doc_content: str, max_size: int = cfg.DEFAULT_CHUNK_SIZE * 5) -> list[str]:
     """
     Split a document into chunks based on Markdown subsection headers (## or ###).
+    If a subsection is too large, it is further split into fixed-size chunks.
 
     Args:
         doc_content: The Markdown content to be chunked.
+        max_size: Maximum size of a chunk before further splitting.
 
     Returns:
         A list of subsection chunks.
     """
     # Use lookahead to split at ## or ### without removing the header itself
     pattern = r"(?<!#)(?=#{2,3}(?!#))"
-    return _chunk_by_regex(doc_content, pattern)
+    subsections = _chunk_by_regex(doc_content, pattern)
+    
+    final_chunks = []
+    for sub in subsections:
+        if len(sub) > max_size:
+            # Further split large subsections using fixed-size chunking
+            final_chunks.extend(fixed_sized_chunking(sub, size=max_size, overlap=cfg.DEFAULT_CHUNK_OVERLAP))
+        else:
+            final_chunks.append(sub)
+    return final_chunks
 
 
-def paragraph_chunking(doc_content: str) -> list[str]:
+def paragraph_chunking(doc_content: str, max_size: int = cfg.DEFAULT_CHUNK_SIZE * 10) -> list[str]:
     """
     Split a document into chunks based on Markdown section headers (##).
+    If a section is too large, it is further split into fixed-size chunks.
 
     Args:
         doc_content: The Markdown content to be chunked.
+        max_size: Maximum size of a chunk before further splitting.
 
     Returns:
         A list of section chunks.
     """
     pattern = r"(?<!#)(?=#{2}(?!#))"
-    return _chunk_by_regex(doc_content, pattern)
+    sections = _chunk_by_regex(doc_content, pattern)
+    
+    final_chunks = []
+    for sec in sections:
+        if len(sec) > max_size:
+            final_chunks.extend(fixed_sized_chunking(sec, size=max_size, overlap=cfg.DEFAULT_CHUNK_OVERLAP))
+        else:
+            final_chunks.append(sec)
+    return final_chunks
 
 
 def _extract_sentences(doc_content: str) -> list[str]:

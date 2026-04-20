@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 import time
 from pathlib import Path
@@ -7,6 +8,8 @@ from groq import Groq
 import chromadb
 from chromadb.utils import embedding_functions
 from sentence_transformers import SentenceTransformer
+
+sys.path.append(str(Path(__file__).parent.parent))
 
 from src.core import utils as u
 from src.core import chunking as c
@@ -153,7 +156,16 @@ def evaluate():
                 # Retrieve
                 retrieval = collection.query(query_texts=[q], n_results=3)
                 context_chunks = retrieval['documents'][0]
-                context = "\n\n---\n\n".join(context_chunks)
+                
+                # Context safeguard: Truncate if too long (approx 25k chars is safe for 12k tokens)
+                SAFE_CHAR_LIMIT = 25000
+                context = ""
+                for c_chunk in context_chunks:
+                    if len(context) + len(c_chunk) < SAFE_CHAR_LIMIT:
+                        context += (c_chunk + "\n\n---\n\n")
+                    else:
+                        context += c_chunk[:SAFE_CHAR_LIMIT - len(context)]
+                        break
                 
                 # Generate with retry mechanism
                 prompt = f"Context:\n{context}\n\nQuestion: {q}\n\nAnswer based ONLY on the context. If not found, say 'NOT_FOUND'."
@@ -164,15 +176,19 @@ def evaluate():
                     try:
                         completion = groq_client.chat.completions.create(
                             messages=[{"role": "user", "content": prompt}],
-                            model="llama-3.1-8b-instant", # Use smaller model for faster/cheaper evaluation
+                            model=cfg.LLM_MODEL,
                             temperature=0
                         )
                         answer = completion.choices[0].message.content.strip()
                         break
                     except Exception as e:
-                        if "Rate limit" in str(e):
+                        if "Rate limit" in str(e) or "429" in str(e):
                             print(f"    Rate limit hit, sleeping for 60s (Attempt {attempt+1}/{max_retries})...")
                             time.sleep(60)
+                        elif "413" in str(e) or "too large" in str(e).lower():
+                            print(f"    Request too large, truncating context further...")
+                            context = context[:len(context)//2]
+                            prompt = f"Context:\n{context}\n\nQuestion: {q}\n\nAnswer based ONLY on the context. If not found, say 'NOT_FOUND'."
                         else:
                             print(f"    Error during generation: {e}")
                             break

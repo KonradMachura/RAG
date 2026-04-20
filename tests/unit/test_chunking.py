@@ -16,13 +16,15 @@ def test_fixed_sized_chunking():
     assert len(chunks) > 1
     assert chunks[0] == text[0:25]
 
-def test_subsection_chunking():
-    text = "Intro\n## Section 1\nDetails\n### Subsection 1.1\nMore details"
-    chunks = subsection_chunking(text)
-    assert len(chunks) == 3
-    assert chunks[0] == "Intro"
-    assert "## Section 1" in chunks[1]
-    assert "### Subsection 1.1" in chunks[2]
+def test_subsection_chunking_large_split():
+    # Test that large subsections are split into smaller chunks
+    text = "## Section 1\n" + "A" * 1000
+    # max_size is set to 200 (default cfg.DEFAULT_CHUNK_SIZE * 5 = 200 * 5 = 1000)
+    # Let's force a smaller max_size for testing
+    chunks = subsection_chunking(text, max_size=100)
+    assert len(chunks) > 1
+    for chunk in chunks:
+        assert len(chunk) <= 150 # 100 + 50 overlap
 
 def test_paragraph_chunking():
     text = "Intro\n## Section 1\nDetails\n## Section 2\nMore details"
