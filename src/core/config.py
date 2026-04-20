@@ -42,7 +42,7 @@ EMBEDDING_MODEL = "paraphrase-multilingual-MiniLM-L12-v2"
 
 # --- LLM Configurations ---
 # The model ID for the Large Language Model used for generation.
-LLM_MODEL = "llama-3.3-70b-versatile"
+LLM_MODEL = "llama-3.1-8b-instant"
 # Sampling temperature for LLM generation; lower is more deterministic.
 TEMPERATURE = 0.1
 

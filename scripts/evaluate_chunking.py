@@ -104,9 +104,20 @@ def evaluate():
     detailed_file = results_dir / "detailed_results.json"
     
     all_results = []
+    if detailed_file.exists():
+        try:
+            with open(detailed_file, "r", encoding="utf-8") as f:
+                all_results = json.load(f)
+            print(f"Loaded {len(all_results)} existing results from checkpoint.")
+        except Exception as e:
+            print(f"Failed to load checkpoint: {e}")
+
+    def is_evaluated(doc_name, method_name):
+        return any(r["document"] == doc_name and r["method"] == method_name for r in all_results)
     
-    with open(summary_file, "w", encoding="utf-8") as f:
-        f.write("# Chunking Effectiveness Evaluation\n\n")
+    if not summary_file.exists():
+        with open(summary_file, "w", encoding="utf-8") as f:
+            f.write("# Chunking Effectiveness Evaluation\n\n")
 
     for doc_info in TEST_DOCS:
         doc_path = Path(doc_info["path"])
@@ -115,17 +126,24 @@ def evaluate():
         
         print(f"\nProcessing document: {doc_path.name}")
         
-        if doc_type == "pdf":
-            # For structured evaluation, convert PDF to Markdown first
-            processed_path = results_dir / f"{doc_path.stem}_processed.md"
-            print(f"  Converting PDF to Markdown (Docling)...")
-            content = u.convert_pdf_to_markdown_docling(doc_path, processed_path)
-        else:
-            content = u.FILE_PARSER[doc_path.suffix.lower()](doc_path)
+        content = None # Lazy load content only if needed
         
         for method in CHUNK_METHODS:
             method_name = method["name"]
+            
+            if is_evaluated(doc_path.name, method_name):
+                print(f"  Skipping {method_name} (already evaluated)")
+                continue
+                
             print(f"  Using method: {method_name}")
+            
+            if content is None:
+                if doc_type == "pdf":
+                    processed_path = results_dir / f"{doc_path.stem}_processed.md"
+                    print(f"  Converting PDF to Markdown (Docling)...")
+                    content = u.convert_pdf_to_markdown_docling(doc_path, processed_path)
+                else:
+                    content = u.FILE_PARSER[doc_path.suffix.lower()](doc_path)
             
             chunks = method["func"](content, model)
             
