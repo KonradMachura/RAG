@@ -171,7 +171,12 @@ def evaluate():
                 prompt = f"Context:\n{context}\n\nQuestion: {q}\n\nAnswer based ONLY on the context. If not found, say 'NOT_FOUND'."
                 
                 answer = "ERROR"
-                max_retries = 3
+                max_retries = 5
+                base_delay = 5  # Base delay for exponential backoff
+                
+                # Mandatory cooldown to avoid hitting RPM
+                time.sleep(2)
+                
                 for attempt in range(max_retries):
                     try:
                         completion = groq_client.chat.completions.create(
@@ -182,13 +187,19 @@ def evaluate():
                         answer = completion.choices[0].message.content.strip()
                         break
                     except Exception as e:
-                        if "Rate limit" in str(e) or "429" in str(e):
-                            print(f"    Rate limit hit, sleeping for 60s (Attempt {attempt+1}/{max_retries})...")
-                            time.sleep(60)
-                        elif "413" in str(e) or "too large" in str(e).lower():
+                        err_msg = str(e).lower()
+                        if "rate limit" in err_msg or "429" in err_msg:
+                            wait_time = base_delay * (2 ** attempt) + 60 # Exponential backoff + 60s
+                            print(f"    Rate limit hit. Waiting {wait_time}s (Attempt {attempt+1}/{max_retries})...")
+                            time.sleep(wait_time)
+                        elif "413" in err_msg or "too large" in err_msg:
                             print(f"    Request too large, truncating context further...")
                             context = context[:len(context)//2]
                             prompt = f"Context:\n{context}\n\nQuestion: {q}\n\nAnswer based ONLY on the context. If not found, say 'NOT_FOUND'."
+                        elif "overloaded" in err_msg or "503" in err_msg:
+                            wait_time = base_delay * (2 ** attempt) + 10
+                            print(f"    Model overloaded. Waiting {wait_time}s...")
+                            time.sleep(wait_time)
                         else:
                             print(f"    Error during generation: {e}")
                             break
