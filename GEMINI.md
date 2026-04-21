@@ -1,6 +1,14 @@
 
 # Bookipidia RAG System
 
+## Quick Start (Windows)
+1. **Clone the repository**: `git clone <repo_url>`
+2. **Run setup**: Open PowerShell and run `./setup.ps1`
+3. **Configure API Key**: Open `.env` and add your `GROQ_API_KEY`.
+4. **Start Application**:
+   - Backend: `uvicorn src.api.main:app --reload`
+   - Frontend: `streamlit run src/frontend/app.py`
+
 ## Project Overview
 Bookipidia is a Retrieval-Augmented Generation (RAG) system designed to allow users to upload, manage, and chat with their library of books (PDFs). It uses a semantic search approach to find relevant context from uploaded documents and provides answers using an LLM.
 
