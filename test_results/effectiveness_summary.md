@@ -1,2 +1,0 @@
-# Chunking Effectiveness Evaluation
-

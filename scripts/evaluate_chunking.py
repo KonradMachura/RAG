@@ -87,7 +87,7 @@ CHUNK_METHODS = [
     {"name": "fixed", "func": lambda content, model: c.fixed_sized_chunking(content)},
     {"name": "semantic", "func": lambda content, model: c.semantic_chunking(content, model)},
     {"name": "subsection", "func": lambda content, model: c.subsection_chunking(content)},
-    {"name": "paragraph", "func": lambda content, model: c.paragraph_chunking(content)}
+    {"name": "paragraph", "func": lambda content, model: c.paragraph_chunking(content)},
 ]
 
 def evaluate():
@@ -104,16 +104,6 @@ def evaluate():
     detailed_file = results_dir / "detailed_results.json"
     
     all_results = []
-    if detailed_file.exists():
-        try:
-            with open(detailed_file, "r", encoding="utf-8") as f:
-                all_results = json.load(f)
-            print(f"Loaded {len(all_results)} existing results from checkpoint.")
-        except Exception as e:
-            print(f"Failed to load checkpoint: {e}")
-
-    def is_evaluated(doc_name, method_name):
-        return any(r["document"] == doc_name and r["method"] == method_name for r in all_results)
     
     if not summary_file.exists():
         with open(summary_file, "w", encoding="utf-8") as f:
@@ -127,24 +117,19 @@ def evaluate():
         print(f"\nProcessing document: {doc_path.name}")
         
         content = None # Lazy load content only if needed
+
+        if doc_type == "pdf":
+            processed_path = results_dir / f"{doc_path.stem}_processed.md"
+            print(f"  Converting PDF to Markdown (Docling)...")
+            content = u.convert_pdf_to_markdown_docling(doc_path, processed_path)
+        else:
+            content = u.FILE_PARSER[doc_path.suffix.lower()](doc_path)
         
         for method in CHUNK_METHODS:
             method_name = method["name"]
-            
-            if is_evaluated(doc_path.name, method_name):
-                print(f"  Skipping {method_name} (already evaluated)")
-                continue
                 
             print(f"  Using method: {method_name}")
-            
-            if content is None:
-                if doc_type == "pdf":
-                    processed_path = results_dir / f"{doc_path.stem}_processed.md"
-                    print(f"  Converting PDF to Markdown (Docling)...")
-                    content = u.convert_pdf_to_markdown_docling(doc_path, processed_path)
-                else:
-                    content = u.FILE_PARSER[doc_path.suffix.lower()](doc_path)
-            
+
             chunks = method["func"](content, model)
             
             # Setup temp ChromaDB collection
@@ -176,14 +161,18 @@ def evaluate():
                 context_chunks = retrieval['documents'][0]
                 
                 # Context safeguard: Truncate if too long (approx 25k chars is safe for 12k tokens)
-                SAFE_CHAR_LIMIT = 25000
+                # SAFE_CHAR_LIMIT = 25000
+                # context = ""
+                # for c_chunk in context_chunks:
+                #     if len(context) + len(c_chunk) < SAFE_CHAR_LIMIT:
+                #         context += (c_chunk + "\n\n---\n\n")
+                #     else:
+                #         context += c_chunk[:SAFE_CHAR_LIMIT - len(context)]
+                #         break
+
                 context = ""
                 for c_chunk in context_chunks:
-                    if len(context) + len(c_chunk) < SAFE_CHAR_LIMIT:
-                        context += (c_chunk + "\n\n---\n\n")
-                    else:
-                        context += c_chunk[:SAFE_CHAR_LIMIT - len(context)]
-                        break
+                    context += (c_chunk + "\n\n---\n\n")
                 
                 # Generate with retry mechanism
                 prompt = f"Context:\n{context}\n\nQuestion: {q}\n\nAnswer based ONLY on the context. If not found, say 'NOT_FOUND'."
